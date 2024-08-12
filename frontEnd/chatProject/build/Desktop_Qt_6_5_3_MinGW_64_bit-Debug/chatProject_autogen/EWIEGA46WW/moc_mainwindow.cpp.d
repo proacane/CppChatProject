@@ -1,5 +1,6 @@
 D:/CPPCode/CPPChatProject/frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/chatProject_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/CPPCode/CPPChatProject/frontEnd/chatProject/mainwindow.h \
   D:/CPPCode/CPPChatProject/frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/chatProject_autogen/moc_predefs.h \
+  D:/CPPCode/CPPChatProject/frontEnd/chatProject/global.h \
   D:/CPPCode/CPPChatProject/frontEnd/chatProject/logindialog.h \
   D:/CPPCode/CPPChatProject/frontEnd/chatProject/registerdialog.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/q20memory.h \
@@ -137,9 +138,12 @@ D:/CPPCode/CPPChatProject/frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_b
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtGui/qwindowdefs_win.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtWidgets/QDialog \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtWidgets/QMainWindow \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtWidgets/QStyle \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtWidgets/QWidget \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtWidgets/qdialog.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtWidgets/qmainwindow.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtWidgets/qsizepolicy.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtWidgets/qstyle.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtWidgets/qtabwidget.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtWidgets/qtwidgets-config.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtWidgets/qtwidgetsexports.h \

@@ -243,6 +243,36 @@
 		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Widgets/Qt6QWindowsVistaStylePluginTargets.cmake",
 		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Widgets/Qt6QWindowsVistaStylePluginTargets-relwithdebinfo.cmake",
 		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Widgets/Qt6QWindowsVistaStylePluginAdditionalTargetInfo.cmake",
+		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6NetworkConfigVersion.cmake",
+		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6NetworkConfigVersionImpl.cmake",
+		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6NetworkConfig.cmake",
+		"D:/develop_tools/QT/Tools/CMake_64/share/cmake-3.27/Modules/CMakeFindDependencyMacro.cmake",
+		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6NetworkDependencies.cmake",
+		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6NetworkTargets.cmake",
+		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6NetworkTargets-relwithdebinfo.cmake",
+		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6NetworkAdditionalTargetInfo.cmake",
+		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6NetworkVersionlessTargets.cmake",
+		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6NetworkPlugins.cmake",
+		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QNLMNIPluginConfig.cmake",
+		"D:/develop_tools/QT/Tools/CMake_64/share/cmake-3.27/Modules/CMakeFindDependencyMacro.cmake",
+		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QNLMNIPluginTargets.cmake",
+		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QNLMNIPluginTargets-relwithdebinfo.cmake",
+		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QNLMNIPluginAdditionalTargetInfo.cmake",
+		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QSchannelBackendPluginConfig.cmake",
+		"D:/develop_tools/QT/Tools/CMake_64/share/cmake-3.27/Modules/CMakeFindDependencyMacro.cmake",
+		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QSchannelBackendPluginTargets.cmake",
+		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QSchannelBackendPluginTargets-relwithdebinfo.cmake",
+		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QSchannelBackendPluginAdditionalTargetInfo.cmake",
+		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginConfig.cmake",
+		"D:/develop_tools/QT/Tools/CMake_64/share/cmake-3.27/Modules/CMakeFindDependencyMacro.cmake",
+		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginTargets.cmake",
+		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginTargets-relwithdebinfo.cmake",
+		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginAdditionalTargetInfo.cmake",
+		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginConfig.cmake",
+		"D:/develop_tools/QT/Tools/CMake_64/share/cmake-3.27/Modules/CMakeFindDependencyMacro.cmake",
+		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginTargets.cmake",
+		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginTargets-relwithdebinfo.cmake",
+		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginAdditionalTargetInfo.cmake",
 		"D:/develop_tools/QT/Tools/CMake_64/share/cmake-3.27/Modules/GNUInstallDirs.cmake",
 		"D:/CPPCode/CPPChatProject/frontEnd/chatProject/res.qrc"
 	],
@@ -255,6 +285,12 @@
 			"D:/CPPCode/CPPChatProject/frontEnd/chatProject/global.h",
 			"MU",
 			"EWIEGA46WW/moc_global.cpp",
+			null
+		],
+		[
+			"D:/CPPCode/CPPChatProject/frontEnd/chatProject/httpmgr.h",
+			"MU",
+			"EWIEGA46WW/moc_httpmgr.cpp",
 			null
 		],
 		[
@@ -274,6 +310,12 @@
 			"MU",
 			"EWIEGA46WW/moc_registerdialog.cpp",
 			null
+		],
+		[
+			"D:/CPPCode/CPPChatProject/frontEnd/chatProject/singleton.h",
+			"MU",
+			"EWIEGA46WW/moc_singleton.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -285,6 +327,7 @@
 		"QT_CORE_LIB",
 		"QT_GUI_LIB",
 		"QT_NEEDS_QMAIN",
+		"QT_NETWORK_LIB",
 		"QT_WIDGETS_LIB",
 		"UNICODE",
 		"WIN32",
@@ -307,6 +350,7 @@
 		"D:/develop_tools/QT/6.5.3/mingw_64/mkspecs/win32-g++",
 		"D:/develop_tools/QT/6.5.3/mingw_64/include/QtWidgets",
 		"D:/develop_tools/QT/6.5.3/mingw_64/include/QtGui",
+		"D:/develop_tools/QT/6.5.3/mingw_64/include/QtNetwork",
 		"D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++",
 		"D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32",
 		"D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward",
@@ -348,6 +392,11 @@
 	[
 		[
 			"D:/CPPCode/CPPChatProject/frontEnd/chatProject/global.cpp",
+			"MU",
+			null
+		],
+		[
+			"D:/CPPCode/CPPChatProject/frontEnd/chatProject/httpmgr.cpp",
 			"MU",
 			null
 		],

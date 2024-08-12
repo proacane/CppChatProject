@@ -7,6 +7,8 @@ chatProject_autogen/timestamp: \
   chatProject_autogen/moc_predefs.h \
   D:/CPPCode/CPPChatProject/frontEnd/chatProject/global.cpp \
   D:/CPPCode/CPPChatProject/frontEnd/chatProject/global.h \
+  D:/CPPCode/CPPChatProject/frontEnd/chatProject/httpmgr.cpp \
+  D:/CPPCode/CPPChatProject/frontEnd/chatProject/httpmgr.h \
   D:/CPPCode/CPPChatProject/frontEnd/chatProject/logindialog.cpp \
   D:/CPPCode/CPPChatProject/frontEnd/chatProject/logindialog.h \
   D:/CPPCode/CPPChatProject/frontEnd/chatProject/logindialog.ui \
@@ -18,6 +20,18 @@ chatProject_autogen/timestamp: \
   D:/CPPCode/CPPChatProject/frontEnd/chatProject/registerdialog.h \
   D:/CPPCode/CPPChatProject/frontEnd/chatProject/registerdialog.ui \
   D:/CPPCode/CPPChatProject/frontEnd/chatProject/res.qrc \
+  D:/CPPCode/CPPChatProject/frontEnd/chatProject/singleton.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/QFlags \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/QIODevice \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/QJsonDocument \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/QJsonObject \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/QList \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/QMetaType \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/QObject \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/QSharedDataPointer \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/QString \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/QUrl \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/QVariant \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/q20memory.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/q20type_traits.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qalgorithms.h \
@@ -34,6 +48,9 @@ chatProject_autogen/timestamp: \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qbytearrayalgorithms.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qbytearraylist.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qbytearrayview.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qcalendar.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qcborcommon.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qcborvalue.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qchar.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qcompare.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qcompare_impl.h \
@@ -44,8 +61,10 @@ chatProject_autogen/timestamp: \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qcontainerinfo.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qcontainertools_impl.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qcontiguouscache.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qcryptographichash.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qdarwinhelpers.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qdatastream.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qdatetime.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qdebug.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qexceptionhandling.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qflags.h \
@@ -57,11 +76,16 @@ chatProject_autogen/timestamp: \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qglobalstatic.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qhash.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qhashfunctions.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qiodevice.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qiodevicebase.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qiterable.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qiterator.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qjsondocument.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qjsonobject.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qjsonvalue.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qline.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qlist.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qlocale.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qlogging.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qmalloc.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qmap.h \
@@ -82,6 +106,7 @@ chatProject_autogen/timestamp: \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qprocessordetection.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qrect.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qrefcount.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qregularexpression.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qscopedpointer.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qscopeguard.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qset.h \
@@ -121,7 +146,9 @@ chatProject_autogen/timestamp: \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qtversionchecks.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qtypeinfo.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qtypes.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qurl.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qutf8stringview.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/quuid.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qvariant.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qvarlengtharray.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qversiontagging.h \
@@ -151,11 +178,34 @@ chatProject_autogen/timestamp: \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtGui/qtransform.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtGui/qwindowdefs.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtGui/qwindowdefs_win.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtNetwork/QNetworkAccessManager \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtNetwork/QNetworkReply \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtNetwork/QNetworkRequest \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtNetwork/QSslConfiguration \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtNetwork/QSslPreSharedKeyAuthenticator \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtNetwork/qabstractsocket.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtNetwork/qhostaddress.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtNetwork/qnetworkaccessmanager.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtNetwork/qnetworkreply.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtNetwork/qnetworkrequest.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtNetwork/qssl.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtNetwork/qsslcertificate.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtNetwork/qsslconfiguration.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtNetwork/qsslerror.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtNetwork/qsslpresharedkeyauthenticator.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtNetwork/qsslsocket.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtNetwork/qtcpsocket.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtNetwork/qtnetwork-config.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtNetwork/qtnetworkexports.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtNetwork/qtnetworkglobal.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtWidgets/QDialog \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtWidgets/QMainWindow \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtWidgets/QStyle \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtWidgets/QWidget \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtWidgets/qdialog.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtWidgets/qmainwindow.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtWidgets/qsizepolicy.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtWidgets/qstyle.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtWidgets/qtabwidget.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtWidgets/qtwidgets-config.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtWidgets/qtwidgetsexports.h \
@@ -267,6 +317,31 @@ chatProject_autogen/timestamp: \
   D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6GuiTools/Qt6GuiToolsTargets-relwithdebinfo.cmake \
   D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6GuiTools/Qt6GuiToolsTargets.cmake \
   D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6GuiTools/Qt6GuiToolsVersionlessTargets.cmake \
+  D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6NetworkAdditionalTargetInfo.cmake \
+  D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6NetworkConfig.cmake \
+  D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6NetworkConfigVersion.cmake \
+  D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6NetworkConfigVersionImpl.cmake \
+  D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6NetworkDependencies.cmake \
+  D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6NetworkPlugins.cmake \
+  D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6NetworkTargets-relwithdebinfo.cmake \
+  D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6NetworkTargets.cmake \
+  D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6NetworkVersionlessTargets.cmake \
+  D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QNLMNIPluginAdditionalTargetInfo.cmake \
+  D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QNLMNIPluginConfig.cmake \
+  D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QNLMNIPluginTargets-relwithdebinfo.cmake \
+  D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QNLMNIPluginTargets.cmake \
+  D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QSchannelBackendPluginAdditionalTargetInfo.cmake \
+  D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QSchannelBackendPluginConfig.cmake \
+  D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QSchannelBackendPluginTargets-relwithdebinfo.cmake \
+  D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QSchannelBackendPluginTargets.cmake \
+  D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginAdditionalTargetInfo.cmake \
+  D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginConfig.cmake \
+  D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginTargets-relwithdebinfo.cmake \
+  D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginTargets.cmake \
+  D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginAdditionalTargetInfo.cmake \
+  D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginConfig.cmake \
+  D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginTargets-relwithdebinfo.cmake \
+  D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginTargets.cmake \
   D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Widgets/Qt6QWindowsVistaStylePluginAdditionalTargetInfo.cmake \
   D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Widgets/Qt6QWindowsVistaStylePluginConfig.cmake \
   D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Widgets/Qt6QWindowsVistaStylePluginTargets-relwithdebinfo.cmake \
@@ -343,6 +418,8 @@ chatProject_autogen/timestamp: \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/allocator.h \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/atomic_base.h \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/atomic_lockfree_defines.h \
+  D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/basic_ios.h \
+  D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/basic_ios.tcc \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/basic_string.h \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/basic_string.tcc \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/char_traits.h \
@@ -363,14 +440,18 @@ chatProject_autogen/timestamp: \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/hashtable_policy.h \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/invoke.h \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/ios_base.h \
+  D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/istream.tcc \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/list.tcc \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/locale_classes.h \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/locale_classes.tcc \
+  D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/locale_facets.h \
+  D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/locale_facets.tcc \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/localefwd.h \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/memoryfwd.h \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/move.h \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/nested_exception.h \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/node_handle.h \
+  D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/ostream.tcc \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/ostream_insert.h \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/parse_numbers.h \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/postypes.h \
@@ -426,6 +507,7 @@ chatProject_autogen/timestamp: \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/cstring \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ctime \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/cwchar \
+  D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/cwctype \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/debug/assertions.h \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/debug/debug.h \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/exception \
@@ -439,7 +521,10 @@ chatProject_autogen/timestamp: \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ext/type_traits.h \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/functional \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/initializer_list \
+  D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ios \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/iosfwd \
+  D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/iostream \
+  D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/istream \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/iterator \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/limits \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/list \
@@ -448,6 +533,7 @@ chatProject_autogen/timestamp: \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/new \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/numeric \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/optional \
+  D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ostream \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/pstl/execution_defs.h \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/pstl/glue_algorithm_defs.h \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/pstl/glue_memory_defs.h \
@@ -483,6 +569,8 @@ chatProject_autogen/timestamp: \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/c++locale.h \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/cpu_defines.h \
+  D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/ctype_base.h \
+  D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/ctype_inline.h \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/error_constants.h \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/gthr-default.h \
   D:/develop_tools/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/gthr.h \
@@ -525,4 +613,5 @@ chatProject_autogen/timestamp: \
   D:/develop_tools/QT/Tools/mingw1120_64/x86_64-w64-mingw32/include/sys/types.h \
   D:/develop_tools/QT/Tools/mingw1120_64/x86_64-w64-mingw32/include/time.h \
   D:/develop_tools/QT/Tools/mingw1120_64/x86_64-w64-mingw32/include/vadefs.h \
-  D:/develop_tools/QT/Tools/mingw1120_64/x86_64-w64-mingw32/include/wchar.h
+  D:/develop_tools/QT/Tools/mingw1120_64/x86_64-w64-mingw32/include/wchar.h \
+  D:/develop_tools/QT/Tools/mingw1120_64/x86_64-w64-mingw32/include/wctype.h

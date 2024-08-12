@@ -40,14 +40,26 @@ struct qt_meta_stringdata_CLASSRegisterDialogENDCLASS_t {};
 static constexpr auto qt_meta_stringdata_CLASSRegisterDialogENDCLASS = QtMocHelpers::stringData(
     "RegisterDialog",
     "on_btn_getCode_clicked",
-    ""
+    "",
+    "slot_reg_mod_finish",
+    "ReqId",
+    "id",
+    "res",
+    "ErrorCodes",
+    "err"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSRegisterDialogENDCLASS_t {
-    uint offsetsAndSizes[6];
+    uint offsetsAndSizes[18];
     char stringdata0[15];
     char stringdata1[23];
     char stringdata2[1];
+    char stringdata3[20];
+    char stringdata4[6];
+    char stringdata5[3];
+    char stringdata6[4];
+    char stringdata7[11];
+    char stringdata8[4];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSRegisterDialogENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -55,11 +67,23 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSRegisterDialogENDCLASS_t qt_met
     {
         QT_MOC_LITERAL(0, 14),  // "RegisterDialog"
         QT_MOC_LITERAL(15, 22),  // "on_btn_getCode_clicked"
-        QT_MOC_LITERAL(38, 0)   // ""
+        QT_MOC_LITERAL(38, 0),  // ""
+        QT_MOC_LITERAL(39, 19),  // "slot_reg_mod_finish"
+        QT_MOC_LITERAL(59, 5),  // "ReqId"
+        QT_MOC_LITERAL(65, 2),  // "id"
+        QT_MOC_LITERAL(68, 3),  // "res"
+        QT_MOC_LITERAL(72, 10),  // "ErrorCodes"
+        QT_MOC_LITERAL(83, 3)   // "err"
     },
     "RegisterDialog",
     "on_btn_getCode_clicked",
-    ""
+    "",
+    "slot_reg_mod_finish",
+    "ReqId",
+    "id",
+    "res",
+    "ErrorCodes",
+    "err"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -71,7 +95,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSRegisterDialogENDCLASS[] = {
       11,       // revision
        0,       // classname
        0,    0, // classinfo
-       1,   14, // methods
+       2,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -79,10 +103,12 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSRegisterDialogENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   20,    2, 0x08,    1 /* Private */,
+       1,    0,   26,    2, 0x08,    1 /* Private */,
+       3,    3,   27,    2, 0x08,    2 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 4, QMetaType::QString, 0x80000000 | 7,    5,    6,    8,
 
        0        // eod
 };
@@ -97,7 +123,12 @@ Q_CONSTINIT const QMetaObject RegisterDialog::staticMetaObject = { {
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<RegisterDialog, std::true_type>,
         // method 'on_btn_getCode_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'slot_reg_mod_finish'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<ReqId, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<ErrorCodes, std::false_type>
     >,
     nullptr
 } };
@@ -109,10 +140,10 @@ void RegisterDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         (void)_t;
         switch (_id) {
         case 0: _t->on_btn_getCode_clicked(); break;
+        case 1: _t->slot_reg_mod_finish((*reinterpret_cast< std::add_pointer_t<ReqId>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<ErrorCodes>>(_a[3]))); break;
         default: ;
         }
     }
-    (void)_a;
 }
 
 const QMetaObject *RegisterDialog::metaObject() const
@@ -134,13 +165,13 @@ int RegisterDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 1)
+        if (_id < 2)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 1;
+        _id -= 2;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 1)
+        if (_id < 2)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 1;
+        _id -= 2;
     }
     return _id;
 }

@@ -19,7 +19,7 @@ private:
     Ui::LoginDialog *ui;
 signals:
     // 跳转到注册界面
-    void switchToRegister();
+    void switch_to_register();
 };
 
 #endif // LOGINDIALOG_H

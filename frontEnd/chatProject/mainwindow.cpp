@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
     setCentralWidget(_login_dialog);
     _login_dialog->show();
     // 连接信号与槽
-    connect(_login_dialog,&LoginDialog::switchToRegister,this,&MainWindow::slotSwitchRegister);
+    connect(_login_dialog,&LoginDialog::switch_to_register,this,&MainWindow::slotSwitchRegister);
     // 自定义样式，设置无边框
     _login_dialog->setWindowFlags(Qt::CustomizeWindowHint|Qt::FramelessWindowHint);
 }

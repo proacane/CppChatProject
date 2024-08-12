@@ -39,14 +39,14 @@ namespace {
 struct qt_meta_stringdata_CLASSLoginDialogENDCLASS_t {};
 static constexpr auto qt_meta_stringdata_CLASSLoginDialogENDCLASS = QtMocHelpers::stringData(
     "LoginDialog",
-    "switchToRegister",
+    "switch_to_register",
     ""
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSLoginDialogENDCLASS_t {
     uint offsetsAndSizes[6];
     char stringdata0[12];
-    char stringdata1[17];
+    char stringdata1[19];
     char stringdata2[1];
 };
 #define QT_MOC_LITERAL(ofs, len) \
@@ -54,11 +54,11 @@ struct qt_meta_stringdata_CLASSLoginDialogENDCLASS_t {
 Q_CONSTINIT static const qt_meta_stringdata_CLASSLoginDialogENDCLASS_t qt_meta_stringdata_CLASSLoginDialogENDCLASS = {
     {
         QT_MOC_LITERAL(0, 11),  // "LoginDialog"
-        QT_MOC_LITERAL(12, 16),  // "switchToRegister"
-        QT_MOC_LITERAL(29, 0)   // ""
+        QT_MOC_LITERAL(12, 18),  // "switch_to_register"
+        QT_MOC_LITERAL(31, 0)   // ""
     },
     "LoginDialog",
-    "switchToRegister",
+    "switch_to_register",
     ""
 };
 #undef QT_MOC_LITERAL
@@ -96,7 +96,7 @@ Q_CONSTINIT const QMetaObject LoginDialog::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSLoginDialogENDCLASS_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<LoginDialog, std::true_type>,
-        // method 'switchToRegister'
+        // method 'switch_to_register'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -108,14 +108,14 @@ void LoginDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         auto *_t = static_cast<LoginDialog *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->switchToRegister(); break;
+        case 0: _t->switch_to_register(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
             using _t = void (LoginDialog::*)();
-            if (_t _q_method = &LoginDialog::switchToRegister; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+            if (_t _q_method = &LoginDialog::switch_to_register; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 0;
                 return;
             }
@@ -155,7 +155,7 @@ int LoginDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void LoginDialog::switchToRegister()
+void LoginDialog::switch_to_register()
 {
     QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }
