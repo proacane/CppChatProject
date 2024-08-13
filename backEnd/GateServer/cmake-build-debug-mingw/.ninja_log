@@ -1,0 +1,4 @@
+# ninja log v6
+3	638	7452331491761359	CMakeFiles/GateServer.dir/main.cpp.obj	2f524257cbb75e3a
+8	5421	7452331491807527	CMakeFiles/GateServer.dir/src/CServer.cpp.obj	9d9f0b5fa3145758
+5429	6976	7452331546014614	GateServer.exe	b2628774028a2335

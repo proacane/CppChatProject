@@ -233,7 +233,7 @@ build chatProject_autogen/EWIEGA46WW/qrc_res.cpp | ${cmake_ninja_workdir}chatPro
 #############################################
 # Phony custom command for CMakeFiles\chatProject_autogen_timestamp_deps
 
-build CMakeFiles/chatProject_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/chatProject_autogen_timestamp_deps: phony D$:/develop_tools/QT/6.5.3/mingw_64/lib/libQt6Core.a D$:/develop_tools/QT/6.5.3/mingw_64/./bin/uic.exe D$:/develop_tools/QT/6.5.3/mingw_64/./bin/moc.exe D$:/develop_tools/QT/6.5.3/mingw_64/lib/libQt6Network.a D$:/develop_tools/QT/6.5.3/mingw_64/lib/libQt6Widgets.a
+build CMakeFiles/chatProject_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/chatProject_autogen_timestamp_deps: phony D$:/develop_tools/QT/6.5.3/mingw_64/lib/libQt6Core.a D$:/develop_tools/QT/6.5.3/mingw_64/./bin/uic.exe D$:/develop_tools/QT/6.5.3/mingw_64/./bin/moc.exe D$:/develop_tools/QT/6.5.3/mingw_64/lib/libQt6Widgets.a D$:/develop_tools/QT/6.5.3/mingw_64/lib/libQt6Network.a
 
 
 #############################################
