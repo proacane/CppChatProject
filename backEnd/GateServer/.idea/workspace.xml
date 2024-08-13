@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
+  <component name="CMakeReloadState">
+    <option name="reloaded" value="true" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="GateServer" targetName="GateServer" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug-MinGW" ENABLED="true" CONFIG_NAME="Debug" GENERATION_OPTIONS="-DCMAKE_TOOLCHAIN_FILE=D:\develop_tools\cppsoft\vcpkg\scripts\buildsystems\vcpkg.cmake" />
+      <configuration PROFILE_NAME="Debug-VS2022" ENABLED="true" CONFIG_NAME="Debug" TOOLCHAIN_NAME="Visual Studio" GENERATION_OPTIONS="-DCMAKE_TOOLCHAIN_FILE=D:\develop_tools\cppsoft\vcpkg\scripts\buildsystems\vcpkg.cmake" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d0e8a202-024c-45c7-9f02-554198215dfc" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/include/HttpConnection.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontEnd/chatProject/CMakeLists.txt.user" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontEnd/chatProject/CMakeLists.txt.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.cmake/api/v1/reply.prev/cache-v2-72fd5e9da93f18c18127.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.cmake/api/v1/reply.prev/cmakeFiles-v1-38fd9a39ab40a54df17f.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.cmake/api/v1/reply.prev/codemodel-v2-a3a75569edc6f4732f24.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.cmake/api/v1/reply.prev/index-2024-08-12T06-55-26-0470.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.cmake/api/v1/reply.prev/target-chatProject-Debug-eb045d925c92d54eb14e.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.cmake/api/v1/reply/codemodel-v2-e47a526e590e9f191307.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.cmake/api/v1/reply/index-2024-08-12T07-06-30-0886.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.cmake/api/v1/reply/target-chatProject-Debug-11983d6cbee541f0f8eb.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.ninja_deps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.qtc_clangd/.cache/clangd/index/httpmgr.h.9B7661CBE05A8C06.idx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.qtc_clangd/.cache/clangd/index/httpmgr.h.9B7661CBE05A8C06.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.qtc_clangd/.cache/clangd/index/registerdialog.cpp.F4F3DE40AD3BF2F6.idx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.qtc_clangd/.cache/clangd/index/registerdialog.cpp.F4F3DE40AD3BF2F6.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.qtc_clangd/.cache/clangd/index/registerdialog.h.00EBDA3A0BD2C7DA.idx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/.qtc_clangd/.cache/clangd/index/registerdialog.h.00EBDA3A0BD2C7DA.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/CMakeCache.txt.prev" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/CMakeCache.txt.prev" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/CMakeFiles/chatProject_autogen.dir/AutogenInfo.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/CMakeFiles/chatProject_autogen.dir/AutogenInfo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/build.ninja" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug-VS2022" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2024" />
+    <option name="minorVersion" value="1.2" />
+    <option name="productBranch" value="Classic" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2kajnmOUxXw5iwjFnPjADiBlSvs" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "CMake Application.GateServer.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "editing.templates",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="GateServer" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="GateServer" TARGET_NAME="GateServer" CONFIG_NAME="Debug-MinGW" RUN_TARGET_PROJECT_NAME="GateServer" RUN_TARGET_NAME="GateServer">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d0e8a202-024c-45c7-9f02-554198215dfc" name="Changes" comment="" />
+      <created>1723528752425</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1723528752425</updated>
+      <workItem from="1723528754099" duration="1054000" />
+      <workItem from="1723529986308" duration="6124000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VCPKGProject">
+    <isAutomaticCheckingOnLaunch value="false" />
+    <isAutomaticFoundErrors value="true" />
+    <isAutomaticReloadCMake value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/LogicSystem.cpp</url>
+          <line>19</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/HttpConnection.cpp</url>
+          <line>50</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

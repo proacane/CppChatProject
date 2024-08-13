@@ -8,7 +8,7 @@ class SingleTon {
     SingleTon(const SingleTon&) = delete;
     SingleTon& operator=(const SingleTon&) = delete;
     static std::shared_ptr<T> getInstance() {
-        static std::shared_ptr<T> _instance;
+        static std::shared_ptr<T> _instance(new T);
         return _instance;
     };
 
