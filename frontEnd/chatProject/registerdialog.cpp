@@ -3,8 +3,8 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QRegularExpression>
-
 #include "ui_registerdialog.h"
+#include "httpMgr.h"
 
 RegisterDialog::RegisterDialog(QWidget* parent) : QDialog(parent), ui(new Ui::RegisterDialog) {
     ui->setupUi(this);
@@ -13,6 +13,9 @@ RegisterDialog::RegisterDialog(QWidget* parent) : QDialog(parent), ui(new Ui::Re
     repolish(ui->lab_errTip);
     ui->edit_pwd->setEchoMode(QLineEdit::Password);
     ui->edit_confirm->setEchoMode(QLineEdit::Password);
+
+    initHttpHandlers();
+    connect(HttpMgr::getInstance().get(),&HttpMgr::sig_reg_mod_finish,this,&RegisterDialog::slot_reg_mod_finish);
 }
 
 RegisterDialog::~RegisterDialog() {
@@ -27,7 +30,11 @@ void RegisterDialog::on_btn_getCode_clicked() {
     static QRegularExpression email_regex(R"(^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$)");
     auto email_match = email_regex.match(email).hasMatch();
     if (email_match) {
-        // TODO 发送验证码
+
+        QJsonObject json_obj;
+        json_obj["email"] = email;
+        HttpMgr::getInstance()->postHttpReq(QUrl(gate_url_prefix+"/get_varifycode"), json_obj,
+                                            ReqId::ID_GET_VARIFY_CODE, Modules::REGISTERMOD);
     } else {
         showTip(tr("邮箱地址不正确"), true);
     }

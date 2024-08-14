@@ -34,6 +34,20 @@ public:
      * @param handler
      */
     void registerGet(std::string url,httpHandler handler);
+    /**
+     * 处理 post 请求
+     * @param url
+     * @param connection
+     * @return
+     */
+    bool handlePost(std::string url,std::shared_ptr<HttpConnection> connection);
+    /**
+     * 注册post请求的回调函数
+     * @param url
+     * @param handler
+     */
+    void registerPost(std::string url,httpHandler handler);
+
 
 private:
     LogicSystem();

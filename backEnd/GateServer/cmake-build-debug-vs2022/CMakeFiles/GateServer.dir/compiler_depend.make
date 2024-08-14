@@ -204,6 +204,7 @@ CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\mp11\detail\mp_count.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\mp11\detail\mp_plus.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\mp11\detail\mp_min_element.hpp
+CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\mp11\list.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\mp11\detail\mp_list_v.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\mp11\detail\mp_is_list.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\mp11\detail\mp_is_value_list.hpp
@@ -537,6 +538,7 @@ CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\intrusive\detail\simple_disposers.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\intrusive\detail\size_holder.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\intrusive\detail\algorithm.hpp
+CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\intrusive\detail\value_functors.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\intrusive\detail\config_end.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\intrusive\set.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\intrusive\detail\config_begin.hpp
@@ -757,7 +759,6 @@ CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\impl\cancellation_signal.ipp
-CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\thread_context.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\call_stack.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\noncopyable.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
@@ -1173,6 +1174,7 @@ CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\associated_immediate_executor.hpp
+CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\bind_executor.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\uses_executor.hpp
@@ -1229,7 +1231,6 @@ CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\type_traits\copy_cv_ref.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\type_traits\copy_reference.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\type_traits\extent.hpp
-CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\type_traits\floating_point_promotion.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\type_traits\function_traits.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\type_traits\has_bit_and.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\type_traits\detail\has_binary_operator.hpp
@@ -2261,6 +2262,7 @@ CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
+CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\impl\signal_set_service.ipp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
@@ -2368,6 +2370,7 @@ CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\generic\seq_packet_protocol.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
+CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\generic\stream_protocol.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
@@ -2514,6 +2517,7 @@ CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\impl\redirect_error.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
+CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\require_concept.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\traits\require_concept_member.hpp
 CMakeFiles\GateServer.dir\main.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
@@ -3360,7 +3364,6 @@ CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\in
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\impl\thread_context.ipp
-CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\thread_info_base.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\multiple_exceptions.hpp
@@ -3735,7 +3738,6 @@ CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\in
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\reactor.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\null_reactor.hpp
-CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
@@ -3764,6 +3766,7 @@ CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\in
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\bind_executor.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\uses_executor.hpp
+CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
@@ -3810,7 +3813,6 @@ CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\in
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\beast\core\impl\buffers_suffix.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\type_traits.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\type_traits\add_cv.hpp
-CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\type_traits\add_lvalue_reference.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\type_traits\common_type.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\type_traits\detail\mp_defer.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\type_traits\copy_cv_ref.hpp
@@ -3954,6 +3956,7 @@ CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\in
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\winsock_init.hpp
+CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\impl\winsock_init.ipp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
@@ -4112,6 +4115,7 @@ CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\in
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\base_from_completion_cond.hpp
+CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\consuming_buffers.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
@@ -4444,7 +4448,6 @@ CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\in
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\numeric\conversion\detail\converter.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\numeric\conversion\bounds.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\numeric\conversion\detail\bounds.hpp
-CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\numeric\conversion\numeric_cast_traits.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\cstdint.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\numeric\conversion\detail\numeric_cast_traits.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\numeric\conversion\detail\preprocessed\numeric_cast_traits_common.hpp
@@ -4464,7 +4467,6 @@ CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\in
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\wait_handler.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
-CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\wait_traits.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
@@ -4536,7 +4538,6 @@ CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\in
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\beast\core\impl\static_buffer.ipp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\beast\core\static_buffer.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\beast\core\ostream.hpp
-CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\beast\core\detail\ostream.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\beast\core\saved_handler.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\beast\core\impl\saved_handler.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\assert.hpp
@@ -4595,6 +4596,7 @@ CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\in
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\ip\impl\basic_endpoint.hpp
+CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\ip\basic_resolver.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\ip\basic_resolver_iterator.hpp
@@ -4821,7 +4823,6 @@ CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\in
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\impl\serial_port_base.hpp
-CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\impl\serial_port_base.ipp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
@@ -5188,6 +5189,17 @@ CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\in
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: "C:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\map"
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: "C:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\xtree"
+CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\json\json.h
+CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\json\config.h
+CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\json\allocator.h
+CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\json\version.h
+CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\json\json_features.h
+CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\json\forwards.h
+CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\json\reader.h
+CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\json\value.h
+CMakeFiles\GateServer.dir\src\CServer.cpp.obj: "C:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\deque"
+CMakeFiles\GateServer.dir\src\CServer.cpp.obj: "C:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\stack"
+CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\json\writer.h
 CMakeFiles\GateServer.dir\src\CServer.cpp.obj: D:\CPPCode\CPPChatProject\backEnd\GateServer\include\HttpConnection.h
 
 
@@ -6293,6 +6305,7 @@ CMakeFiles\GateServer.dir\src\HttpConnection.cpp.obj: D:\develop_tools\cppsoft\v
 CMakeFiles\GateServer.dir\src\HttpConnection.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\src\HttpConnection.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\src\HttpConnection.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\null_event.hpp
+CMakeFiles\GateServer.dir\src\HttpConnection.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\src\HttpConnection.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\src\HttpConnection.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\impl\null_event.ipp
 CMakeFiles\GateServer.dir\src\HttpConnection.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
@@ -7780,6 +7793,17 @@ CMakeFiles\GateServer.dir\src\HttpConnection.cpp.obj: D:\develop_tools\cppsoft\v
 CMakeFiles\GateServer.dir\src\HttpConnection.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\src\HttpConnection.cpp.obj: "C:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\map"
 CMakeFiles\GateServer.dir\src\HttpConnection.cpp.obj: "C:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\xtree"
+CMakeFiles\GateServer.dir\src\HttpConnection.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\json\json.h
+CMakeFiles\GateServer.dir\src\HttpConnection.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\json\config.h
+CMakeFiles\GateServer.dir\src\HttpConnection.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\json\allocator.h
+CMakeFiles\GateServer.dir\src\HttpConnection.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\json\version.h
+CMakeFiles\GateServer.dir\src\HttpConnection.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\json\json_features.h
+CMakeFiles\GateServer.dir\src\HttpConnection.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\json\forwards.h
+CMakeFiles\GateServer.dir\src\HttpConnection.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\json\reader.h
+CMakeFiles\GateServer.dir\src\HttpConnection.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\json\value.h
+CMakeFiles\GateServer.dir\src\HttpConnection.cpp.obj: "C:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\deque"
+CMakeFiles\GateServer.dir\src\HttpConnection.cpp.obj: "C:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\stack"
+CMakeFiles\GateServer.dir\src\HttpConnection.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\json\writer.h
 CMakeFiles\GateServer.dir\src\HttpConnection.cpp.obj: "C:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\iostream"
 CMakeFiles\GateServer.dir\src\HttpConnection.cpp.obj: D:\CPPCode\CPPChatProject\backEnd\GateServer\src\..\include\LogicSystem.h
 CMakeFiles\GateServer.dir\src\HttpConnection.cpp.obj: D:\CPPCode\CPPChatProject\backEnd\GateServer\include\SingleTon.h
@@ -8591,6 +8615,7 @@ CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpk
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
+CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\execution\any_executor.hpp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\assert.hpp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\assert.hpp
@@ -9352,6 +9377,7 @@ CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpk
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\core\yield_primitives.hpp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\core\detail\sp_thread_pause.hpp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\core\detail\sp_thread_yield.hpp
+CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\core\detail\sp_win32_sleep.hpp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\core\detail\sp_thread_sleep.hpp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\smart_ptr\detail\operator_bool.hpp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\smart_ptr\detail\local_sp_deleter.hpp
@@ -9725,6 +9751,7 @@ CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpk
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\beast\core\detail\ostream.hpp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\beast\core\saved_handler.hpp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\beast\core\impl\saved_handler.hpp
+CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\assert.hpp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: "C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt\assert.h"
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\beast\core\impl\saved_handler.ipp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\beast\core\saved_handler.hpp
@@ -9746,6 +9773,7 @@ CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpk
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\ip\impl\address_v4.hpp
+CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\ip\impl\address_v4.ipp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
@@ -10117,6 +10145,7 @@ CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpk
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detached.hpp
+CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\impl\detached.hpp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
@@ -10196,6 +10225,7 @@ CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpk
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\ip\icmp.hpp
+CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\push_options.hpp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\ip\multicast.hpp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\ip\detail\socket_option.hpp
@@ -10371,6 +10401,17 @@ CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpk
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\pop_options.hpp
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: "C:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\map"
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: "C:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\xtree"
+CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\json\json.h
+CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\json\config.h
+CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\json\allocator.h
+CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\json\version.h
+CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\json\json_features.h
+CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\json\forwards.h
+CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\json\reader.h
+CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\json\value.h
+CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: "C:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\deque"
+CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: "C:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\stack"
+CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\json\writer.h
 CMakeFiles\GateServer.dir\src\LogicSystem.cpp.obj: D:\CPPCode\CPPChatProject\backEnd\GateServer\src\..\include\HttpConnection.h
 
 
@@ -10867,9 +10908,9 @@ D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\preprocessor\
 
 "C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\um\namespaceapi.h":
 
-D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\mp11\list.hpp:
-
 D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\numeric\conversion\sign_mixture_enum.hpp:
+
+D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\mp11\list.hpp:
 
 "C:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\ctime":
 
@@ -10947,13 +10988,13 @@ D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\winapi\charac
 
 D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\json\json.h:
 
+"C:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\xmmintrin.h":
+
 D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\date_time\gregorian\greg_year.hpp:
 
 D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\deadline_timer_service.hpp:
 
 D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\json\config.h:
-
-"C:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\xmmintrin.h":
 
 D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\beast\websocket\detail\prng.hpp:
 
@@ -11387,11 +11428,11 @@ D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\system\detail
 
 D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\beast\http\file_body.hpp:
 
+D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\thread_context.hpp:
+
 D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\stream_file.hpp:
 
 D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\mp11\detail\mp_copy_if.hpp:
-
-D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\thread_context.hpp:
 
 D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\system\detail\system_category_impl.hpp:
 
@@ -11797,6 +11838,8 @@ D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\preprocessor\
 
 D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\move\detail\workaround.hpp:
 
+D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\intrusive\detail\value_functors.hpp:
+
 D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\move\utility_core.hpp:
 
 D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\beast\http\impl\serializer.hpp:
@@ -12029,8 +12072,6 @@ D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\type_traits\a
 
 D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\beast\http\message_generator.hpp:
 
-"C:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\emmintrin.h":
-
 D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\smart_ptr\detail\operator_bool.hpp:
 
 D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\beast\core\detail\variant.hpp:
@@ -12100,6 +12141,8 @@ D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\beast\core\as
 "C:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\smmintrin.h":
 
 "C:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\tmmintrin.h":
+
+"C:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\emmintrin.h":
 
 "C:\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\mmintrin.h":
 
@@ -12639,12 +12682,6 @@ D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\type_traits\a
 
 D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\type_traits\copy_reference.hpp:
 
-D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\type_traits\floating_point_promotion.hpp:
-
-D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\type_traits\has_minus.hpp:
-
-D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\win_iocp_thread_info.hpp:
-
 D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\type_traits\detail\has_binary_operator.hpp:
 
 D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\win_iocp_socket_recvfrom_op.hpp:
@@ -12674,6 +12711,12 @@ D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\type_traits\h
 D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\windows\overlapped_ptr.hpp:
 
 D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\type_traits\has_logical_not.hpp:
+
+D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\type_traits\floating_point_promotion.hpp:
+
+D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\type_traits\has_minus.hpp:
+
+D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\detail\win_iocp_thread_info.hpp:
 
 D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\type_traits\has_multiplies.hpp:
 
@@ -13552,7 +13595,5 @@ D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\windows\
 D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\windows\overlapped_handle.hpp:
 
 D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\asio\windows\stream_handle.hpp:
-
-D:\develop_tools\cppsoft\vcpkg\installed\x64-windows\include\boost\intrusive\detail\value_functors.hpp:
 
 D:\CPPCode\CPPChatProject\backEnd\GateServer\src\HttpConnection.cpp:

@@ -29,6 +29,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         global.h global.cpp
         singleton.h
         httpmgr.h httpmgr.cpp
+        config.ini
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET chatProject APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -49,6 +50,10 @@ else()
 endif()
 
 target_link_libraries(chatProject PRIVATE Qt${QT_VERSION_MAJOR}::Widgets  Qt${QT_VERSION_MAJOR}::Network)
+
+
+# 添加自定义命令，将 config.ini 复制到构建目录
+configure_file(config.ini ${CMAKE_CURRENT_BINARY_DIR}/config.ini COPYONLY)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an

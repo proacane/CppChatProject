@@ -996,6 +996,7 @@ D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/t
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/push_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/pop_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/impl/throw_error.ipp
+D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/push_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/pop_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/error.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/cerrno.hpp
@@ -1160,6 +1161,7 @@ D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/p
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/pop_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/bind_executor.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/uses_executor.hpp
+D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/push_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/pop_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/push_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/pop_options.hpp
@@ -1597,6 +1599,7 @@ D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/beast/core/im
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/beast/core/flat_static_buffer.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/beast/core/read_size.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/beast/core/impl/read_size.hpp
+D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/assert.hpp
 C:/Program Files (x86)/Windows Kits/10/include/10.0.22621.0/ucrt/assert.h
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/beast/http/span_body.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/beast/http/string_body.hpp
@@ -1971,6 +1974,7 @@ D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/p
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/pop_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/ip/impl/address_v6.ipp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/ip/bad_address_cast.hpp
+D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/push_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/pop_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/push_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/pop_options.hpp
@@ -2313,6 +2317,7 @@ D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/consign.
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/push_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/pop_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/impl/consign.hpp
+D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/push_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/pop_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/deadline_timer.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/defer.hpp
@@ -2331,7 +2336,6 @@ D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detached
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/push_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/pop_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/impl/detached.hpp
-D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/push_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/pop_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/generic/basic_endpoint.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/generic/detail/endpoint.hpp
@@ -2402,7 +2406,6 @@ D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/ip/impl/
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/push_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/pop_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/ip/host_name.hpp
-D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/push_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/pop_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/ip/impl/host_name.ipp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/push_options.hpp
@@ -2493,7 +2496,6 @@ D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/p
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/pop_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/readable_pipe.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/redirect_error.hpp
-D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/push_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/pop_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/impl/redirect_error.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/push_options.hpp
@@ -2584,4 +2586,15 @@ D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/p
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/pop_options.hpp
 C:/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.40.33807/include/map
 C:/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.40.33807/include/xtree
+D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/json/json.h
+D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/json/config.h
+D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/json/allocator.h
+D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/json/version.h
+D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/json/json_features.h
+D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/json/forwards.h
+D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/json/reader.h
+D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/json/value.h
+C:/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.40.33807/include/deque
+C:/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.40.33807/include/stack
+D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/json/writer.h
 D:/CPPCode/CPPChatProject/backEnd/GateServer/src/../include/HttpConnection.h

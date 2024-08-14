@@ -1,3 +1,4 @@
+#pragma once
 #ifndef HTTPMGR_H
 #define HTTPMGR_H
 
@@ -14,6 +15,7 @@
 #include "singleton.h"
 class HttpMgr : public QObject, public SingleTon<HttpMgr>, public std::enable_shared_from_this<HttpMgr> {
     Q_OBJECT
+    friend class SingleTon<HttpMgr>;
   public:
     ~HttpMgr();
     /**

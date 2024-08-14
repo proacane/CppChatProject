@@ -77,13 +77,13 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 68,
+				"line" : 73,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 51,
+				"line" : 52,
 				"parent" : 0
 			},
 			{
@@ -406,7 +406,7 @@
 				10,
 				13,
 				16,
-				21
+				22
 			]
 		}
 	],
@@ -539,7 +539,7 @@
 				10,
 				13,
 				16,
-				21
+				22
 			]
 		},
 		{
@@ -552,9 +552,9 @@
 				12,
 				14,
 				15,
-				17,
 				18,
-				19
+				19,
+				20
 			]
 		},
 		{
@@ -565,15 +565,16 @@
 				5,
 				8,
 				11,
-				20
+				17,
+				21
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				22,
-				23
+				23,
+				24
 			]
 		}
 	],
@@ -671,6 +672,11 @@
 			"compileGroupIndex" : 0,
 			"path" : "httpmgr.cpp",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "config.ini",
+			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 0,

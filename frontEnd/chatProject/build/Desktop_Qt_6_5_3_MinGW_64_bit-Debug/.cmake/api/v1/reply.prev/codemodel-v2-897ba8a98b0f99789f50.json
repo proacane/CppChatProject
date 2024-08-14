@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-cb994a80ec7db98d43ed.json",
+					"jsonFile" : "directory-.-Debug-f35c6cf0537b1c87ad8f.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -44,7 +44,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "chatProject::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-chatProject-Debug-11983d6cbee541f0f8eb.json",
+					"jsonFile" : "target-chatProject-Debug-f87875455290d06b6a44.json",
 					"name" : "chatProject",
 					"projectIndex" : 0
 				},

@@ -273,6 +273,7 @@
 		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginTargets.cmake",
 		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginTargets-relwithdebinfo.cmake",
 		"D:/develop_tools/QT/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginAdditionalTargetInfo.cmake",
+		"D:/CPPCode/CPPChatProject/frontEnd/chatProject/config.ini",
 		"D:/develop_tools/QT/Tools/CMake_64/share/cmake-3.27/Modules/GNUInstallDirs.cmake",
 		"D:/CPPCode/CPPChatProject/frontEnd/chatProject/res.qrc"
 	],

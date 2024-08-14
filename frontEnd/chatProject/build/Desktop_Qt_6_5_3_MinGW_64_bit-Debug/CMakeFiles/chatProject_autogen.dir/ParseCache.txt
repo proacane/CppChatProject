@@ -753,6 +753,7 @@ D:/CPPCode/CPPChatProject/frontEnd/chatProject/mainwindow.h
  mdp:D:/CPPCode/CPPChatProject/frontEnd/chatProject/logindialog.h
  mdp:D:/CPPCode/CPPChatProject/frontEnd/chatProject/mainwindow.h
  mdp:D:/CPPCode/CPPChatProject/frontEnd/chatProject/registerdialog.h
+ mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/QJsonObject
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/q20memory.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/q20type_traits.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qalgorithms.h
@@ -769,6 +770,9 @@ D:/CPPCode/CPPChatProject/frontEnd/chatProject/mainwindow.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qbytearrayalgorithms.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qbytearraylist.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qbytearrayview.h
+ mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qcalendar.h
+ mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qcborcommon.h
+ mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qcborvalue.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qchar.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qcompare.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qcompare_impl.h
@@ -781,6 +785,7 @@ D:/CPPCode/CPPChatProject/frontEnd/chatProject/mainwindow.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qcontiguouscache.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qdarwinhelpers.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qdatastream.h
+ mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qdatetime.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qdebug.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qexceptionhandling.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qflags.h
@@ -795,8 +800,11 @@ D:/CPPCode/CPPChatProject/frontEnd/chatProject/mainwindow.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qiodevicebase.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qiterable.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qiterator.h
+ mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qjsonobject.h
+ mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qjsonvalue.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qline.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qlist.h
+ mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qlocale.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qlogging.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qmalloc.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qmap.h
@@ -817,6 +825,7 @@ D:/CPPCode/CPPChatProject/frontEnd/chatProject/mainwindow.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qprocessordetection.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qrect.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qrefcount.h
+ mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qregularexpression.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qscopedpointer.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qscopeguard.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qset.h
@@ -856,7 +865,9 @@ D:/CPPCode/CPPChatProject/frontEnd/chatProject/mainwindow.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qtversionchecks.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qtypeinfo.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qtypes.h
+ mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qurl.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qutf8stringview.h
+ mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/quuid.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qvariant.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qvarlengtharray.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qversiontagging.h
@@ -1102,6 +1113,7 @@ D:/CPPCode/CPPChatProject/frontEnd/chatProject/registerdialog.h
  mdp:D:/CPPCode/CPPChatProject/frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/chatProject_autogen/moc_predefs.h
  mdp:D:/CPPCode/CPPChatProject/frontEnd/chatProject/global.h
  mdp:D:/CPPCode/CPPChatProject/frontEnd/chatProject/registerdialog.h
+ mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/QJsonObject
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/q20memory.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/q20type_traits.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qalgorithms.h
@@ -1118,6 +1130,9 @@ D:/CPPCode/CPPChatProject/frontEnd/chatProject/registerdialog.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qbytearrayalgorithms.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qbytearraylist.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qbytearrayview.h
+ mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qcalendar.h
+ mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qcborcommon.h
+ mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qcborvalue.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qchar.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qcompare.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qcompare_impl.h
@@ -1130,6 +1145,7 @@ D:/CPPCode/CPPChatProject/frontEnd/chatProject/registerdialog.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qcontiguouscache.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qdarwinhelpers.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qdatastream.h
+ mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qdatetime.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qdebug.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qexceptionhandling.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qflags.h
@@ -1144,8 +1160,11 @@ D:/CPPCode/CPPChatProject/frontEnd/chatProject/registerdialog.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qiodevicebase.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qiterable.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qiterator.h
+ mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qjsonobject.h
+ mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qjsonvalue.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qline.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qlist.h
+ mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qlocale.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qlogging.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qmalloc.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qmap.h
@@ -1166,6 +1185,7 @@ D:/CPPCode/CPPChatProject/frontEnd/chatProject/registerdialog.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qprocessordetection.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qrect.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qrefcount.h
+ mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qregularexpression.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qscopedpointer.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qscopeguard.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qset.h
@@ -1205,7 +1225,9 @@ D:/CPPCode/CPPChatProject/frontEnd/chatProject/registerdialog.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qtversionchecks.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qtypeinfo.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qtypes.h
+ mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qurl.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qutf8stringview.h
+ mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/quuid.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qvariant.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qvarlengtharray.h
  mdp:D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qversiontagging.h

@@ -5,6 +5,7 @@ chatProject_autogen/timestamp: \
   CMakeFiles/3.27.7/CMakeRCCompiler.cmake \
   CMakeFiles/3.27.7/CMakeSystem.cmake \
   chatProject_autogen/moc_predefs.h \
+  D:/CPPCode/CPPChatProject/frontEnd/chatProject/config.ini \
   D:/CPPCode/CPPChatProject/frontEnd/chatProject/global.cpp \
   D:/CPPCode/CPPChatProject/frontEnd/chatProject/global.h \
   D:/CPPCode/CPPChatProject/frontEnd/chatProject/httpmgr.cpp \

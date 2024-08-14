@@ -3,7 +3,8 @@
 
 #include <QDialog>
 
-#include "global.h"
+#include"global.h"
+
 namespace Ui {
     class RegisterDialog;
 }

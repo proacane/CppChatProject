@@ -420,6 +420,7 @@ D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/move/detail/c
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/move/detail/config_end.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/none.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/none_t.hpp
+D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/utility/compare_pointees.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/utility/result_of.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/type_traits/type_identity.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/utility/detail/result_of_variadic.hpp
@@ -754,7 +755,6 @@ D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/c
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/push_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/pop_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/impl/cancellation_signal.ipp
-D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/thread_context.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/call_stack.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/noncopyable.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/push_options.hpp
@@ -1227,7 +1227,6 @@ D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/type_traits/d
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/type_traits/copy_cv_ref.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/type_traits/copy_reference.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/type_traits/extent.hpp
-D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/type_traits/floating_point_promotion.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/type_traits/function_traits.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/type_traits/has_bit_and.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/type_traits/detail/has_binary_operator.hpp
@@ -2329,6 +2328,7 @@ D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/consign.
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/push_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/pop_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/impl/consign.hpp
+D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/push_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/detail/pop_options.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/deadline_timer.hpp
 D:/develop_tools/cppsoft/vcpkg/installed/x64-windows/include/boost/asio/defer.hpp

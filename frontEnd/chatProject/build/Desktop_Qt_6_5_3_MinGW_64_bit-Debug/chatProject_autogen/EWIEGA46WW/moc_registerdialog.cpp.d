@@ -1,6 +1,7 @@
 D:/CPPCode/CPPChatProject/frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/chatProject_autogen/EWIEGA46WW/moc_registerdialog.cpp: D:/CPPCode/CPPChatProject/frontEnd/chatProject/registerdialog.h \
   D:/CPPCode/CPPChatProject/frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/chatProject_autogen/moc_predefs.h \
   D:/CPPCode/CPPChatProject/frontEnd/chatProject/global.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/QJsonObject \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/q20memory.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/q20type_traits.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qalgorithms.h \
@@ -17,6 +18,9 @@ D:/CPPCode/CPPChatProject/frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_b
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qbytearrayalgorithms.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qbytearraylist.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qbytearrayview.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qcalendar.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qcborcommon.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qcborvalue.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qchar.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qcompare.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qcompare_impl.h \
@@ -29,6 +33,7 @@ D:/CPPCode/CPPChatProject/frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_b
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qcontiguouscache.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qdarwinhelpers.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qdatastream.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qdatetime.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qdebug.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qexceptionhandling.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qflags.h \
@@ -43,8 +48,11 @@ D:/CPPCode/CPPChatProject/frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_b
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qiodevicebase.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qiterable.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qiterator.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qjsonobject.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qjsonvalue.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qline.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qlist.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qlocale.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qlogging.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qmalloc.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qmap.h \
@@ -65,6 +73,7 @@ D:/CPPCode/CPPChatProject/frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_b
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qprocessordetection.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qrect.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qrefcount.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qregularexpression.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qscopedpointer.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qscopeguard.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qset.h \
@@ -104,7 +113,9 @@ D:/CPPCode/CPPChatProject/frontEnd/chatProject/build/Desktop_Qt_6_5_3_MinGW_64_b
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qtversionchecks.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qtypeinfo.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qtypes.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qurl.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qutf8stringview.h \
+  D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/quuid.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qvariant.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qvarlengtharray.h \
   D:/develop_tools/QT/6.5.3/mingw_64/include/QtCore/qversiontagging.h \

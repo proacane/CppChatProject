@@ -9,7 +9,7 @@
 
 CServer::CServer(net::io_context &ioc, unsigned short port_num) : _ioc(ioc), _socket(ioc),
                                                                   _acceptor(ioc, tcp::endpoint(tcp::v4(), port_num)) {
-
+    std::cout<<"GateServer started, listen on port: "<<port_num<<std::endl;
 }
 
 void CServer::start() {
