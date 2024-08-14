@@ -12,7 +12,13 @@ void LogicSystem::registerGet(std::string url, httpHandler handler) {
 
 LogicSystem::LogicSystem() {
     registerGet("/get_test",[](std::shared_ptr<HttpConnection> connection){
-        beast::ostream(connection->_response.body())<<"receive get_test req";
+        beast::ostream(connection->_response.body())<<"receive get_test req\r\n";
+        int i = 0;
+        for(const auto&item:connection->_get_params){
+            i++;
+            beast::ostream(connection->_response.body())<<"param "<<i<<" key is "<<item.first;
+            beast::ostream(connection->_response.body())<<", "<<i<<" value is "<<item.second<<std::endl;
+        }
     });
 }
 

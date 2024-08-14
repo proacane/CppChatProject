@@ -20,6 +20,7 @@ public:
     void start();
 
 private:
+
     // 超时检测
     void checkDeadline();
 
@@ -29,6 +30,8 @@ private:
     // 处理请求
     void handleRequest();
 
+    // 解析get请求
+    void preParseGetParam();
     tcp::socket _socket;
     // 接收缓冲区，用来接收数据
     beast::flat_buffer _buffer{8192};
@@ -40,6 +43,11 @@ private:
     net::steady_timer _deadline{
             _socket.get_executor(), std::chrono::seconds(60)
     };
+    // get url
+    std::string _get_url;
+    // get 参数
+    std::unordered_map<std::string, std::string> _get_params;
+
 };
 
 #endif //GATESERVER_HTTPCONNECTION_H

@@ -109,8 +109,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "D:/CPPCode/CPPChatProject/backEnd/GateServer/cmake-build-debug-vs2022/CMakeFiles/CMakeScratch/TryCompile-fbzlve"
-      binary: "D:/CPPCode/CPPChatProject/backEnd/GateServer/cmake-build-debug-vs2022/CMakeFiles/CMakeScratch/TryCompile-fbzlve"
+      source: "D:/CPPCode/CPPChatProject/backEnd/GateServer/cmake-build-debug-vs2022/CMakeFiles/CMakeScratch/TryCompile-evoszl"
+      binary: "D:/CPPCode/CPPChatProject/backEnd/GateServer/cmake-build-debug-vs2022/CMakeFiles/CMakeScratch/TryCompile-evoszl"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Ob0 /Od /RTC1"
@@ -123,11 +123,28 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'D:/CPPCode/CPPChatProject/backEnd/GateServer/cmake-build-debug-vs2022/CMakeFiles/CMakeScratch/TryCompile-fbzlve'
+        Change Dir: 'D:/CPPCode/CPPChatProject/backEnd/GateServer/cmake-build-debug-vs2022/CMakeFiles/CMakeScratch/TryCompile-evoszl'
         
-        Run Build Command(s): "D:/develop_tools/CLion 2024.1.2/bin/ninja/win/x64/ninja.exe" -v cmTC_ffdb9
-        [1/2] C:\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1440~1.338\\bin\\Hostx86\\x64\\cl.exe  /nologo   /DWIN32 /D_WINDOWS  /Ob0 /Od /RTC1 -MDd -Zi /showIncludes /FoCMakeFiles\\cmTC_ffdb9.dir\\CMakeCCompilerABI.c.obj /FdCMakeFiles\\cmTC_ffdb9.dir\\ /FS -c "D:\\develop_tools\\CLion 2024.1.2\\bin\\cmake\\win\\x64\\share\\cmake-3.28\\Modules\\CMakeCCompilerABI.c"
-        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "D:\\develop_tools\\CLion 2024.1.2\\bin\\cmake\\win\\x64\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_ffdb9.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x86\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x86\\mt.exe --manifests  -- C:\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1440~1.338\\bin\\Hostx86\\x64\\link.exe /nologo CMakeFiles\\cmTC_ffdb9.dir\\CMakeCCompilerABI.c.obj  /out:cmTC_ffdb9.exe /implib:cmTC_ffdb9.lib /pdb:cmTC_ffdb9.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        Run Build Command(s): "D:/develop_tools/CLion 2024.1.2/bin/cmake/win/x64/bin/cmake.exe" -E env VERBOSE=1 nmake -f Makefile /nologo cmTC_15e38\\fast
+        	"C:\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX86\\x64\\nmake.exe"  -f CMakeFiles\\cmTC_15e38.dir\\build.make /nologo -L                  CMakeFiles\\cmTC_15e38.dir\\build
+        Building C object CMakeFiles/cmTC_15e38.dir/CMakeCCompilerABI.c.obj
+        	"D:\\develop_tools\\CLion 2024.1.2\\bin\\cmake\\win\\x64\\bin\\cmake.exe" -E cmake_cl_compile_depends --dep-file=CMakeFiles\\cmTC_15e38.dir\\CMakeCCompilerABI.c.obj.d --working-dir=D:\\CPPCode\\CPPChatProject\\backEnd\\GateServer\\cmake-build-debug-vs2022\\CMakeFiles\\CMakeScratch\\TryCompile-evoszl --filter-prefix="注意: 包含文件:  " -- C:\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1440~1.338\\bin\\Hostx86\\x64\\cl.exe @C:\\Users\\19598\\AppData\\Local\\Temp\\nm358A.tmp
+        CMakeCCompilerABI.c
+        Linking C executable cmTC_15e38.exe
+        	"D:\\develop_tools\\CLion 2024.1.2\\bin\\cmake\\win\\x64\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_15e38.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x86\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x86\\mt.exe --manifests -- C:\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1440~1.338\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_15e38.dir\\objects1.rsp @C:\\Users\\19598\\AppData\\Local\\Temp\\nm3618.tmp
+        Visual Studio Incremental Link with embedded manifests
+        Create CMakeFiles\\cmTC_15e38.dir/manifest.rc
+        Create empty: CMakeFiles\\cmTC_15e38.dir/embed.manifest
+        RC Pass 1:
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x86\\rc.exe /fo CMakeFiles\\cmTC_15e38.dir/manifest.res CMakeFiles\\cmTC_15e38.dir/manifest.rc
+        LINK Pass 1:
+        C:\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1440~1.338\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_15e38.dir\\objects1.rsp /out:cmTC_15e38.exe /implib:cmTC_15e38.lib /pdb:D:\\CPPCode\\CPPChatProject\\backEnd\\GateServer\\cmake-build-debug-vs2022\\CMakeFiles\\CMakeScratch\\TryCompile-evoszl\\cmTC_15e38.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_15e38.dir/intermediate.manifest CMakeFiles\\cmTC_15e38.dir/manifest.res
+        MT:
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x86\\mt.exe /nologo /manifest CMakeFiles\\cmTC_15e38.dir/intermediate.manifest /out:CMakeFiles\\cmTC_15e38.dir/embed.manifest /notify_update
+        RC Pass 2:
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x86\\rc.exe /fo CMakeFiles\\cmTC_15e38.dir/manifest.res CMakeFiles\\cmTC_15e38.dir/manifest.rc
+        FINAL LINK:
+        C:\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1440~1.338\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_15e38.dir\\objects1.rsp /out:cmTC_15e38.exe /implib:cmTC_15e38.lib /pdb:D:\\CPPCode\\CPPChatProject\\backEnd\\GateServer\\cmake-build-debug-vs2022\\CMakeFiles\\CMakeScratch\\TryCompile-evoszl\\cmTC_15e38.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_15e38.dir/intermediate.manifest CMakeFiles\\cmTC_15e38.dir/manifest.res
         
       exitCode: 0
   -
@@ -139,8 +156,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "D:/CPPCode/CPPChatProject/backEnd/GateServer/cmake-build-debug-vs2022/CMakeFiles/CMakeScratch/TryCompile-r2fk9i"
-      binary: "D:/CPPCode/CPPChatProject/backEnd/GateServer/cmake-build-debug-vs2022/CMakeFiles/CMakeScratch/TryCompile-r2fk9i"
+      source: "D:/CPPCode/CPPChatProject/backEnd/GateServer/cmake-build-debug-vs2022/CMakeFiles/CMakeScratch/TryCompile-ic4g0b"
+      binary: "D:/CPPCode/CPPChatProject/backEnd/GateServer/cmake-build-debug-vs2022/CMakeFiles/CMakeScratch/TryCompile-ic4g0b"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/Ob0 /Od /RTC1"
@@ -153,11 +170,28 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'D:/CPPCode/CPPChatProject/backEnd/GateServer/cmake-build-debug-vs2022/CMakeFiles/CMakeScratch/TryCompile-r2fk9i'
+        Change Dir: 'D:/CPPCode/CPPChatProject/backEnd/GateServer/cmake-build-debug-vs2022/CMakeFiles/CMakeScratch/TryCompile-ic4g0b'
         
-        Run Build Command(s): "D:/develop_tools/CLion 2024.1.2/bin/ninja/win/x64/ninja.exe" -v cmTC_7ddf9
-        [1/2] C:\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1440~1.338\\bin\\Hostx86\\x64\\cl.exe  /nologo /TP   /DWIN32 /D_WINDOWS /EHsc  /Ob0 /Od /RTC1 -MDd -Zi /showIncludes /FoCMakeFiles\\cmTC_7ddf9.dir\\CMakeCXXCompilerABI.cpp.obj /FdCMakeFiles\\cmTC_7ddf9.dir\\ /FS -c "D:\\develop_tools\\CLion 2024.1.2\\bin\\cmake\\win\\x64\\share\\cmake-3.28\\Modules\\CMakeCXXCompilerABI.cpp"
-        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "D:\\develop_tools\\CLion 2024.1.2\\bin\\cmake\\win\\x64\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_7ddf9.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x86\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x86\\mt.exe --manifests  -- C:\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1440~1.338\\bin\\Hostx86\\x64\\link.exe /nologo CMakeFiles\\cmTC_7ddf9.dir\\CMakeCXXCompilerABI.cpp.obj  /out:cmTC_7ddf9.exe /implib:cmTC_7ddf9.lib /pdb:cmTC_7ddf9.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        Run Build Command(s): "D:/develop_tools/CLion 2024.1.2/bin/cmake/win/x64/bin/cmake.exe" -E env VERBOSE=1 nmake -f Makefile /nologo cmTC_5f0ed\\fast
+        	"C:\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX86\\x64\\nmake.exe"  -f CMakeFiles\\cmTC_5f0ed.dir\\build.make /nologo -L                  CMakeFiles\\cmTC_5f0ed.dir\\build
+        Building CXX object CMakeFiles/cmTC_5f0ed.dir/CMakeCXXCompilerABI.cpp.obj
+        	"D:\\develop_tools\\CLion 2024.1.2\\bin\\cmake\\win\\x64\\bin\\cmake.exe" -E cmake_cl_compile_depends --dep-file=CMakeFiles\\cmTC_5f0ed.dir\\CMakeCXXCompilerABI.cpp.obj.d --working-dir=D:\\CPPCode\\CPPChatProject\\backEnd\\GateServer\\cmake-build-debug-vs2022\\CMakeFiles\\CMakeScratch\\TryCompile-ic4g0b --filter-prefix="注意: 包含文件:  " -- C:\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1440~1.338\\bin\\Hostx86\\x64\\cl.exe @C:\\Users\\19598\\AppData\\Local\\Temp\\nm38C6.tmp
+        CMakeCXXCompilerABI.cpp
+        Linking CXX executable cmTC_5f0ed.exe
+        	"D:\\develop_tools\\CLion 2024.1.2\\bin\\cmake\\win\\x64\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_5f0ed.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x86\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x86\\mt.exe --manifests -- C:\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1440~1.338\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_5f0ed.dir\\objects1.rsp @C:\\Users\\19598\\AppData\\Local\\Temp\\nm3935.tmp
+        Visual Studio Incremental Link with embedded manifests
+        Create CMakeFiles\\cmTC_5f0ed.dir/manifest.rc
+        Create empty: CMakeFiles\\cmTC_5f0ed.dir/embed.manifest
+        RC Pass 1:
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x86\\rc.exe /fo CMakeFiles\\cmTC_5f0ed.dir/manifest.res CMakeFiles\\cmTC_5f0ed.dir/manifest.rc
+        LINK Pass 1:
+        C:\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1440~1.338\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_5f0ed.dir\\objects1.rsp /out:cmTC_5f0ed.exe /implib:cmTC_5f0ed.lib /pdb:D:\\CPPCode\\CPPChatProject\\backEnd\\GateServer\\cmake-build-debug-vs2022\\CMakeFiles\\CMakeScratch\\TryCompile-ic4g0b\\cmTC_5f0ed.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_5f0ed.dir/intermediate.manifest CMakeFiles\\cmTC_5f0ed.dir/manifest.res
+        MT:
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x86\\mt.exe /nologo /manifest CMakeFiles\\cmTC_5f0ed.dir/intermediate.manifest /out:CMakeFiles\\cmTC_5f0ed.dir/embed.manifest /notify_update
+        RC Pass 2:
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x86\\rc.exe /fo CMakeFiles\\cmTC_5f0ed.dir/manifest.res CMakeFiles\\cmTC_5f0ed.dir/manifest.rc
+        FINAL LINK:
+        C:\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1440~1.338\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_5f0ed.dir\\objects1.rsp /out:cmTC_5f0ed.exe /implib:cmTC_5f0ed.lib /pdb:D:\\CPPCode\\CPPChatProject\\backEnd\\GateServer\\cmake-build-debug-vs2022\\CMakeFiles\\CMakeScratch\\TryCompile-ic4g0b\\cmTC_5f0ed.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_5f0ed.dir/intermediate.manifest CMakeFiles\\cmTC_5f0ed.dir/manifest.res
         
       exitCode: 0
 ...
