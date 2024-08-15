@@ -1,3 +1,0 @@
-D:/CPPCode/CPPChatProject/backEnd/GateServer/cmake-build-debug-vs2022/CMakeFiles/GateServer.dir
-D:/CPPCode/CPPChatProject/backEnd/GateServer/cmake-build-debug-vs2022/CMakeFiles/edit_cache.dir
-D:/CPPCode/CPPChatProject/backEnd/GateServer/cmake-build-debug-vs2022/CMakeFiles/rebuild_cache.dir

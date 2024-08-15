@@ -1,5 +1,0 @@
-ToolSet: 17.0 (local)@C:\Microsoft Visual Studio\2022\Community
-Ninja: 1.12.0@D:\develop_tools\CLion 2024.1.2\bin\ninja\win\x64\ninja.exe
-Options: msvc.arch=x86_amd64
-
-Options:-DCMAKE_TOOLCHAIN_FILE=D:\develop_tools\cppsoft\vcpkg\scripts\buildsystems\vcpkg.cmake
