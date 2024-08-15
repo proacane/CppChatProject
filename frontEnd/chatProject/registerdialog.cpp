@@ -33,7 +33,7 @@ void RegisterDialog::on_btn_getCode_clicked() {
 
         QJsonObject json_obj;
         json_obj["email"] = email;
-        HttpMgr::getInstance()->postHttpReq(QUrl(gate_url_prefix+"/get_varifycode"), json_obj,
+        HttpMgr::getInstance()->postHttpReq(QUrl(gate_url_prefix+"/get_verifycode"), json_obj,
                                             ReqId::ID_GET_VARIFY_CODE, Modules::REGISTERMOD);
     } else {
         showTip(tr("邮箱地址不正确"), true);

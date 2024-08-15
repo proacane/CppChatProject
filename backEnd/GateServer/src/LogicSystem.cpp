@@ -6,7 +6,7 @@
 */
 #include "../include/LogicSystem.h"
 #include "../include/HttpConnection.h"
-
+#include "../include/VerifyGrpcClient.h"
 void LogicSystem::registerGet(std::string url, httpHandler handler) {
     _get_handlers.insert(std::make_pair(url, handler));
 }
@@ -22,7 +22,7 @@ LogicSystem::LogicSystem() {
         }
     });
     // 处理验证码
-    registerPost("/get_varifycode", [](std::shared_ptr<HttpConnection> connection) {
+    registerPost("/get_verifycode", [](std::shared_ptr<HttpConnection> connection) {
         // 请求转换为 string
         auto body_str = beast::buffers_to_string(connection->_request.body().data());
         std::cout << "Receive body is " << body_str << std::endl;
@@ -43,8 +43,9 @@ LogicSystem::LogicSystem() {
         }
 
         auto email = src_root["email"].asString();
+        GetVerifyRsp rsp = VerifyGrpcClient::getInstance()->getVerifyCode(email);
         std::cout << "email is " << email << std::endl;
-        root["error"] = ErrorCodes::Success;
+        root["error"] = rsp.error();
         root["email"] = src_root["email"];
         std::string jsonstr = root.toStyledString();
         beast::ostream(connection->_response.body()) << jsonstr;

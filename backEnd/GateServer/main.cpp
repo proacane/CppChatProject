@@ -4,10 +4,14 @@
 #include <json/value.h>
 #include <json/reader.h>
 #include "include/CServer.h"
+#include "include/ConfigMgr.h"
 
 int main() {
+    ConfigMgr gCfgMgr;
+    std::string gate_port_str = gCfgMgr["GateServer"]["Port"];
+    unsigned short gate_port = atoi(gate_port_str.c_str());
     try {
-        auto port = static_cast<unsigned short>(8080);
+        auto port = static_cast<unsigned short>(gate_port);
         net::io_context ioc{2};
         net::signal_set signals(ioc, SIGINT, SIGTERM);
         signals.async_wait([&ioc](const boost::system::error_code& error, int signal_number) {
