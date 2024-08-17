@@ -38,6 +38,10 @@ struct SectionInfo {
 
 class ConfigMgr {
 public:
+    static ConfigMgr& getInstance(){
+        static ConfigMgr instance;
+        return instance;
+    }
     ~ConfigMgr() {
         _config_data.clear();
     }
@@ -60,8 +64,8 @@ public:
         this->_config_data = src._config_data;
         return *this;
     };
-    ConfigMgr();
 private:
     std::map<std::string, SectionInfo> _config_data;
+    ConfigMgr();
 };
 #endif //GATESERVER_CONFIGMGR_H

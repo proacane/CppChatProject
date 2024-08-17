@@ -43,6 +43,8 @@ add_executable(GateServer main.cpp
         include/VerifyGrpcClient.h
         src/VerifyGrpcClient.cpp
         include/ConfigMgr.h
-        src/ConfigMgr.cpp)
+        src/ConfigMgr.cpp
+        include/AsioIOServicePool.h
+        src/AsioIOServicePool.cpp)
 
 target_link_libraries(GateServer PRIVATE ${Boost_LIBRARIES} JsonCpp::JsonCpp gRPC::grpc++ protobuf::libprotobuf)

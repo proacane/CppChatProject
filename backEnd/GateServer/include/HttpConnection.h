@@ -16,9 +16,9 @@ class HttpConnection : public std::enable_shared_from_this<HttpConnection> {
 
 public:
     explicit HttpConnection(tcp::socket socket);
-
+    explicit HttpConnection(boost::asio::io_context& ioc);
     void start();
-
+    tcp::socket& getSocket();
 private:
 
     // 超时检测

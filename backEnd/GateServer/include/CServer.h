@@ -17,7 +17,7 @@ public:
     void start();
 
 private:
-    tcp::socket _socket;
+//    tcp::socket _socket;
     net::io_context &_ioc;
     tcp::acceptor _acceptor;
 };
