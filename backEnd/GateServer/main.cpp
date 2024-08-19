@@ -6,6 +6,7 @@
 #include "include/CServer.h"
 #include "include/ConfigMgr.h"
 #include "include/RedisMgr.h"
+#include <spdlog/spdlog.h>
 void TestRedisMgr() {
     assert(RedisMgr::getInstance()->set("blogwebsite","llfc.club"));
     std::string value="";
@@ -43,7 +44,7 @@ int main() {
         std::make_shared<CServer>(ioc,port)->start();
         ioc.run();
     } catch (const std::exception &e) {
-        std::cerr << "Exception is: " << e.what() << std::endl;
+        spdlog::error("Exception is: {}",e.what()) ;
         return EXIT_FAILURE;
     }
 //TestRedisMgr();

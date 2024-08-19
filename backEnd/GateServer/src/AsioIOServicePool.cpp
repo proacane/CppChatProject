@@ -7,10 +7,11 @@
 #include <memory>
 
 #include "../include/AsioIOServicePool.h"
+#include <spdlog/spdlog.h>
 
 AsioIOServicePool::~AsioIOServicePool() {
     stop();
-    std::cout << "AsioIOServicePool destruct" << std::endl;
+    spdlog::info("AsioIOServicePool destruct");
 }
 
 AsioIOServicePool::IOService &AsioIOServicePool::getIOService() {

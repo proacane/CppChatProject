@@ -6,6 +6,7 @@ find_package(jsoncpp CONFIG REQUIRED)
 find_package(Protobuf CONFIG REQUIRED)
 find_package(gRPC CONFIG REQUIRED)
 find_package(hiredis CONFIG REQUIRED)
+find_package(spdlog CONFIG REQUIRED)
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 set(CMAKE_CXX_STANDARD 17)
@@ -50,4 +51,4 @@ add_executable(GateServer main.cpp
         include/RedisMgr.h
         src/RedisMgr.cpp)
 
-target_link_libraries(GateServer PRIVATE ${Boost_LIBRARIES} JsonCpp::JsonCpp gRPC::grpc++ protobuf::libprotobuf hiredis::hiredis)
+target_link_libraries(GateServer PRIVATE ${Boost_LIBRARIES} JsonCpp::JsonCpp gRPC::grpc++ protobuf::libprotobuf hiredis::hiredis spdlog::spdlog)

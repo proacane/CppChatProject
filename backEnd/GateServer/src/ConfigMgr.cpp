@@ -5,13 +5,14 @@
  *  Author: ACAね
 */
 #include "../include/ConfigMgr.h"
+#include <spdlog/spdlog.h>
 
 ConfigMgr::ConfigMgr() {
     // 读取当前文件的路径
     boost::filesystem::path current_path = boost::filesystem::current_path();
     // 拼接配置文件的路径
     boost::filesystem::path config_path = current_path / "config.ini";
-    std::cout << "config.ini path is: " << config_path.string() << std::endl;
+    spdlog::info("config.ini path is: {}", config_path.string());
 
     // 读取文件
     boost::property_tree::ptree pt;
@@ -38,9 +39,9 @@ ConfigMgr::ConfigMgr() {
     for (const auto &section_entry: _config_data) {
         const std::string &section_name = section_entry.first;
         SectionInfo section_config = section_entry.second;
-        std::cout << "[" << section_name << "]" << std::endl;
+        spdlog::info("[{}]", section_name);
         for (const auto &key_value_pair: section_config._section_data) {
-            std::cout << key_value_pair.first << "=" << key_value_pair.second << std::endl;
+            spdlog::info("{}={}", key_value_pair.first, key_value_pair.second);
         }
     }
 }

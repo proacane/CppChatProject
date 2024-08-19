@@ -7,7 +7,7 @@
 #include "../include/HttpConnection.h"
 #include <iostream>
 #include "../include/LogicSystem.h"
-
+#include<spdlog/spdlog.h>
 HttpConnection::HttpConnection(tcp::socket socket) : _socket(std::move(socket)) {
 
 }
@@ -22,14 +22,14 @@ void HttpConnection::start() {
     http::async_read(_socket, _buffer, _request, [self](beast::error_code ec, std::size_t bytes_transferred) {
         try {
             if (ec) {
-                std::cout << "http read err is " << ec.what() << std::endl;
+                spdlog::error("http read err is {}",ec.what());
                 return;
             }
             // 处理读取的数据，同时检测超时
             self->handleRequest();
             self->checkDeadline();
         } catch (std::exception &e) {
-            std::cerr << "Exception in HttpConnection::start,which is " << e.what() << std::endl;
+            spdlog::error("Exception in HttpConnection::start,which is {}" , e.what());
         }
     });
 }

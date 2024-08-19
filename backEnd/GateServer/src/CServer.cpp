@@ -7,10 +7,10 @@
 #include <iostream>
 #include "../include/CServer.h"
 #include "../include/AsioIOServicePool.h"
-
+#include<spdlog/spdlog.h>
 CServer::CServer(net::io_context &ioc, unsigned short port_num) : _ioc(ioc),
                                                                   _acceptor(ioc, tcp::endpoint(tcp::v4(), port_num)) {
-    std::cout << "GateServer started, listen on port: " << port_num << std::endl;
+    spdlog::info( "GateServer started, listen on port: {}",port_num) ;
 }
 
 void CServer::start() {
@@ -31,7 +31,7 @@ void CServer::start() {
             // 继续监听
             self->start();
         } catch (std::exception &e) {
-            std::cerr << "Exception in CServer::start,which is " << e.what() << std::endl;
+            spdlog::error( "Exception in CServer::start,which is {}",e.what() );
             // 重新监听
             self->start();
         }

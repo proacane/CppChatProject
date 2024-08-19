@@ -21,11 +21,9 @@ public:
         static std::shared_ptr<T> _instance(new T);
         return _instance;
     };
-
-    void PrintAddress() const {
-        std::cout << &getInstance() << std::endl;
-    }
-
+//    void PrintAddress() const {
+//        std::cout << &getInstance() << std::endl;
+//    }
     // 析构函数可以是虚拟的以确保派生类的正确析构
     virtual ~SingleTon() = default;
 

@@ -7,6 +7,8 @@
 #include "../include/LogicSystem.h"
 #include "../include/HttpConnection.h"
 #include "../include/VerifyGrpcClient.h"
+#include <spdlog/spdlog.h>
+
 void LogicSystem::registerGet(std::string url, httpHandler handler) {
     _get_handlers.insert(std::make_pair(url, handler));
 }
@@ -25,7 +27,7 @@ LogicSystem::LogicSystem() {
     registerPost("/get_verifycode", [](std::shared_ptr<HttpConnection> connection) {
         // 请求转换为 string
         auto body_str = beast::buffers_to_string(connection->_request.body().data());
-        std::cout << "Receive body is " << body_str << std::endl;
+        spdlog::info("Receive body is {}", body_str);
         // 响应类型为 json
         connection->_response.set(http::field::content_type, "text/json");
         Json::Value root;
@@ -35,7 +37,7 @@ LogicSystem::LogicSystem() {
         bool parse_success = reader.parse(body_str, src_root);
         if (!parse_success) {
             // 解析失败
-            std::cout << "Failed to parse JSON data!" << std::endl;
+            spdlog::warn("Failed to parse JSON data!");
             root["error"] = ErrorCodes::Error_Json;
             std::string jsonstr = root.toStyledString();
             beast::ostream(connection->_response.body()) << jsonstr;
@@ -44,7 +46,7 @@ LogicSystem::LogicSystem() {
 
         auto email = src_root["email"].asString();
         GetVerifyRsp rsp = VerifyGrpcClient::getInstance()->getVerifyCode(email);
-        std::cout << "email is " << email << std::endl;
+        spdlog::info("email is {}", email);
         root["error"] = rsp.error();
         root["email"] = src_root["email"];
         std::string jsonstr = root.toStyledString();
@@ -70,7 +72,7 @@ void LogicSystem::registerPost(std::string url, httpHandler handler) {
 }
 
 bool LogicSystem::handlePost(std::string url, std::shared_ptr<HttpConnection> connection) {
-    if(_post_handlers.find(url) == _post_handlers.end()){
+    if (_post_handlers.find(url) == _post_handlers.end()) {
         return false;
     }
     _post_handlers[url](connection);
