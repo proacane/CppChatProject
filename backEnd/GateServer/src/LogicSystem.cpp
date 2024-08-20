@@ -8,6 +8,7 @@
 #include "../include/HttpConnection.h"
 #include "../include/VerifyGrpcClient.h"
 #include <spdlog/spdlog.h>
+#include "../include/RedisMgr.h"
 
 void LogicSystem::registerGet(std::string url, httpHandler handler) {
     _get_handlers.insert(std::make_pair(url, handler));
@@ -27,7 +28,7 @@ LogicSystem::LogicSystem() {
     registerPost("/get_verifycode", [](std::shared_ptr<HttpConnection> connection) {
         // 请求转换为 string
         auto body_str = beast::buffers_to_string(connection->_request.body().data());
-        spdlog::info("Receive body is {}", body_str);
+        spdlog::info("GetVerifyCode Receive body is {}", body_str);
         // 响应类型为 json
         connection->_response.set(http::field::content_type, "text/json");
         Json::Value root;
@@ -41,7 +42,6 @@ LogicSystem::LogicSystem() {
             root["error"] = ErrorCodes::Error_Json;
             std::string jsonstr = root.toStyledString();
             beast::ostream(connection->_response.body()) << jsonstr;
-            return;
         }
 
         auto email = src_root["email"].asString();
@@ -51,6 +51,68 @@ LogicSystem::LogicSystem() {
         root["email"] = src_root["email"];
         std::string jsonstr = root.toStyledString();
         beast::ostream(connection->_response.body()) << jsonstr;
+    });
+    // 处理注册
+    registerPost("/user_register", [](std::shared_ptr<HttpConnection> connection) {
+        auto body_str = beast::buffers_to_string(connection->_request.body().data());
+        spdlog::info("Register Receive body is {}", body_str);
+        connection->_response.set(http::field::content_type, "text/json");
+        Json::Value root;
+        Json::Reader reader;
+        Json::Value src_root;
+        bool parse_success = reader.parse(body_str, src_root);
+        if (!parse_success) {
+            // 解析失败
+            spdlog::warn("Failed to parse JSON data!");
+            root["error"] = ErrorCodes::Error_Json;
+            std::string jsonstr = root.toStyledString();
+            beast::ostream(connection->_response.body()) << jsonstr;
+            return;
+        }
+
+        // 密码校验
+        auto password = src_root["password"].asString();
+        auto confirm = src_root["confirm"].asString();
+        if(password!= confirm){
+            spdlog::warn("The passwords entered twice are inconsistent");
+            root["error"] = ErrorCodes::PasswordErr;
+            std::string jsonstr = root.toStyledString();
+            beast::ostream(connection->_response.body()) << jsonstr;
+            return;
+        }
+
+        // 没问题去 redis 里查询验证码
+        std::string verify_code;
+        bool b_get_verify_code = RedisMgr::getInstance()->get("code_" +src_root["email"].asString(), verify_code);
+        if (!b_get_verify_code) {
+            // 获取失败表示验证码过期或未申请
+            spdlog::warn("Verify code expired");
+            root["error"] = ErrorCodes::VerifyExpired;
+            std::string jsonstr = root.toStyledString();
+            beast::ostream(connection->_response.body()) << jsonstr;
+            return;
+        }
+        // 验证码错误
+        if (verify_code != src_root["verifycode"].asString()) {
+            spdlog::warn("Verify code is not correct");
+            root["error"] = ErrorCodes::VerifyCodeErr;
+            std::string jsonstr = root.toStyledString();
+            beast::ostream(connection->_response.body()) << jsonstr;
+            return;
+        }
+
+        // TODO 在 MySQL 中查询用户是否存在
+
+        // 返回数据
+        root["error"] = ErrorCodes::Success;
+        root["user"] = src_root["user"].asString();
+        root["email"] = src_root["email"].asString();
+        root["password"] = src_root["password"].asString();
+        root["confirm"] = src_root["confirm"].asString();
+        root["verifycode"] = src_root["verifycode"].asString();
+        std::string jsonstr = root.toStyledString();
+        beast::ostream(connection->_response.body()) << jsonstr;
+        return;
     });
 }
 

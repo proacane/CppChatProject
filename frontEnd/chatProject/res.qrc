@@ -3,5 +3,6 @@
         <file>images/icon.png</file>
         <file>images/Login.png</file>
         <file>style/stylesheet.qss</file>
+        <file>images/wechatimg.png</file>
     </qresource>
 </RCC>

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>300</width>
-    <height>500</height>
+    <width>327</width>
+    <height>528</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -46,7 +46,10 @@
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="res.qrc">:/images/icon.png</pixmap>
+           <pixmap resource="res.qrc">:/images/wechatimg.png</pixmap>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>

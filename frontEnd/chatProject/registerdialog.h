@@ -21,7 +21,9 @@ class RegisterDialog : public QDialog {
     void on_btn_getCode_clicked();
     // 处理 http 请求的响应
     void slot_reg_mod_finish(ReqId id, QString res, ErrorCodes err);
-  private:
+    void on_btn_ok_clicked();
+
+private:
     Ui::RegisterDialog* ui;
     // 显示信息
     void showTip(const QString& tip,bool is_error);
