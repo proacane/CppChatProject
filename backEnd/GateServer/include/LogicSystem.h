@@ -19,7 +19,7 @@ class LogicSystem : public SingleTon<LogicSystem> {
     friend class SingleTon<LogicSystem>;
 
 public:
-    ~LogicSystem();
+    ~LogicSystem() override;
 
     /**
      * 处理 get 请求

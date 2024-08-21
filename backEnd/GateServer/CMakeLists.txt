@@ -29,6 +29,13 @@ endif ()
 # 添加自定义命令，将 config.ini 复制到构建目录
 configure_file(config.ini ${CMAKE_CURRENT_BINARY_DIR}/config.ini COPYONLY)
 
+set(MYSQL_CONNECTOR_CPP_INCLUDE_DIR "D:\\develop_tools\\cppsoft\\mysql-connector-c++-9.0.0-winx64\\include")  # 替换为实际的安装路径
+set(MYSQL_CONNECTOR_CPP_LIBRARY_DIR "D:\\develop_tools\\cppsoft\\mysql-connector-c++-9.0.0-winx64\\lib64\\debug\\vs14")  # 替换为实际的安装路径
+# 添加头文件路径
+include_directories(${MYSQL_CONNECTOR_CPP_INCLUDE_DIR})
+# 添加库文件路径
+link_directories(${MYSQL_CONNECTOR_CPP_LIBRARY_DIR})
+
 add_executable(GateServer main.cpp
         include/CServer.h
         src/CServer.cpp
@@ -49,6 +56,22 @@ add_executable(GateServer main.cpp
         include/AsioIOServicePool.h
         src/AsioIOServicePool.cpp
         include/RedisMgr.h
-        src/RedisMgr.cpp)
+        src/RedisMgr.cpp
+        include/MysqlDao.h
+        src/MysqlDao.cpp
+        include/MysqlMgr.h
+        src/MysqlMgr.cpp)
 
-target_link_libraries(GateServer PRIVATE ${Boost_LIBRARIES} JsonCpp::JsonCpp gRPC::grpc++ protobuf::libprotobuf hiredis::hiredis spdlog::spdlog)
+# 在 GateServer 构建后拷贝 DLL 文件
+# TODO 不知道为什么拷贝不了
+add_custom_command(TARGET GateServer POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "D:\\develop_tools\\cppsoft\\mysql-connector-c++-9.0.0-winx64\\lib64\\debug\\mysqlcppconn-10-vs14.dll"
+        $<TARGET_FILE_DIR:GateServer>
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "D:\\develop_tools\\cppsoft\\mysql-connector-c++-9.0.0-winx64\\lib64\\debug\\mysqlcppconnx-2-vs14.dll"
+        $<TARGET_FILE_DIR:GateServer>
+        COMMENT "Copying MySQL Connector/C++ DLLs to the output directory"
+)
+target_link_libraries(GateServer PRIVATE ${Boost_LIBRARIES} JsonCpp::JsonCpp gRPC::grpc++ protobuf::libprotobuf hiredis::hiredis spdlog::spdlog mysqlcppconn)
+

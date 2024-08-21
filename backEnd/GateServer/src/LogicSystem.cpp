@@ -9,7 +9,7 @@
 #include "../include/VerifyGrpcClient.h"
 #include <spdlog/spdlog.h>
 #include "../include/RedisMgr.h"
-
+#include "../include/MysqlMgr.h"
 void LogicSystem::registerGet(std::string url, httpHandler handler) {
     _get_handlers.insert(std::make_pair(url, handler));
 }
@@ -71,6 +71,8 @@ LogicSystem::LogicSystem() {
         }
 
         // 密码校验
+        auto user_name = src_root["user"].asString();
+        auto email = src_root["email"].asString();
         auto password = src_root["password"].asString();
         auto confirm = src_root["confirm"].asString();
         if(password!= confirm){
@@ -101,14 +103,22 @@ LogicSystem::LogicSystem() {
             return;
         }
 
-        // TODO 在 MySQL 中查询用户是否存在
-
+        // 在 MySQL 中查询用户是否存在
+        int uid = MysqlMgr::getInstance()->registerUser(user_name,email,password);
+        if(uid == 0||uid == 1){
+            spdlog::info("email or user_name already exists");
+            root["error"] = ErrorCodes::UserExist;
+            std::string jsonstr = root.toStyledString();
+            beast::ostream(connection->_response.body()) << jsonstr;
+            return;
+        }
         // 返回数据
         root["error"] = ErrorCodes::Success;
-        root["user"] = src_root["user"].asString();
-        root["email"] = src_root["email"].asString();
-        root["password"] = src_root["password"].asString();
-        root["confirm"] = src_root["confirm"].asString();
+        root["uid"] = uid;
+        root["user"] = user_name;
+        root["email"] = email;
+        root["password"] = password;
+        root["confirm"] = confirm;
         root["verifycode"] = src_root["verifycode"].asString();
         std::string jsonstr = root.toStyledString();
         beast::ostream(connection->_response.body()) << jsonstr;

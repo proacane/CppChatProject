@@ -18,6 +18,7 @@
 #include <iostream>
 #include <boost/filesystem.hpp>
 #include <boost/property_tree/ini_parser.hpp>
+#include <utility>
 
 
 namespace beast = boost::beast;         // from <boost/beast.hpp>
@@ -35,4 +36,13 @@ enum ErrorCodes {
     PasswordErr = 1006, // 密码校验错误
 };
 
+class Defer{
+public:
+    explicit Defer(std::function<void()> func):_func(std::move(func)){};
+    ~Defer(){
+        _func();
+    }
+private:
+    std::function<void()> _func;
+};
 #endif //GATESERVER_CONST_H
