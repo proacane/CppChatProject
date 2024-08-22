@@ -4,5 +4,9 @@
         <file>images/Login.png</file>
         <file>style/stylesheet.qss</file>
         <file>images/wechatimg.png</file>
+        <file>images/unvisible.png</file>
+        <file>images/unvisible_hover.png</file>
+        <file>images/visible.png</file>
+        <file>images/visible_hover.png</file>
     </qresource>
 </RCC>

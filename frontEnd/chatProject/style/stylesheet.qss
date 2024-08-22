@@ -1,5 +1,5 @@
 QDialog#LoginDialog{
-    background-color:rgb(255,255,255)
+    background-color:rgb(240, 240, 240)
 }
 
 #lab_errTip[state='normal']{
@@ -8,4 +8,30 @@ QDialog#LoginDialog{
 
 #lab_errTip[state='err']{
     color:red;
+}
+
+
+#lab_pwd_visible[state='unvisible']{
+   border-image: url(:/images/unvisible.png);
+}
+#lab_pwd_visible[state='unvisible_hover']{
+   border-image: url(:/images/unvisible_hover.png);
+}
+#lab_pwd_visible[state='visible']{
+   border-image: url(:/images/visible.png);
+}
+#lab_pwd_visible[state='visible_hover']{
+   border-image: url(:/images/visible_hover.png);
+}
+#lab_confirm_visible[state='unvisible']{
+   border-image: url(:/images/unvisible.png);
+}
+#lab_confirm_visible[state='unvisible_hover']{
+   border-image: url(:/images/unvisible_hover.png);
+}
+#lab_confirm_visible[state='visible']{
+   border-image: url(:/images/visible.png);
+}
+#lab_confirm_visible[state='visible_hover']{
+   border-image: url(:/images/visible_hover.png);
 }

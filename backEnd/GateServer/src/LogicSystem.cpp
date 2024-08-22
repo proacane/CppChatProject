@@ -10,6 +10,7 @@
 #include <spdlog/spdlog.h>
 #include "../include/RedisMgr.h"
 #include "../include/MysqlMgr.h"
+
 void LogicSystem::registerGet(std::string url, httpHandler handler) {
     _get_handlers.insert(std::make_pair(url, handler));
 }
@@ -75,7 +76,7 @@ LogicSystem::LogicSystem() {
         auto email = src_root["email"].asString();
         auto password = src_root["password"].asString();
         auto confirm = src_root["confirm"].asString();
-        if(password!= confirm){
+        if (password != confirm) {
             spdlog::warn("The passwords entered twice are inconsistent");
             root["error"] = ErrorCodes::PasswordErr;
             std::string jsonstr = root.toStyledString();
@@ -85,7 +86,7 @@ LogicSystem::LogicSystem() {
 
         // 没问题去 redis 里查询验证码
         std::string verify_code;
-        bool b_get_verify_code = RedisMgr::getInstance()->get("code_" +src_root["email"].asString(), verify_code);
+        bool b_get_verify_code = RedisMgr::getInstance()->get("code_" + src_root["email"].asString(), verify_code);
         if (!b_get_verify_code) {
             // 获取失败表示验证码过期或未申请
             spdlog::warn("Verify code expired");
@@ -104,8 +105,8 @@ LogicSystem::LogicSystem() {
         }
 
         // 在 MySQL 中查询用户是否存在
-        int uid = MysqlMgr::getInstance()->registerUser(user_name,email,password);
-        if(uid == 0||uid == 1){
+        int uid = MysqlMgr::getInstance()->registerUser(user_name, email, password);
+        if (uid == 0 || uid == 1) {
             spdlog::info("email or user_name already exists");
             root["error"] = ErrorCodes::UserExist;
             std::string jsonstr = root.toStyledString();

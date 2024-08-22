@@ -1,10 +1,10 @@
 #pragma once
 #ifndef GLOBAL_H
-#define GLOBAL_H
-#include <QJsonObject>
-#include <QWidget>
-#include <functional>
-#include <QStyle>
+#    define GLOBAL_H
+#    include <QJsonObject>
+#    include <QStyle>
+#    include <QWidget>
+#    include <functional>
 
 extern std::function<void(QWidget*)> repolish;
 
@@ -24,5 +24,23 @@ enum Modules {
     REGISTERMOD = 0,
 };
 
+// 提示代码
+enum TipErr {
+    TIP_SUCCESS = 0,
+    TIP_EMAIL_ERR = 1,
+    TIP_PWD_ERR = 2,
+    TIP_CONFIRM_ERR = 3,
+    TIP_PWD_CONFIRM = 4,
+    TIP_VARIFY_ERR = 5,
+    TIP_USER_ERR = 6
+};
+
+// 标签是否被选中
+enum ClickLbState{
+    Normal = 0,
+    Selected = 1
+};
 extern QString gate_url_prefix;
+
+extern QString hashPassword(const QString& password);
 #endif  // GLOBAL_H

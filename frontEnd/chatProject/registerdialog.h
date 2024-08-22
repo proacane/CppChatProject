@@ -23,6 +23,8 @@ class RegisterDialog : public QDialog {
     void slot_reg_mod_finish(ReqId id, QString res, ErrorCodes err);
     void on_btn_ok_clicked();
 
+    void on_btn_cancel_clicked();
+
 private:
     Ui::RegisterDialog* ui;
     // 显示信息
@@ -32,7 +34,21 @@ private:
     // 存储对不同请求的处理函数
     QMap<ReqId, std::function<void(const QJsonObject&)>> _handlers;
 
+    bool checkUserValid();
+    bool checkEmailValid();
+    bool checkPassValid();
+    bool checkConfirmValid();
+    bool checkVerifyValid();
+    QMap<TipErr, QString> _tip_errs;
+    void addTipErr(TipErr err,const QString& tips);
+    void delTipErr(TipErr err);
 
+    // 注册成功跳转到提示界面
+    void changTipPage();
+    QTimer *_countdown_timer;
+    short _countdown = 5;
+signals:
+    void sigSwitchLogin();
 };
 
 #endif  // REGISTERDIALOG_H

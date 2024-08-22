@@ -7,6 +7,10 @@
 #include "httpMgr.h"
 #include "ui_registerdialog.h"
 
+static QRegularExpression email_regex(R"(^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$)");
+// ^[a-zA-Z0-9!@#$%^&*]{6,15}$ 密码长度至少6，可以是字母、数字和特定的特殊字符
+static QRegularExpression password_regex("^[a-zA-Z0-9!@#$%^&*]{6,15}$");
+
 RegisterDialog::RegisterDialog(QWidget* parent) : QDialog(parent), ui(new Ui::RegisterDialog) {
     ui->setupUi(this);
 
@@ -17,6 +21,51 @@ RegisterDialog::RegisterDialog(QWidget* parent) : QDialog(parent), ui(new Ui::Re
 
     initHttpHandlers();
     connect(HttpMgr::getInstance().get(), &HttpMgr::sig_reg_mod_finish, this, &RegisterDialog::slot_reg_mod_finish);
+
+    connect(ui->edit_user, &QLineEdit::editingFinished, this, [this]() { checkUserValid(); });
+    connect(ui->edit_email, &QLineEdit::editingFinished, this, [this]() { checkEmailValid(); });
+    connect(ui->edit_pwd, &QLineEdit::editingFinished, this, [this]() { checkPassValid(); });
+    connect(ui->edit_confirm, &QLineEdit::editingFinished, this, [this]() { checkConfirmValid(); });
+    connect(ui->edit_verify, &QLineEdit::editingFinished, this, [this]() { checkVerifyValid(); });
+
+    ui->lab_pwd_visible->setCursor(Qt::PointingHandCursor);
+    ui->lab_confirm_visible->setCursor(Qt::PointingHandCursor);
+
+    ui->lab_pwd_visible->setState("unvisible", "unvisible_hover", "", "visible", "visible_hover", "");
+    ui->lab_confirm_visible->setState("unvisible", "unvisible_hover", "", "visible", "visible_hover", "");
+
+    connect(ui->lab_pwd_visible, &ClickedLabel::clicked, this, [this] {
+        auto state = ui->lab_pwd_visible->getCurState();
+        if (state == ClickLbState::Normal) {
+            ui->edit_pwd->setEchoMode(QLineEdit::Password);
+        } else {
+            ui->edit_pwd->setEchoMode(QLineEdit::Normal);
+        }
+        qDebug() << "lab_pwd_visible was clicked!";
+    });
+
+    connect(ui->lab_confirm_visible, &ClickedLabel::clicked, this, [this] {
+        auto state = ui->lab_confirm_visible->getCurState();
+        if (state == ClickLbState::Normal) {
+            ui->edit_confirm->setEchoMode(QLineEdit::Password);
+        } else {
+            ui->edit_confirm->setEchoMode(QLineEdit::Normal);
+        }
+        qDebug() << "lab_confirm_visible was clicked!";
+    });
+
+    // 创建定时器，注册成功后调用
+    _countdown_timer = new QTimer(this);
+    connect(_countdown_timer, &QTimer::timeout, [this]() {
+        if (_countdown == 0) {
+            _countdown_timer->stop();
+            emit sigSwitchLogin();
+            return;
+        }
+        _countdown--;
+        auto str = QString("注册成功，%1 s后返回登录界面").arg(_countdown);
+        ui->lab_tip->setText(str);
+    });
 }
 
 RegisterDialog::~RegisterDialog() {
@@ -28,7 +77,6 @@ void RegisterDialog::on_btn_getCode_clicked() {
     // 获取邮箱信息
     auto email = ui->edit_email->text();
     // 正则表达式验证邮箱是否合法
-    static QRegularExpression email_regex(R"(^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$)");
     auto email_match = email_regex.match(email).hasMatch();
     if (email_match) {
         QJsonObject json_obj;
@@ -84,38 +132,107 @@ void RegisterDialog::initHttpHandlers() {
         qDebug() << "VerifyCode send succeed, email is " << email;
     });
     // 注册请求
-    _handlers.insert(ReqId::ID_REG_USER,[this](QJsonObject json_obj){
+    _handlers.insert(ReqId::ID_REG_USER, [this](QJsonObject json_obj) {
         int error = json_obj["error"].toInt();
         if (error != ErrorCodes::SUCCESS) {
             showTip(tr("参数错误"), true);
             return;
         }
-        auto email = json_obj["email"].toString();
+        auto uid = json_obj["uid"].toInt();
         showTip(tr("用户注册成功"), false);
-        qDebug()<< "Register succeed, email is " << email ;
+        qDebug() << "Register succeed, uid is " << uid;
+        changTipPage();
     });
 }
 
-void RegisterDialog::on_btn_ok_clicked() {
-    // TODO 加入校验逻辑
+bool RegisterDialog::checkUserValid() {
     if (ui->edit_user->text().isEmpty()) {
-        showTip(tr("请输入用户名"), true);
+        addTipErr(TipErr::TIP_USER_ERR, tr("用户名不能为空"));
+        return false;
+    } else if (ui->edit_user->text().size() < 6 || ui->edit_user->text().size() > 16) {
+        addTipErr(TipErr::TIP_USER_ERR, tr("用户名应在6-15位"));
+        return false;
+    }
+    delTipErr(TipErr::TIP_USER_ERR);
+    return true;
+}
+
+bool RegisterDialog::checkEmailValid() {
+    // 验证邮箱的地址正则表达式
+    auto email = ui->edit_email->text();
+    bool match = email_regex.match(email).hasMatch();  // 执行正则表达式匹配
+    if (!match) {
+        // 提示邮箱不正确
+        addTipErr(TipErr::TIP_EMAIL_ERR, tr("邮箱地址不正确"));
+        return false;
+    }
+    delTipErr(TipErr::TIP_EMAIL_ERR);
+    return true;
+}
+
+bool RegisterDialog::checkPassValid() {
+    auto pass = ui->edit_pwd->text();
+    if (pass.length() < 6 || pass.length() > 15) {
+        // 提示长度不准确
+        addTipErr(TipErr::TIP_PWD_ERR, tr("密码长度应为6~15"));
+        return false;
+    }
+
+    bool match = password_regex.match(pass).hasMatch();
+    if (!match) {
+        // 提示字符非法
+        addTipErr(TipErr::TIP_PWD_ERR, tr("不能包含非法字符"));
+        return false;
+    }
+    delTipErr(TipErr::TIP_PWD_ERR);
+    return true;
+}
+
+bool RegisterDialog::checkConfirmValid() {
+    auto confirm = ui->edit_confirm->text();
+    if (confirm != ui->edit_pwd->text()) {
+        addTipErr(TIP_CONFIRM_ERR, tr("两次密码输入不一致"));
+        return false;
+    }
+    delTipErr(TIP_CONFIRM_ERR);
+    return true;
+}
+
+bool RegisterDialog::checkVerifyValid() {
+    auto pass = ui->edit_verify->text();
+    if (pass.isEmpty()) {
+        addTipErr(TipErr::TIP_VARIFY_ERR, tr("请输入验证码"));
+        return false;
+    }
+    delTipErr(TipErr::TIP_VARIFY_ERR);
+    return true;
+}
+
+void RegisterDialog::addTipErr(TipErr err, const QString& tips) {
+    _tip_errs[err] = tips;
+    showTip(tips, true);
+}
+
+void RegisterDialog::delTipErr(TipErr err) {
+    _tip_errs.remove(err);
+    if (_tip_errs.empty()) {
+        ui->lab_errTip->clear();
         return;
     }
-    if (ui->edit_email->text().isEmpty()) {
-        showTip(tr("请输入正确的邮箱"), true);
-        return;
-    }
-    if (ui->edit_pwd->text().isEmpty()) {
-        showTip(tr("请输入密码"), true);
-        return;
-    }
-    if (ui->edit_confirm->text() != ui->edit_pwd->text()) {
-        showTip(tr("两次密码输入不一致"), true);
-        return;
-    }
-    if (ui->edit_verify->text().isEmpty()) {
-        showTip(tr("请输入验证码"), true);
+    // 还有错误就继续显示
+    showTip(_tip_errs.first(), true);
+}
+
+void RegisterDialog::changTipPage() {
+    _countdown_timer->stop();
+    ui->stackedWidget->setCurrentWidget(ui->page_2);
+
+    // 启动定时器，间隔为1 秒
+    _countdown_timer->start(1000);
+}
+
+void RegisterDialog::on_btn_ok_clicked() {
+    if (!checkUserValid() || !checkPassValid() || !checkVerifyValid() || !checkConfirmValid() || !checkEmailValid()) {
         return;
     }
 
@@ -123,8 +240,14 @@ void RegisterDialog::on_btn_ok_clicked() {
     QJsonObject json_obj;
     json_obj["user"] = ui->edit_user->text();
     json_obj["email"] = ui->edit_email->text();
-    json_obj["password"] = ui->edit_pwd->text();
-    json_obj["confirm"] = ui->edit_confirm->text();
+    json_obj["password"] = hashPassword(ui->edit_pwd->text());
+    json_obj["confirm"] = hashPassword(ui->edit_confirm->text());
     json_obj["verifycode"] = ui->edit_verify->text();
-    HttpMgr::getInstance()->postHttpReq(QUrl(gate_url_prefix+"/user_register"),json_obj,ReqId::ID_REG_USER,Modules::REGISTERMOD);
+    HttpMgr::getInstance()->postHttpReq(QUrl(gate_url_prefix + "/user_register"), json_obj, ReqId::ID_REG_USER,
+                                        Modules::REGISTERMOD);
+}
+
+void RegisterDialog::on_btn_cancel_clicked() {
+    _countdown_timer->stop();
+    emit sigSwitchLogin();
 }

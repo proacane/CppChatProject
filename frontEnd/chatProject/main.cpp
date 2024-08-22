@@ -18,12 +18,12 @@ int main(int argc, char* argv[]) {
     gate_url_prefix = "http://" + gate_host + ":" + gate_port;
     QFile qss(":/style/stylesheet.qss");
     if (qss.open(QFile::ReadOnly)) {
-        qDebug("open qss success");
+        // qDebug("open qss success");
         QString style = QLatin1String(qss.readAll());
         a.setStyleSheet(style);
         qss.close();
     } else {
-        qDebug("Open failed");
+        qDebug("Open qss file failed");
     }
     MainWindow w;
     w.show();

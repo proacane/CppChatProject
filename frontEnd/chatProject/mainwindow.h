@@ -26,7 +26,9 @@ class MainWindow : public QMainWindow {
     RegisterDialog* _register_dialog;
 
 private slots:
-    // 显示注册界面
+    // 切换到注册界面
     void slotSwitchRegister();
+    // 切换到登录界面
+    void slotSwitchLogin();
 };
 #endif  // MAINWINDOW_H
