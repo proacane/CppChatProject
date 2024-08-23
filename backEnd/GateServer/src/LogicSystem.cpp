@@ -10,6 +10,7 @@
 #include <spdlog/spdlog.h>
 #include "../include/RedisMgr.h"
 #include "../include/MysqlMgr.h"
+#include "../include/StatusGrpcClient.h"
 
 void LogicSystem::registerGet(std::string url, httpHandler handler) {
     _get_handlers.insert(std::make_pair(url, handler));
@@ -212,6 +213,56 @@ LogicSystem::LogicSystem() {
         std::string jsonstr = root.toStyledString();
         beast::ostream(connection->_response.body()) << jsonstr;
     });
+
+    registerPost("/user_login", [](std::shared_ptr<HttpConnection> connection) {
+        auto body_str = beast::buffers_to_string(connection->_request.body().data());
+        spdlog::info("Register Receive body is {}", body_str);
+        connection->_response.set(http::field::content_type, "text/json");
+        Json::Value root;
+        Json::Reader reader;
+        Json::Value src_root;
+        bool parse_success = reader.parse(body_str, src_root);
+        if (!parse_success) {
+            // 解析失败
+            spdlog::warn("Failed to parse JSON data!");
+            root["error"] = ErrorCodes::Error_Json;
+            std::string jsonstr = root.toStyledString();
+            beast::ostream(connection->_response.body()) << jsonstr;
+            return;
+        }
+        auto user_name = src_root["user"].asString();
+        auto password = src_root["password"].asString();
+        UserInfo userInfo;
+        // 在 mysql 中验证输入是否正确
+        bool b_valid = MysqlMgr::getInstance()->checkPassword(user_name, password, userInfo);
+        if (!b_valid) {
+            spdlog::warn("Error password or user doesn't exist");
+            root["error"] = ErrorCodes::UserPasswordError;
+            std::string jsonstr = root.toStyledString();
+            beast::ostream(connection->_response.body()) << jsonstr;
+            return;
+        }
+
+        //查询StatusServer找到合适的连接
+        auto reply = StatusGrpcClient::getInstance()->getChatServer(userInfo.uid);
+        if (reply.error()) {
+            spdlog::info(" grpc get chat server failed, error is {}",reply.error() );
+            root["error"] = ErrorCodes::RPCFailed;
+            std::string jsonstr = root.toStyledString();
+            beast::ostream(connection->_response.body()) << jsonstr;
+            return ;
+        }
+
+        spdlog::info("Login succeed, user uid is {}", userInfo.uid);
+        root["error"] = ErrorCodes::Success;
+        root["user"] = user_name;
+        root["uid"] = userInfo.uid;
+        root["token"] = reply.token();
+        root["host"] = reply.host();
+        std::string jsonstr = root.toStyledString();
+        beast::ostream(connection->_response.body()) << jsonstr;
+        return;
+    });
 }
 
 bool LogicSystem::handleGet(std::string url, std::shared_ptr<HttpConnection> connection) {
@@ -223,9 +274,7 @@ bool LogicSystem::handleGet(std::string url, std::shared_ptr<HttpConnection> con
     return true;
 }
 
-LogicSystem::~LogicSystem() {
-
-}
+LogicSystem::~LogicSystem() = default;
 
 void LogicSystem::registerPost(std::string url, httpHandler handler) {
     _post_handlers.insert(std::make_pair(url, handler));

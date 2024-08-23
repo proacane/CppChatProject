@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.28)
-project(GateServer)
+project(StatusServer)
 
 find_package(Boost REQUIRED COMPONENTS filesystem)
 find_package(jsoncpp CONFIG REQUIRED)
@@ -36,44 +36,34 @@ include_directories(${MYSQL_CONNECTOR_CPP_INCLUDE_DIR})
 # 添加库文件路径
 link_directories(${MYSQL_CONNECTOR_CPP_LIBRARY_DIR})
 
-add_executable(GateServer main.cpp
-        include/CServer.h
-        src/CServer.cpp
-        include/const.h
-        include/HttpConnection.h
-        src/HttpConnection.cpp
-        include/SingleTon.h
-        include/LogicSystem.h
-        src/LogicSystem.cpp
-        proto/message.pb.h
-        proto/message.pb.cc
-        proto/message.grpc.pb.h
-        proto/message.grpc.pb.cc
-        include/VerifyGrpcClient.h
-        src/VerifyGrpcClient.cpp
-        include/ConfigMgr.h
-        src/ConfigMgr.cpp
-        include/AsioIOServicePool.h
-        src/AsioIOServicePool.cpp
-        include/RedisMgr.h
-        src/RedisMgr.cpp
-        include/MysqlDao.h
-        src/MysqlDao.cpp
-        include/MysqlMgr.h
-        src/MysqlMgr.cpp
-        include/StatusGrpcClient.h
-        src/StatusGrpcClient.cpp)
 
-# 在 GateServer 构建后拷贝 DLL 文件
-# TODO 不知道为什么拷贝不了
-add_custom_command(TARGET GateServer POST_BUILD
+add_executable(StatusServer main.cpp
+        proto/message.pb.cc
+        proto/message.grpc.pb.cc
+        proto/message.grpc.pb.h
+        proto/message.pb.h
+        proto/message.proto
+        include/ConfigMgr.h
+        include/const.h
+        include/MysqlDao.h
+        include/MysqlMgr.h
+        include/RedisMgr.h
+        include/AsioIOServicePool.h
+        include/SingleTon.h
+        src/ConfigMgr.cpp
+        src/MysqlDao.cpp
+        src/MysqlMgr.cpp
+        src/RedisMgr.cpp
+        src/AsioIOServicePool.cpp
+        include/StatusServiceImpl.h
+        src/StatusServiceImpl.cpp)
+add_custom_command(TARGET StatusServer POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
         "D:\\develop_tools\\cppsoft\\mysql-connector-c++-9.0.0-winx64\\lib64\\debug\\mysqlcppconn-10-vs14.dll"
-        $<TARGET_FILE_DIR:GateServer>
+        $<TARGET_FILE_DIR:StatusServer>
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
         "D:\\develop_tools\\cppsoft\\mysql-connector-c++-9.0.0-winx64\\lib64\\debug\\mysqlcppconnx-2-vs14.dll"
-        $<TARGET_FILE_DIR:GateServer>
+        $<TARGET_FILE_DIR:StatusServer>
         COMMENT "Copying MySQL Connector/C++ DLLs to the output directory"
 )
-target_link_libraries(GateServer PRIVATE ${Boost_LIBRARIES} JsonCpp::JsonCpp gRPC::grpc++ protobuf::libprotobuf hiredis::hiredis spdlog::spdlog mysqlcppconn)
-
+target_link_libraries(StatusServer PRIVATE ${Boost_LIBRARIES} JsonCpp::JsonCpp gRPC::grpc++ protobuf::libprotobuf hiredis::hiredis spdlog::spdlog mysqlcppconn)
