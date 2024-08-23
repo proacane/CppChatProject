@@ -81,6 +81,22 @@ public:
      * @return -1有异常，0有重复，大于0正常，为uid
      */
     int registerUser(const std::string& user_name, const std::string& email, const std::string& password);
+
+    /**
+     * 查询用户名邮箱是否存在
+     * @param user_name
+     * @param email
+     * @return 返回 uid，-1表示异常，0表示不匹配
+     */
+    int checkEmailUserName(const std::string & user_name,const std::string & email);
+
+    /**
+     * 更新密码
+     * @param user_name
+     * @param password
+     * @return 更新结果：-1异常，0 密码重复，1 表示成功
+     */
+    int updatePassword(const std::string&user_name,const std::string& password);
 private:
     std::unique_ptr<MysqlPool> _pool;
 };

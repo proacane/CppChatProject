@@ -34,6 +34,9 @@ enum ErrorCodes {
     VerifyCodeErr = 1004, //验证码错误
     UserExist = 1005,       //用户已经存在
     PasswordErr = 1006, // 密码校验错误
+    UserEmailNotMatch=1007, // 用户名或密码不匹配
+    PasswordUpdateFail = 1008, // 更新密码失败
+    PasswordSame = 1009, // 重置密码重复
 };
 
 class Defer{

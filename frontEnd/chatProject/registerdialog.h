@@ -8,7 +8,7 @@
 namespace Ui {
     class RegisterDialog;
 }
-
+// TODO 取消 esc 关闭窗口的功能
 class RegisterDialog : public QDialog {
     Q_OBJECT
 
@@ -24,6 +24,8 @@ class RegisterDialog : public QDialog {
     void on_btn_ok_clicked();
 
     void on_btn_cancel_clicked();
+
+    void on_btn_to_login_clicked();
 
 private:
     Ui::RegisterDialog* ui;

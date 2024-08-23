@@ -7,13 +7,9 @@
 #include "httpMgr.h"
 #include "ui_registerdialog.h"
 
-static QRegularExpression email_regex(R"(^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$)");
-// ^[a-zA-Z0-9!@#$%^&*]{6,15}$ 密码长度至少6，可以是字母、数字和特定的特殊字符
-static QRegularExpression password_regex("^[a-zA-Z0-9!@#$%^&*]{6,15}$");
 
 RegisterDialog::RegisterDialog(QWidget* parent) : QDialog(parent), ui(new Ui::RegisterDialog) {
     ui->setupUi(this);
-
     ui->lab_errTip->setProperty("state", "normal");
     repolish(ui->lab_errTip);
     ui->edit_pwd->setEchoMode(QLineEdit::Password);
@@ -134,7 +130,14 @@ void RegisterDialog::initHttpHandlers() {
     // 注册请求
     _handlers.insert(ReqId::ID_REG_USER, [this](QJsonObject json_obj) {
         int error = json_obj["error"].toInt();
-        if (error != ErrorCodes::SUCCESS) {
+        if(error == ErrorCodes::UserExist){
+            showTip(tr("用户已经存在"), true);
+            return;
+        }else if(error== ErrorCodes::VerifyExpired){
+            showTip(tr("验证码过期或失效"), true);
+            return;
+        }
+        else if (error != ErrorCodes::SUCCESS) {
             showTip(tr("参数错误"), true);
             return;
         }
@@ -172,16 +175,16 @@ bool RegisterDialog::checkEmailValid() {
 
 bool RegisterDialog::checkPassValid() {
     auto pass = ui->edit_pwd->text();
-    if (pass.length() < 6 || pass.length() > 15) {
+    if (pass.length() < 8 || pass.length() > 17) {
         // 提示长度不准确
-        addTipErr(TipErr::TIP_PWD_ERR, tr("密码长度应为6~15"));
+        addTipErr(TipErr::TIP_PWD_ERR, tr("密码长度应为8~16"));
         return false;
     }
 
     bool match = password_regex.match(pass).hasMatch();
     if (!match) {
         // 提示字符非法
-        addTipErr(TipErr::TIP_PWD_ERR, tr("不能包含非法字符"));
+        addTipErr(TipErr::TIP_PWD_ERR, tr("密码含有非法字符"));
         return false;
     }
     delTipErr(TipErr::TIP_PWD_ERR);
@@ -251,3 +254,10 @@ void RegisterDialog::on_btn_cancel_clicked() {
     _countdown_timer->stop();
     emit sigSwitchLogin();
 }
+
+void RegisterDialog::on_btn_to_login_clicked()
+{
+    _countdown_timer->stop();
+    emit sigSwitchLogin();
+}
+

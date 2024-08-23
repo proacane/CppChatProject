@@ -11,17 +11,24 @@ extern std::function<void(QWidget*)> repolish;
 enum ReqId {
     ID_GET_VARIFY_CODE = 1001,  // 获取验证码
     ID_REG_USER = 1002,         // 注册用户
+    ID_RESET_PWD = 1003,        // 重置密码
 };
 
 enum ErrorCodes {
     SUCCESS = 0,
     ERR_JSON = 1,  // Json解析失败
     ERR_NETWORK = 2,
+    UserExist = 1005,          // 用户已经存在
+    UserEmailNotMatch = 1007,  // 用户名或密码不匹配
+    PasswordSame = 1009,       // 重置密码重复
+    VerifyExpired = 1003,      // 验证码过期
 };
 
 enum Modules {
     // 注册模块
     REGISTERMOD = 0,
+    // 重置密码模块
+    RESETMOD = 1,
 };
 
 // 提示代码
@@ -36,11 +43,12 @@ enum TipErr {
 };
 
 // 标签是否被选中
-enum ClickLbState{
-    Normal = 0,
-    Selected = 1
-};
+enum ClickLbState { Normal = 0, Selected = 1 };
 extern QString gate_url_prefix;
 
 extern QString hashPassword(const QString& password);
+
+static QRegularExpression email_regex(R"(^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$)");
+// ^[a-zA-Z0-9!@#$%^&*]{6,15}$ 密码长度至少6，可以是字母、数字和特定的特殊字符
+static QRegularExpression password_regex("^[A-Za-z0-9@#$%^&+!=.]{8,16}$");
 #endif  // GLOBAL_H

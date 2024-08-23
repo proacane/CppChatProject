@@ -9,3 +9,11 @@
 int MysqlMgr::registerUser(const std::string &user_name, const std::string &email, const std::string &password) {
     return _dao.registerUser(user_name, email, password);
 }
+
+int MysqlMgr::checkEmailUserName(const std::string &user_name, const std::string &email) {
+    return _dao.checkEmailUserName(user_name,email);
+}
+
+int MysqlMgr::updatePassword(const std::string &user_name, const std::string &password) {
+    return _dao.updatePassword(user_name,password);
+}

@@ -14,7 +14,8 @@ class MysqlMgr : public SingleTon<MysqlMgr> {
 public:
     int registerUser(const std::string& user_name, const std::string& email, const std::string& password);
     ~MysqlMgr() override =default;
-
+    int checkEmailUserName(const std::string & user_name,const std::string & email);
+    int updatePassword(const std::string&user_name,const std::string& password);
 private:
     MysqlMgr() = default;
     MysqlDao _dao;

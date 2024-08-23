@@ -149,7 +149,8 @@ int MysqlDao::registerUser(const std::string &user_name, const std::string &emai
         con->_connection->setAutoCommit(false);
 
         // 检查用户名是否已存在
-        std::unique_ptr<sql::PreparedStatement> stmt(con->_connection->prepareStatement("SELECT COUNT(*) FROM `user` WHERE `name` = ?"));
+        std::unique_ptr<sql::PreparedStatement> stmt(
+                con->_connection->prepareStatement("SELECT COUNT(*) FROM `user` WHERE `name` = ?"));
         stmt->setString(1, user_name);
         // 执行结果
         std::unique_ptr<sql::ResultSet> res(stmt->executeQuery());
@@ -181,7 +182,8 @@ int MysqlDao::registerUser(const std::string &user_name, const std::string &emai
             int new_id = res->getInt(1);
 
             // 在 user 表中插入新记录
-            stmt.reset(con->_connection->prepareStatement("INSERT INTO `user` (`uid`, `name`, `email`, `pwd`) VALUES (?, ?, ?, ?)"));
+            stmt.reset(con->_connection->prepareStatement(
+                    "INSERT INTO `user` (`uid`, `name`, `email`, `pwd`) VALUES (?, ?, ?, ?)"));
             stmt->setInt(1, new_id);
             stmt->setString(2, user_name);
             stmt->setString(3, email);
@@ -197,6 +199,87 @@ int MysqlDao::registerUser(const std::string &user_name, const std::string &emai
         return result;
     }
     catch (sql::SQLException &e) {
+        _pool->returnConnection(std::move(con));
+        spdlog::warn("SQLException: {} (MySQL error code: {}, SQLState: {})",
+                     e.what(),
+                     e.getErrorCode(),
+                     e.getSQLState());
+        return -1;
+    }
+}
+
+int MysqlDao::checkEmailUserName(const std::string &user_name, const std::string &email) {
+    auto con = _pool->getConnection();
+    try {
+        if (con == nullptr) {
+            return 0;
+        }
+
+        // 查询语句
+        std::unique_ptr<sql::PreparedStatement> preparedStatement(
+                con->_connection->prepareStatement("Select email,uid from user where name = ?"));
+        // 绑定参数
+        preparedStatement->setString(1, user_name);
+        // 执行查询
+        std::unique_ptr<sql::ResultSet> res(preparedStatement->executeQuery());
+        // 遍历结果
+        while (res->next()) {
+            std::string queryEmail = res->getString("email");
+            int queryUid = res->getInt("uid");
+
+            spdlog::info("Query email is {}, Parameter email is {}", queryEmail.c_str(), email);
+            spdlog::info("Query UID is {}", queryUid);
+
+            if (email != queryEmail) {
+                _pool->returnConnection(std::move(con));
+                return 0;
+            }
+
+            _pool->returnConnection(std::move(con));
+            return queryUid;
+        }
+    } catch (sql::SQLException &e) {
+        _pool->returnConnection(std::move(con));
+        spdlog::warn("SQLException: {} (MySQL error code: {}, SQLState: {})",
+                     e.what(),
+                     e.getErrorCode(),
+                     e.getSQLState());
+        return -1;
+    }
+    return -1;
+}
+
+int MysqlDao::updatePassword(const std::string &user_name, const std::string &password) {
+    auto con = _pool->getConnection();
+    try {
+        if (con == nullptr) {
+            _pool->returnConnection(std::move(con));
+            return -1;
+        }
+        // 首先查询当前用户的密码
+        std::unique_ptr <sql::PreparedStatement> checkStatement(
+                con->_connection->prepareStatement("select pwd from user where name = ?"));
+        checkStatement->setString(1, user_name);
+        std::unique_ptr <sql::ResultSet> res(checkStatement->executeQuery());
+
+        // 如果找到了该用户的记录
+        if (res->next()) {
+            std::string currentPwd = res->getString("pwd");
+            // 如果当前密码与传入的密码相同
+            if (currentPwd == password) {
+                _pool->returnConnection(std::move(con));
+                return 0;
+            }
+        }
+        std::unique_ptr <sql::PreparedStatement> preparedStatement(
+                con->_connection->prepareStatement("update user set pwd = ? where name = ?"));
+        preparedStatement->setString(1, password);
+        preparedStatement->setString(2, user_name);
+        int updateCount = preparedStatement->executeUpdate();
+        spdlog::info("Updated rows: {}", updateCount);
+        _pool->returnConnection(std::move(con));
+        return 1;
+    } catch (sql::SQLException &e) {
         _pool->returnConnection(std::move(con));
         spdlog::warn("SQLException: {} (MySQL error code: {}, SQLState: {})",
                      e.what(),

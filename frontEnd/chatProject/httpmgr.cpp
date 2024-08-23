@@ -35,14 +35,13 @@ void HttpMgr::postHttpReq(QUrl url, QJsonObject json, ReqId req_id, Modules mod)
 
 HttpMgr::HttpMgr() {
     qDebug() << "HttpMgr constructor";
-    connect(this,&HttpMgr::sig_http_finish,this,&HttpMgr::slot_http_finish);
+    connect(this, &HttpMgr::sig_http_finish, this, &HttpMgr::slot_http_finish);
 }
 
-void HttpMgr::slot_http_finish(ReqId id, QString res, ErrorCodes err, Modules mod)
-{
-    if(mod == Modules::REGISTERMOD){
-        emit sig_reg_mod_finish(id,res,err);
+void HttpMgr::slot_http_finish(ReqId id, QString res, ErrorCodes err, Modules mod) {
+    if (mod == Modules::REGISTERMOD) {
+        emit sig_reg_mod_finish(id, res, err);
+    } else if (mod == Modules::RESETMOD) {
+        emit sig_reset_mod_finish(id, res, err);
     }
 }
-
-

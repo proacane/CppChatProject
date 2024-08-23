@@ -113,6 +113,11 @@ LogicSystem::LogicSystem() {
             beast::ostream(connection->_response.body()) << jsonstr;
             return;
         }
+        // 注册成功删除验证码
+        bool b_del_verify = RedisMgr::getInstance()->del("code_" + src_root["email"].asString());
+        if (!b_del_verify) {
+            spdlog::warn("Delete verifyCode in redis failed");
+        }
         // 返回数据
         root["error"] = ErrorCodes::Success;
         root["uid"] = uid;
@@ -124,6 +129,88 @@ LogicSystem::LogicSystem() {
         std::string jsonstr = root.toStyledString();
         beast::ostream(connection->_response.body()) << jsonstr;
         return;
+    });
+
+    registerPost("/reset_pwd", [](std::shared_ptr<HttpConnection> connection) {
+        auto body_str = beast::buffers_to_string(connection->_request.body().data());
+        spdlog::info("Register Receive body is {}", body_str);
+        connection->_response.set(http::field::content_type, "text/json");
+        Json::Value root;
+        Json::Reader reader;
+        Json::Value src_root;
+        bool parse_success = reader.parse(body_str, src_root);
+        if (!parse_success) {
+            // 解析失败
+            spdlog::warn("Failed to parse JSON data!");
+            root["error"] = ErrorCodes::Error_Json;
+            std::string jsonstr = root.toStyledString();
+            beast::ostream(connection->_response.body()) << jsonstr;
+            return;
+        }
+        auto user_name = src_root["user"].asString();
+        auto email = src_root["email"].asString();
+
+        // 先在数据库中查询用户与邮箱是否匹配（是否存在）
+        int uid = MysqlMgr::getInstance()->checkEmailUserName(user_name, email);
+        if (uid == 0 || uid == -1) {
+            root["error"] = ErrorCodes::UserEmailNotMatch;
+            std::string jsonStr = root.toStyledString();
+            beast::ostream(connection->_response.body()) << jsonStr;
+            return;
+        }
+
+        // 在查询验证码
+        std::string verify_code;
+        bool b_get_verify_code = RedisMgr::getInstance()->get("code_" + src_root["email"].asString(), verify_code);
+        if (!b_get_verify_code) {
+            // 获取失败表示验证码过期或未申请
+            spdlog::warn("Verify code expired");
+            root["error"] = ErrorCodes::VerifyExpired;
+            std::string jsonstr = root.toStyledString();
+            beast::ostream(connection->_response.body()) << jsonstr;
+            return;
+        }
+        // 验证码错误
+        if (verify_code != src_root["verifycode"].asString()) {
+            spdlog::warn("Verify code is not correct");
+            root["error"] = ErrorCodes::VerifyCodeErr;
+            std::string jsonstr = root.toStyledString();
+            beast::ostream(connection->_response.body()) << jsonstr;
+            return;
+        }
+        auto password = src_root["password"].asString();
+        int b_update_password = MysqlMgr::getInstance()->updatePassword(user_name, password);
+
+        if (b_update_password == -1) {
+            spdlog::warn("Update password failed");
+            root["error"] = ErrorCodes::PasswordUpdateFail;
+            std::string jsonstr = root.toStyledString();
+            beast::ostream(connection->_response.body()) << jsonstr;
+            return;
+        } else if (b_update_password == 0) {
+            // 密码重复
+            spdlog::info("New password matches the current password for user: {}", user_name);
+            root["error"] = ErrorCodes::PasswordSame;
+            std::string jsonstr = root.toStyledString();
+            beast::ostream(connection->_response.body()) << jsonstr;
+            return;
+        }
+
+        // 重置成功删除验证码
+        bool b_del_verify = RedisMgr::getInstance()->del("code_" + src_root["email"].asString());
+        if (!b_del_verify) {
+            spdlog::warn("Delete verifyCode in redis failed");
+        }
+
+        spdlog::info("Update password succeed");
+        root["error"] = 0;
+        root["email"] = email;
+        root["user"] = user_name;
+        root["password"] = password;
+        root["verifycode"] = src_root["verifycode"].asString();
+        root["uid"] = uid;
+        std::string jsonstr = root.toStyledString();
+        beast::ostream(connection->_response.body()) << jsonstr;
     });
 }
 
