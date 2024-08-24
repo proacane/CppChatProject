@@ -1,0 +1,23 @@
+cmake_minimum_required(VERSION 3.28)
+project(ChatServer)
+find_package(Boost REQUIRED COMPONENTS filesystem)
+find_package(jsoncpp CONFIG REQUIRED)
+find_package(spdlog CONFIG REQUIRED)
+set(CMAKE_CXX_STANDARD 17)
+add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
+add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
+
+if (Boost_FOUND)
+    include_directories(${Boost_INCLUDE_DIRS})
+else ()
+    message(FATAL_ERROR "Could not find Boost libraries")
+endif ()
+if (jsoncpp_FOUND)
+    include_directories(${jsoncpp_INCLUDE_DIRS})
+else ()
+    message(FATAL_ERROR "Could not find Jsoncpp libraries")
+endif ()
+
+add_executable(ChatServer main.cpp)
+
+target_link_libraries(ChatServer PRIVATE ${Boost_LIBRARIES} JsonCpp::JsonCpp spdlog::spdlog )

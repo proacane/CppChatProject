@@ -29,12 +29,12 @@ class MainWindow : public QMainWindow {
     ResetDialog* _reset_dialog;
   private slots:
     // 从登陆界面切换到注册界面
-    void slotSwitchRegister();
+    void slot_switch_register();
     // 从注册界面切换到登录界面
-    void slotSwitchLogin();
+    void slot_switch_login();
     // 从登录界面切换到重置密码界面
-    void slotSwitchReset();
+    void slot_switch_reset();
     // 从重置密码界面切换到登录界面
-    void slotSwitchLogin2();
+    void slot_switch_login2();
 };
 #endif  // MAINWINDOW_H

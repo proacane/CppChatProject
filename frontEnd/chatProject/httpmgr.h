@@ -53,6 +53,14 @@ class HttpMgr : public QObject, public SingleTon<HttpMgr>, public std::enable_sh
      * @param err
      */
     void sig_reset_mod_finish(ReqId id,QString res,ErrorCodes err);
+
+    /**
+     * @brief sig_login_mod_finish 发送给登录模块
+     * @param id
+     * @param res
+     * @param err
+     */
+    void sig_login_mod_finish(ReqId id,QString res,ErrorCodes err);
   private slots:
     void slot_http_finish(ReqId id, QString res, ErrorCodes err, Modules mod);
 };
