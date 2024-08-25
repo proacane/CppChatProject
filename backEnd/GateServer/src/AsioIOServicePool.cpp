@@ -23,7 +23,10 @@ AsioIOServicePool::IOService &AsioIOServicePool::getIOService() {
 
 void AsioIOServicePool::stop() {
     for (auto &work: _workers) {
-        // 先停止服务
+        // 先停止服务  auto &service = _ioServices[_next_ioService];
+        //    // 轮询策略返回 io_context 实例
+        //    _next_ioService = (_next_ioService + 1) % _ioServices.size();
+        //    return service;
         work->get_io_context().stop();
         // 再清除 work 对象
         work.reset();

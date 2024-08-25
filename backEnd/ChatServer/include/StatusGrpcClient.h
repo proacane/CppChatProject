@@ -21,6 +21,7 @@ using message::GetChatServerReq;
 using message::GetChatServerRsp;
 using message::StatusService;
 
+
 class StatusConPool {
 public:
     StatusConPool(size_t pool_size, std::string host, std::string port);
@@ -54,7 +55,7 @@ public:
     StatusGrpcClient& operator=(const StatusGrpcClient&) = delete;
 private:
     StatusGrpcClient();
-
+//    LoginRsp Login(int uid, std::string token);
     std::unique_ptr<StatusConPool> pool_;
 };
 
