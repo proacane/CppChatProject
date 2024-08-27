@@ -35,3 +35,19 @@ QDialog#LoginDialog{
 #lab_confirm_visible[state='visible_hover']{
    border-image: url(:/images/visible_hover.png);
 }
+
+#widget_side_bar{
+    background-color:rgb(46,46,46);
+}
+
+#btn_add[state='normal']{
+ border-image: url(:/images/add_friend_normal.png);
+}
+
+#btn_add[state='hover']{
+ border-image: url(:/images/add_friend_hover.png);
+}
+
+#btn_add[state='press']{
+ border-image: url(:/images/add_friend_hover.png);
+}

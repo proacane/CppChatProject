@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 
+#include "chatdialog.h"
 #include "logindialog.h"
 #include "registerdialog.h"
 #include "resetdialog.h"
@@ -27,6 +28,8 @@ class MainWindow : public QMainWindow {
     RegisterDialog* _register_dialog;
     // 重置密码界面
     ResetDialog* _reset_dialog;
+    // 聊天界面
+    ChatDialog* _chat_dialog;
   private slots:
     // 从登陆界面切换到注册界面
     void slot_switch_register();
@@ -36,5 +39,7 @@ class MainWindow : public QMainWindow {
     void slot_switch_reset();
     // 从重置密码界面切换到登录界面
     void slot_switch_login2();
+    // 从登录界面跳转到聊天界面
+    void slot_switch_chatdlg();
 };
 #endif  // MAINWINDOW_H

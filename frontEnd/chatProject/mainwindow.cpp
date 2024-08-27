@@ -1,10 +1,10 @@
 #include "mainwindow.h"
 
 #include "./ui_mainwindow.h"
-
+#include "tcpmgr.h"
 MainWindow::MainWindow(QWidget* parent) :
     QMainWindow(parent), ui(new Ui::MainWindow), _login_dialog(new LoginDialog(this)), _register_dialog(nullptr),
-    _reset_dialog(nullptr) {
+    _reset_dialog(nullptr),_chat_dialog(nullptr) {
     ui->setupUi(this);
     // 将 LoginDialog 设置为中心组件
     setCentralWidget(_login_dialog);
@@ -14,6 +14,9 @@ MainWindow::MainWindow(QWidget* parent) :
     connect(_login_dialog, &LoginDialog::switchReset, this, &MainWindow::slot_switch_reset);
     // 自定义样式，设置无边框
     _login_dialog->setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);
+    connect(TcpMgr::getInstance().get(), &TcpMgr::sig_swich_chatdlg, this, &MainWindow::slot_switch_chatdlg);
+
+    emit TcpMgr::getInstance().get() -> sig_swich_chatdlg();
 }
 
 MainWindow::~MainWindow() {
@@ -70,4 +73,29 @@ void MainWindow::slot_switch_login2() {
     _reset_dialog->hide();
     _login_dialog->show();
     setCentralWidget(_login_dialog);
+}
+
+void MainWindow::slot_switch_chatdlg() {
+    if (_chat_dialog == nullptr) {
+        _chat_dialog = new ChatDialog(this);
+        _chat_dialog->setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);
+    }
+    takeCentralWidget();
+    _login_dialog->hide();
+    setCentralWidget(_chat_dialog);
+    _chat_dialog->show();
+    this->setMinimumSize(QSize(910, 640));
+    this->setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
+    if (_register_dialog != nullptr) {
+        delete _register_dialog;
+        _register_dialog = nullptr;
+    }
+    if (_login_dialog != nullptr) {
+        delete _login_dialog;
+        _login_dialog = nullptr;
+    }
+    if (_reset_dialog != nullptr) {
+        delete _reset_dialog;
+        _reset_dialog = nullptr;
+    }
 }
