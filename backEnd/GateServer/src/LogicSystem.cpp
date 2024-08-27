@@ -230,6 +230,7 @@ LogicSystem::LogicSystem() {
             beast::ostream(connection->_response.body()) << jsonstr;
             return;
         }
+
         auto user_name = src_root["user"].asString();
         auto password = src_root["password"].asString();
         UserInfo userInfo;
@@ -243,7 +244,7 @@ LogicSystem::LogicSystem() {
             return;
         }
 
-        //查询StatusServer找到合适的连接
+        // 查询StatusServer找到合适的连接
         auto reply = StatusGrpcClient::getInstance()->getChatServer(userInfo.uid);
         if (reply.error()) {
             spdlog::info(" grpc get chat server failed, error is {}",reply.error() );
@@ -259,6 +260,7 @@ LogicSystem::LogicSystem() {
         root["uid"] = userInfo.uid;
         root["token"] = reply.token();
         root["host"] = reply.host();
+        root["port"] = reply.port();
         std::string jsonstr = root.toStyledString();
         beast::ostream(connection->_response.body()) << jsonstr;
         return;

@@ -57,8 +57,7 @@ add_executable(ChatServer main.cpp
         proto/message.grpc.pb.h
         proto/message.pb.h
         proto/message.proto
-        include/data.h
-include/StatusGrpcClient.h
+        include/StatusGrpcClient.h
 src/StatusGrpcClient.cpp)
 
 target_link_libraries(ChatServer PRIVATE ${Boost_LIBRARIES} JsonCpp::JsonCpp gRPC::grpc++ protobuf::libprotobuf hiredis::hiredis spdlog::spdlog mysqlcppconn)

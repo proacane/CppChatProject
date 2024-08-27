@@ -38,6 +38,8 @@ enum ErrorCodes {
     PasswordUpdateFail = 1008, // 更新密码失败
     PasswordSame = 1009, // 重置密码重复
     UserPasswordError = 1010,// 密码错误或用户不存在
+    TokenInvalid = 1011,   //Token失效
+    UidInvalid = 1012,  //uid无效
 };
 
 class Defer {

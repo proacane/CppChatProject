@@ -34,6 +34,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         clickedlabel.h clickedlabel.cpp
         resetdialog.h resetdialog.cpp resetdialog.ui
         tcpmgr.h tcpmgr.cpp
+        usermgr.h usermgr.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET chatProject APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

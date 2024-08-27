@@ -4,6 +4,7 @@
  *  Description: 
  *  Author: ACAね
 */
+#include <memory>
 #include <utility>
 #include <spdlog/spdlog.h>
 #include "../include/MysqlDao.h"
@@ -256,10 +257,10 @@ int MysqlDao::updatePassword(const std::string &user_name, const std::string &pa
             return -1;
         }
         // 首先查询当前用户的密码
-        std::unique_ptr <sql::PreparedStatement> checkStatement(
+        std::unique_ptr<sql::PreparedStatement> checkStatement(
                 con->_connection->prepareStatement("select pwd from user where name = ?"));
         checkStatement->setString(1, user_name);
-        std::unique_ptr <sql::ResultSet> res(checkStatement->executeQuery());
+        std::unique_ptr<sql::ResultSet> res(checkStatement->executeQuery());
 
         // 如果找到了该用户的记录
         if (res->next()) {
@@ -270,7 +271,7 @@ int MysqlDao::updatePassword(const std::string &user_name, const std::string &pa
                 return 0;
             }
         }
-        std::unique_ptr <sql::PreparedStatement> preparedStatement(
+        std::unique_ptr<sql::PreparedStatement> preparedStatement(
                 con->_connection->prepareStatement("update user set pwd = ? where name = ?"));
         preparedStatement->setString(1, password);
         preparedStatement->setString(2, user_name);
@@ -291,25 +292,26 @@ int MysqlDao::updatePassword(const std::string &user_name, const std::string &pa
 bool MysqlDao::checkPassword(const std::string &user_name, const std::string &password, UserInfo &userInfo) {
     auto con = _pool->getConnection();
     try {
-        if(con == nullptr){
+        if (con == nullptr) {
             return false;
         }
-        std::unique_ptr<sql::PreparedStatement> preparedStatement(con->_connection->prepareStatement("SELECT * FROM user WHERE name = ?"));
-        preparedStatement->setString(1,user_name);
+        std::unique_ptr<sql::PreparedStatement> preparedStatement(
+                con->_connection->prepareStatement("SELECT * FROM user WHERE name = ?"));
+        preparedStatement->setString(1, user_name);
         std::unique_ptr<sql::ResultSet> res(preparedStatement->executeQuery());
         std::string origin_pwd;
-        while(res->next()){
+        while (res->next()) {
             origin_pwd = res->getString("pwd");
-            spdlog::info("Query password is {}",origin_pwd);
+            spdlog::info("Query password is {}", origin_pwd);
             break;
         }
-        if(origin_pwd !=password){
+        if (origin_pwd != password) {
             return false;
         }
         userInfo.user_name = user_name;
         userInfo.email = res->getString("email");
         userInfo.password = origin_pwd;
-        userInfo.uid  = res->getInt("uid");
+        userInfo.uid = res->getInt("uid");
         return true;
     } catch (const sql::SQLException &e) {
         _pool->returnConnection(std::move(con));
@@ -318,5 +320,37 @@ bool MysqlDao::checkPassword(const std::string &user_name, const std::string &pa
                      e.getErrorCode(),
                      e.getSQLState());
         return false;
+    }
+}
+
+std::shared_ptr<UserInfo> MysqlDao::getUser(int uid) {
+    auto con = _pool->getConnection();
+    try {
+        if (con == nullptr) {
+            return nullptr;
+        }
+        std::unique_ptr<sql::PreparedStatement> preparedStatement(
+                con->_connection->prepareStatement("Select * from user where uid = ?"));
+        preparedStatement->setInt(1, uid);
+        // 执行查询
+        std::unique_ptr<sql::ResultSet> res(preparedStatement->executeQuery());
+        std::shared_ptr<UserInfo> user_info = nullptr;
+        while (res->next()) {
+            user_info = std::make_shared<UserInfo>();
+            user_info->user_name = res->getString("name");
+            user_info->password = res->getString("pwd");
+            user_info->uid = res->getInt("uid");
+            user_info->email = res->getString("email");
+            break;
+        }
+        _pool->returnConnection(std::move(con));
+        return user_info;
+    } catch (const sql::SQLException &e) {
+        _pool->returnConnection(std::move(con));
+        spdlog::warn("SQLException: {} (MySQL error code: {}, SQLState: {})",
+                     e.what(),
+                     e.getErrorCode(),
+                     e.getSQLState());
+        return nullptr;
     }
 }

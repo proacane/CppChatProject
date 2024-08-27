@@ -1,5 +1,7 @@
 #include "tcpmgr.h"
 
+#include "usermgr.h"
+
 #include <QJsonDocument>
 
 TcpMgr::TcpMgr(QObject* parent) :
@@ -57,6 +59,7 @@ TcpMgr::TcpMgr(QObject* parent) :
             [&](QAbstractSocket::SocketError socketError) {
                 Q_UNUSED(socketError)
                 qDebug() << "Error:" << _socket.errorString();
+                emit sig_login_failed(socketError);
             });
 
     // 处理连接断开
@@ -94,6 +97,9 @@ void TcpMgr::initHandlers() {
             return;
         }
 
+        UserMgr::getInstance()->setUid(json_obj["uid"].toInt());
+        UserMgr::getInstance()->setUserName(json_obj["user_name"].toString());
+        UserMgr::getInstance()->setToken(json_obj["token"].toString());
         // 切换到聊天窗口
         emit sig_swich_chatdlg();
     });
@@ -113,9 +119,9 @@ void TcpMgr::handleMsg(ReqId id, int len, QByteArray data) {
 void TcpMgr::slot_tcp_connect(ServerInfo si) {
     qDebug() << "receive tcp connect signal";
     // 尝试连接到服务器
-    qDebug() << "Trying to connect to chat server...";
+    qDebug() << "Trying to connect to chat server, ip "<<si.Host<<", port "<<si.Port;
     _host = si.Host;
-    _port = static_cast<uint16_t>(si.Port.toUInt());
+    _port = si.Port.toUInt();
     _socket.connectToHost(si.Host, _port);
 }
 
@@ -134,6 +140,6 @@ void TcpMgr::slot_send_data(ReqId reqId, QString data) {
     // 写入 id 和长度
     out << id << len;
     send_data.append(dataBytes);
-
+    qDebug()<<"slot send data to tcp server is "<<data;
     _socket.write(send_data);
 }

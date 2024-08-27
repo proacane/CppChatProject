@@ -5,6 +5,7 @@
  *  Author: ACAね
 */
 #include <memory>
+#include <spdlog/spdlog.h>
 
 #include "../include/StatusGrpcClient.h"
 #include "../include/ConfigMgr.h"
@@ -33,7 +34,37 @@ StatusGrpcClient::StatusGrpcClient() {
     auto &gCfgMgr = ConfigMgr::getInstance();
     std::string host = gCfgMgr["StatusServer"]["Host"];
     std::string port = gCfgMgr["StatusServer"]["Port"];
+//    spdlog::info("grpc server host is {}, port is {}", host, port);
     pool_ = std::make_unique<StatusConPool>(5, host, port);
+}
+
+LoginRsp StatusGrpcClient::Login(int uid, std::string token) {
+    ClientContext context;
+    LoginRsp reply;
+    LoginReq request;
+    request.set_uid(uid);
+    request.set_token(token);
+
+    auto stub = pool_->getConnection();
+    if (!stub) {
+        spdlog::error("Get stub failed");
+        reply.set_error(ErrorCodes::RPCFailed);
+        return reply;
+    }
+
+    Status status = stub->Login(&context, request, &reply);
+    Defer defer([&stub, this]() {
+        pool_->returnConnection(std::move(stub));
+    });
+
+    if (status.ok()) {
+        return reply;
+    } else {
+        int err = (int) status.error_code();
+        spdlog::error("grpc call failed in Login: {}, {}", err, status.error_details());
+        reply.set_error(ErrorCodes::RPCFailed);
+        return reply;
+    }
 }
 
 StatusConPool::StatusConPool(size_t pool_size, std::string host, std::string port) : _poolSize(pool_size), _host(host),
@@ -41,8 +72,10 @@ StatusConPool::StatusConPool(size_t pool_size, std::string host, std::string por
     for (size_t i = 0; i < _poolSize; i++) {
         std::shared_ptr<Channel> channel = grpc::CreateChannel(host + ":" + port,
                                                                grpc::InsecureChannelCredentials());
+
         _connections.push(StatusService::NewStub(channel));
     }
+    spdlog::info("Status connection pool total has {} connections", _connections.size());
 }
 
 StatusConPool::~StatusConPool() {
@@ -73,7 +106,7 @@ std::unique_ptr<StatusService::Stub> StatusConPool::getConnection() {
 
 void StatusConPool::returnConnection(std::unique_ptr<StatusService::Stub> connection) {
     std::lock_guard<std::mutex> lock(_mutex);
-    if(_b_stop){
+    if (_b_stop) {
         return;
     }
     _connections.push(std::move(connection));
@@ -82,6 +115,6 @@ void StatusConPool::returnConnection(std::unique_ptr<StatusService::Stub> connec
 }
 
 void StatusConPool::close() {
-    _b_stop =true;
+    _b_stop = true;
     _cond.notify_all();
 }

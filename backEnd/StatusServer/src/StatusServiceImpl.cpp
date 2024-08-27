@@ -24,7 +24,7 @@ StatusServiceImpl::StatusServiceImpl() {
     ChatServer server;
     server.port = cfg["ChatServer1"]["Port"];
     server.host = cfg["ChatServer1"]["Host"];
-    server.name  = cfg["ChatServer1"]["Name"];
+    server.name = cfg["ChatServer1"]["Name"];
     server.connect_count = 0;
     _servers[server.name] = server;
 
@@ -33,33 +33,63 @@ StatusServiceImpl::StatusServiceImpl() {
     server.name = cfg["ChatServer2"]["Name"];
     server.connect_count = 0;
     _servers[server.name] = server;
+
 }
 
 Status
 StatusServiceImpl::GetChatServer(ServerContext *context, const GetChatServerReq *request, GetChatServerRsp *reply) {
-    spdlog::info("Status server received  ");
-    const auto& server = getChatServer();
+    spdlog::info("Status server received from uid {}", request->uid());
+    const auto &server = getChatServer();
     reply->set_host(server.host);
     reply->set_port(server.port);
     reply->set_error(ErrorCodes::Success);
     reply->set_token(generate_unique_string());
+    spdlog::info("[{},{}]", request->uid(), reply->token());
     insertToken(request->uid(), reply->token());
     return Status::OK;
 }
 
 ChatServer StatusServiceImpl::getChatServer() {
     std::lock_guard<std::mutex> lock(_server_mutex);
+    // TODO 本地测试只用一个
     // 获取连接数最少的 server
-    auto min_server = _servers.begin()->second;
-    for (const auto &server: _servers) {
-        if (server.second.connect_count < min_server.connect_count) {
-            min_server = server.second;
-        }
-    }
+//    auto min_server = _servers.begin()->second;
+//    for (const auto &server: _servers) {
+//        if (server.second.connect_count < min_server.connect_count) {
+//            min_server = server.second;
+//        }
+//    }
+    auto min_server = _servers["server1"];
+    spdlog::info("Chosen chat server port is {}", min_server.port);
+//    return min_server;
     return min_server;
 }
 
 void StatusServiceImpl::insertToken(int uid, std::string token) {
     std::lock_guard<std::mutex> lock(_token_mutex);
     _tokens[uid] = std::move(token);
+}
+
+Status StatusServiceImpl::Login(ServerContext *context, const LoginReq *request,
+                                LoginRsp *response) {
+    auto uid = request->uid();
+    auto token = request->token();
+    spdlog::info("uid is {}, token is {}", uid, token);
+    std::lock_guard<std::mutex> lock(_token_mutex);
+    // 查询 uid是否有 token
+    auto iter = _tokens.find(uid);
+    if (iter == _tokens.end()) {
+        response->set_error(ErrorCodes::UidInvalid);
+        return Status::OK;
+    }
+    if (iter->second != token) {
+        // token 不对应
+        response->set_error(ErrorCodes::TokenInvalid);
+        return Status::OK;
+    }
+
+    response->set_error(ErrorCodes::Success);
+    response->set_uid(uid);
+    response->set_token(token);
+    return Status::OK;
 }

@@ -25,7 +25,7 @@ void runServer() {
     builder.RegisterService(&service);
     // 构建并启动gRPC服务器
     std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
-    spdlog::info("Server listening on {}",server_address );
+    spdlog::info("Status server listening on {}",server_address );
     // 创建Boost.Asio的io_context
     boost::asio::io_context io_context;
     // 创建signal_set用于捕获SIGINT

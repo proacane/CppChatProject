@@ -136,6 +136,7 @@ void LoginDialog::on_btn_login_clicked() {
 void LoginDialog::slot_login_mod_finish(ReqId id, QString res, ErrorCodes err) {
     if (err != ErrorCodes::SUCCESS) {
         showTip(tr("网络请求错误"), true);
+        enableBtn(true);
         return;
     }
     // 解析 JSON 字符串,res需转化为QByteArray
@@ -157,14 +158,14 @@ void LoginDialog::slot_login_mod_finish(ReqId id, QString res, ErrorCodes err) {
 
 void LoginDialog::slot_tcp_connect_finish(bool success) {
     if (success) {
-        showTip(tr("聊天服务连接成功，正在登录..."), true);
+        showTip(tr("聊天服务连接成功，正在登录..."), false);
         QJsonObject jsonObj;
         jsonObj["uid"] = _uid;
         jsonObj["token"] = _token;
         QJsonDocument doc(jsonObj);
         QString jsonString = doc.toJson(QJsonDocument::Indented);
         // 发送tcp请求给chat server
-        TcpMgr::getInstance()->sig_send_data(ReqId::ID_CHAT_LOGIN, jsonString);
+        emit TcpMgr::getInstance() -> sig_send_data(ReqId::ID_CHAT_LOGIN, jsonString);
     } else {
         showTip(tr("网络异常"), false);
         enableBtn(true);

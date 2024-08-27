@@ -9,6 +9,7 @@
 
 #include "SingleTon.h"
 #include "MysqlDao.h"
+
 class MysqlMgr : public SingleTon<MysqlMgr> {
     friend class SingleTon<MysqlMgr>;
 public:
@@ -17,6 +18,7 @@ public:
     int checkEmailUserName(const std::string & user_name,const std::string & email);
     int updatePassword(const std::string&user_name,const std::string& password);
     bool checkPassword(const std::string &user_name, const std::string &password, UserInfo &userInfo);
+    std::shared_ptr<UserInfo> getUser(int uid);
 private:
     MysqlMgr() = default;
     MysqlDao _dao;

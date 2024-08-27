@@ -13,7 +13,7 @@
 #include <mutex>
 #include <queue>
 #include <map>
-
+#include "MysqlMgr.h"
 class CSession;
 
 class LogicNode;
@@ -48,7 +48,7 @@ private:
     std::condition_variable _consume;
     bool _b_stop;
     std::map<short, funCallBack> _fun_callbacks;
-//    std::unordered_map<int, std::shared_ptr<UserInfo>> _users;
+    std::unordered_map<int, std::shared_ptr<UserInfo>> _users;
 };
 
 #endif //CHATSERVER_LOGICSYSTEM_H

@@ -10,6 +10,8 @@
 #include <json/reader.h>
 #include <json/value.h>
 #include "../include/StatusGrpcClient.h"
+
+
 LogicSystem::LogicSystem() : _b_stop(false) {
     registerCallBacks();
     // 逻辑线程进行消息处理
@@ -79,13 +81,43 @@ void LogicSystem::registerCallBacks() {
 void LogicSystem::loginHandler(std::shared_ptr<CSession> session, const short &msg_id, const std::string &msg_data) {
     Json::Reader reader;
     Json::Value root;
-    reader.parse(msg_data,root);
+    reader.parse(msg_data, root);
     auto uid = root["uid"].asInt();
-    spdlog::info("User login uid is {}, token is {}",uid,root["token"].asString());
+    auto token = root["token"].asString();
+    spdlog::info("User Login uid is {}, token is {}", uid, token);
 
-    // TODO 从状态服务器验证 token 和 uid
-//    auto rsp = StatusGrpcClient::getInstance()->
+    // 从状态服务器验证 token 和 uid
+    // TODO 不知道为什么发送不到 StatusServer
+    auto rsp = StatusGrpcClient::getInstance()->Login(uid, token);
+    Json::Value return_value;
 
-    std::string return_str = root.toStyledString();
-    session->send(return_str, msg_id);
+    Defer defer([this, &return_value, session]() {
+        // 在 loginhandler 执行结束后执行
+        std::string return_str = return_value.toStyledString();
+        session->send(return_str, MSG_CHAT_LOGIN_RSP);
+    });
+
+    return_value["error"] = rsp.error();
+    if (rsp.error() != ErrorCodes::Success) {
+        spdlog::warn("Token or id verify failed, error is {}, uid is {}",rsp.error(),rsp.uid());
+        return;
+    }
+    // 在内存中查询用户信息
+    auto find_iter = _users.find(uid);
+    std::shared_ptr<UserInfo> user_info = nullptr;
+    if (find_iter == _users.end()) {
+        // 没找到就去查数据库
+        user_info = MysqlMgr::getInstance()->getUser(uid);
+        if (user_info == nullptr) {
+            return_value["error"] = ErrorCodes::UidInvalid;
+            return;
+        }
+        _users[uid] = user_info;
+    } else {
+        user_info = find_iter->second;
+    }
+    // 返回给客户端
+    return_value["uid"] = uid;
+    return_value["token"] = token;
+    return_value["user_name"] = user_info->user_name;
 }

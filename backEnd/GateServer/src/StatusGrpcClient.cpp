@@ -36,6 +36,26 @@ StatusGrpcClient::StatusGrpcClient() {
     pool_ = std::make_unique<StatusConPool>(5, host, port);
 }
 
+LoginRsp StatusGrpcClient::Login(int uid, std::string token) {
+    ClientContext context;
+    LoginRsp reply;
+    LoginReq request;
+    request.set_uid(uid);
+    request.set_token(token);
+
+    auto stub = pool_->getConnection();
+    Status status = stub->Login(&context, request, &reply);
+    Defer defer([&stub, this]() {
+        pool_->returnConnection(std::move(stub));
+    });
+    if (status.ok()) {
+        return reply;
+    } else {
+        reply.set_error(ErrorCodes::RPCFailed);
+        return reply;
+    }
+}
+
 StatusConPool::StatusConPool(size_t pool_size, std::string host, std::string port) : _poolSize(pool_size), _host(host),
                                                                                      _port(port), _b_stop(false) {
     for (size_t i = 0; i < _poolSize; i++) {
@@ -73,7 +93,7 @@ std::unique_ptr<StatusService::Stub> StatusConPool::getConnection() {
 
 void StatusConPool::returnConnection(std::unique_ptr<StatusService::Stub> connection) {
     std::lock_guard<std::mutex> lock(_mutex);
-    if(_b_stop){
+    if (_b_stop) {
         return;
     }
     _connections.push(std::move(connection));
@@ -82,6 +102,6 @@ void StatusConPool::returnConnection(std::unique_ptr<StatusService::Stub> connec
 }
 
 void StatusConPool::close() {
-    _b_stop =true;
+    _b_stop = true;
     _cond.notify_all();
 }

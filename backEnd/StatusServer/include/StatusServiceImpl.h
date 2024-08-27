@@ -17,6 +17,8 @@ using grpc::Status;
 using message::GetChatServerReq;
 using message::GetChatServerRsp;
 using message::StatusService;
+using message::LoginRsp;
+using message::LoginReq;
 
 struct ChatServer {
     std::string host;
@@ -28,9 +30,12 @@ struct ChatServer {
 class StatusServiceImpl final : public StatusService::Service {
 public:
     StatusServiceImpl();
-
+    // 分配聊天服务器
     Status GetChatServer(ServerContext *context, const GetChatServerReq *request,
                          GetChatServerRsp *reply) override;
+
+    // 验证登录 token
+    Status Login(ServerContext *context, const LoginReq *request, LoginRsp *response) override;
 
 private:
     void insertToken(int uid, std::string token);

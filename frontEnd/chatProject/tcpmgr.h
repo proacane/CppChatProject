@@ -18,7 +18,7 @@ class TcpMgr : public QObject, public SingleTon<TcpMgr>,public std::enable_share
     Q_OBJECT
     friend class SingleTon<TcpMgr>;
   public:
-    ~TcpMgr();
+    ~TcpMgr() = default;
 private:
     explicit TcpMgr(QObject* parent = nullptr);
     void initHandlers();

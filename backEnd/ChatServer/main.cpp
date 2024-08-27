@@ -21,7 +21,7 @@ int main() {
             io_context.stop();
             pool->stop();
         });
-        auto port_str = cfg["SelfServer"]["Port"];
+        auto port_str = cfg["ChatServer1"]["Port"];
         CServer s(io_context, atoi(port_str.c_str()));
         io_context.run();
     }

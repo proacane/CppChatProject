@@ -111,6 +111,12 @@ public:
      */
     bool checkPassword(const std::string &user_name, const std::string &password, UserInfo &userInfo);
 
+    /**
+     * 获取用户信息
+     * @param uid
+     * @return
+     */
+    std::shared_ptr<UserInfo> getUser(int uid );
 private:
     std::unique_ptr<MysqlPool> _pool;
 };
