@@ -172,7 +172,7 @@
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
-          <widget class="QLineEdit" name="edit_search"/>
+          <widget class="CustomizeEdit" name="edit_search"/>
          </item>
          <item>
           <spacer name="horizontalSpacer">
@@ -213,10 +213,13 @@
        </widget>
       </item>
       <item>
-       <widget class="QListWidget" name="list_chat_user"/>
+       <widget class="ChatUserList" name="list_chat_user"/>
       </item>
       <item>
        <widget class="QListWidget" name="list_search"/>
+      </item>
+      <item>
+       <widget class="QListWidget" name="list_contact"/>
       </item>
      </layout>
     </widget>
@@ -260,7 +263,7 @@
             <item>
              <widget class="QLabel" name="lab_title">
               <property name="text">
-               <string>元神玩家</string>
+               <string>原神玩家</string>
               </property>
              </widget>
             </item>
@@ -510,6 +513,16 @@
    <class>ClickedBtn</class>
    <extends>QPushButton</extends>
    <header location="global">clickedbtn.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CustomizeEdit</class>
+   <extends>QLineEdit</extends>
+   <header location="global">customizeedit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ChatUserList</class>
+   <extends>QListWidget</extends>
+   <header location="global">chatuserlist.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

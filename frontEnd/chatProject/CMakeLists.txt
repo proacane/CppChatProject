@@ -37,6 +37,10 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         usermgr.h usermgr.cpp
         chatdialog.h chatdialog.cpp chatdialog.ui
         clickedbtn.h clickedbtn.cpp
+        customizeedit.h customizeedit.cpp
+        chatuserlist.h chatuserlist.cpp
+        chatuserwidget.h chatuserwidget.cpp chatuserwidget.ui
+        listitembase.h listitembase.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET chatProject APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
