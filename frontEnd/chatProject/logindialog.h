@@ -1,6 +1,13 @@
 #ifndef LOGINDIALOG_H
 #define LOGINDIALOG_H
-
+/*****************************************************************************
+ * @file         logindialog.h
+ * @brief
+ * @description  登录界面
+ * @author       ACA
+ * @date         2024/08/29
+ * @history
+ *****************************************************************************/
 #include <QDialog>
 #include"global.h"
 namespace Ui {

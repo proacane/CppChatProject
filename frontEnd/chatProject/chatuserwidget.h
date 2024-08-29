@@ -1,6 +1,13 @@
 #ifndef CHATUSERWIDGET_H
 #define CHATUSERWIDGET_H
-
+/*****************************************************************************
+ * @file         chatuserwidget.h
+ * @brief
+ * @description  聊天列表的 item
+ * @author       ACA
+ * @date         2024/08/29
+ * @history
+ *****************************************************************************/
 #include <QWidget>
 
 #include "listitembase.h"

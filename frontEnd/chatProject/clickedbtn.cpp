@@ -1,14 +1,14 @@
 #include "clickedbtn.h"
 
+#include <QMouseEvent>
+
 #include "global.h"
 ClickedBtn::ClickedBtn(QWidget* parent) : QPushButton(parent) {
     // 设置光标为小手
     setCursor(Qt::PointingHandCursor);
 }
 
-ClickedBtn::~ClickedBtn()
-{
-
+ClickedBtn::~ClickedBtn() {
 }
 
 void ClickedBtn::setState(QString normal, QString hover, QString press) {
@@ -21,9 +21,11 @@ void ClickedBtn::setState(QString normal, QString hover, QString press) {
 }
 
 void ClickedBtn::mousePressEvent(QMouseEvent* event) {
-    setProperty("state", _press);
-    repolish(this);
-    update();
+    if (event->button() == Qt::LeftButton) {
+        setProperty("state", _press);
+        repolish(this);
+        update();
+    }
     QPushButton::mousePressEvent(event);
 }
 

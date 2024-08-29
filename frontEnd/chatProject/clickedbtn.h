@@ -2,7 +2,14 @@
 #define CLICKEDBTN_H
 
 #include <QPushButton>
-
+/*****************************************************************************
+ * @file         clickedbtn.h
+ * @brief
+ * @description  为按钮的四种状态添加不同的图标
+ * @author       ACA
+ * @date         2024/08/29
+ * @history
+ *****************************************************************************/
 class ClickedBtn : public QPushButton {
     Q_OBJECT
   public:

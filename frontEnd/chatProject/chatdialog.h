@@ -1,6 +1,13 @@
 #ifndef CHATDIALOG_H
 #define CHATDIALOG_H
-
+/*****************************************************************************
+ * @file         chatdialog.h
+ * @brief
+ * @description  聊天主界面
+ * @author       ACA
+ * @date         2024/08/29
+ * @history
+ *****************************************************************************/
 #include <QDialog>
 
 #include "global.h"
@@ -25,6 +32,9 @@ class ChatDialog : public QDialog {
     ChatUIMode _state;
     bool _b_loading;
     void showSearchList(bool b_show);
+
+private slots:
+    void  slot_loading_chat_user();
 };
 
 #endif  // CHATDIALOG_H

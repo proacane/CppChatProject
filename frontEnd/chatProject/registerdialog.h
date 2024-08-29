@@ -1,6 +1,13 @@
 #ifndef REGISTERDIALOG_H
 #define REGISTERDIALOG_H
-
+/*****************************************************************************
+ * @file         registerdialog.h
+ * @brief
+ * @description  注册界面
+ * @author       ACA
+ * @date         2024/08/29
+ * @history
+ *****************************************************************************/
 #include <QDialog>
 
 #include"global.h"

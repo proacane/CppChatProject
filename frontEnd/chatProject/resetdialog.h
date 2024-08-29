@@ -1,6 +1,13 @@
 #ifndef RESETDIALOG_H
 #define RESETDIALOG_H
-
+/*****************************************************************************
+ * @file         resetdialog.h
+ * @brief
+ * @description  重置密码界面
+ * @author       ACA
+ * @date         2024/08/29
+ * @history
+ *****************************************************************************/
 #include <QDialog>
 
 #include "global.h"

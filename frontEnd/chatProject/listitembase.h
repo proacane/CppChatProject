@@ -1,6 +1,13 @@
 #ifndef LISTITEMBASE_H
 #define LISTITEMBASE_H
-
+/*****************************************************************************
+ * @file         listitembase.h
+ * @brief
+ * @description  item 的基类
+ * @author       ACA
+ * @date         2024/08/29
+ * @history
+ *****************************************************************************/
 #include <QWidget>
 
 #include "global.h"
@@ -15,6 +22,10 @@ class ListItemBase : public QWidget {
   private:
     ListItemType _itemType;
   signals:
+
+      // QWidget interface
+  protected:
+      virtual void paintEvent(QPaintEvent *event) override;
 };
 
 #endif  // LISTITEMBASE_H

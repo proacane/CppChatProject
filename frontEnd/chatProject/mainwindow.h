@@ -1,6 +1,13 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
+/*****************************************************************************
+ * @file         mainwindow.h
+ * @brief
+ * @description  主界面
+ * @author       ACA
+ * @date         2024/08/29
+ * @history
+ *****************************************************************************/
 #include <QMainWindow>
 
 #include "chatdialog.h"

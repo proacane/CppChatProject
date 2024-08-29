@@ -3,35 +3,20 @@
 #include <QRandomGenerator>
 
 #include "chatuserwidget.h"
+#include "loadingdialog.h"
 #include "ui_chatdialog.h"
 
 // TODO 测试数据
-std::vector<QString>  strs ={"hello world !",
-                             "nice to meet u",
-                             "New year，new life",
-                             "You have to love yourself",
+std::vector<QString> strs = {"hello world !", "nice to meet u", "New year，new life", "You have to love yourself",
                              "My love is written in the wind ever since the whole world is you"};
-std::vector<QString> heads = {
-    ":/images/head_1.jpg",
-    ":/images/head_2.jpg",
-    ":/images/head_3.jpg",
-    ":/images/head_4.jpg",
-    ":/images/head_5.jpg"
-};
-std::vector<QString> names = {
-    "mmmm",
-    "zack",
-    "golang",
-    "cpp",
-    "java",
-    "nodejs",
-    "python",
-    "rust"
-};
+std::vector<QString> heads = {":/images/head_1.jpg", ":/images/head_2.jpg", ":/images/head_3.jpg",
+                              ":/images/head_4.jpg", ":/images/head_5.jpg"};
+std::vector<QString> names = {"mmmm", "zack", "golang", "cpp", "java", "nodejs", "python", "rust"};
 
 ChatDialog::ChatDialog(QWidget* parent) :
     QDialog(parent), ui(new Ui::ChatDialog), _mode(ChatUIMode::ChatMode), _state(ChatUIMode::ChatMode),
     _b_loading(false) {
+    //
     ui->setupUi(this);
     ui->btn_add->setState("normal", "hover", "press");
     // 搜索框设置
@@ -45,6 +30,8 @@ ChatDialog::ChatDialog(QWidget* parent) :
     showSearchList(false);
 
     addChatUserList();
+    // 动态加载用户列表
+    connect(ui->list_chat_user, &ChatUserList::sig_loading_chat_user, this, &ChatDialog::slot_loading_chat_user);
 }
 
 ChatDialog::~ChatDialog() {
@@ -85,4 +72,21 @@ void ChatDialog::showSearchList(bool b_show) {
         ui->list_search->hide();
         _mode = ChatUIMode::ContactMode;
     }
+}
+
+void ChatDialog::slot_loading_chat_user() {
+    if (_b_loading) {
+        return;
+    }
+    _b_loading = true;
+
+    LoadingDialog *loadingDialog = new LoadingDialog(this);
+    loadingDialog->setModal(true);
+    loadingDialog->show();
+    // qDebug() << "add new data to list.....";
+    // 添加新 item
+    addChatUserList();
+    // 加载完成后关闭对话框
+    loadingDialog->deleteLater();
+    _b_loading = false;
 }

@@ -1,5 +1,13 @@
 #ifndef TIMERBTN_H
 #define TIMERBTN_H
+/*****************************************************************************
+ * @file         timerbtn.h
+ * @brief
+ * @description  获取验证码倒计时的按钮
+ * @author       ACA
+ * @date         2024/08/29
+ * @history
+ *****************************************************************************/
 #include <QPushButton>
 #include <QTimer>
 class TimerBtn : public QPushButton {
