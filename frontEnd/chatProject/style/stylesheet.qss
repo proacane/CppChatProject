@@ -218,3 +218,11 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
 #lab_file[state='press']{
     border-image: url(:/images/filedir_press.png);
 }
+
+#chat_bg{
+    background: #f5f5f5;
+}
+
+#chat_area{
+    border: none;
+}

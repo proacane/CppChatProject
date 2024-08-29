@@ -16,6 +16,9 @@ MainWindow::MainWindow(QWidget* parent) :
     _login_dialog->setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);
     connect(TcpMgr::getInstance().get(), &TcpMgr::sig_swich_chatdlg, this, &MainWindow::slot_switch_chatdlg);
 
+    // 禁用最大化按钮
+    setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
+    show();  // 重新显示窗口以应用新的窗口标志
     emit TcpMgr::getInstance().get() -> sig_swich_chatdlg();
 }
 
@@ -44,6 +47,9 @@ void MainWindow::slot_switch_register() {
     takeCentralWidget();
     setCentralWidget(_register_dialog);
     _register_dialog->show();
+    // 禁用最大化按钮
+    setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
+    show();  // 重新显示窗口以应用新的窗口标志
 }
 
 void MainWindow::slot_switch_login() {
@@ -51,6 +57,9 @@ void MainWindow::slot_switch_login() {
     _register_dialog->hide();
     _login_dialog->show();
     setCentralWidget(_login_dialog);
+    // 禁用最大化按钮
+    setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
+    show();  // 重新显示窗口以应用新的窗口标志
 }
 
 void MainWindow::slot_switch_reset() {
@@ -66,6 +75,9 @@ void MainWindow::slot_switch_reset() {
     _login_dialog->hide();
     setCentralWidget(_reset_dialog);
     _reset_dialog->show();
+    // 禁用最大化按钮
+    setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
+    show();  // 重新显示窗口以应用新的窗口标志
 }
 
 void MainWindow::slot_switch_login2() {
@@ -73,6 +85,9 @@ void MainWindow::slot_switch_login2() {
     _reset_dialog->hide();
     _login_dialog->show();
     setCentralWidget(_login_dialog);
+    // 禁用最大化按钮
+    setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
+    show();  // 重新显示窗口以应用新的窗口标志
 }
 
 void MainWindow::slot_switch_chatdlg() {
@@ -84,6 +99,9 @@ void MainWindow::slot_switch_chatdlg() {
     _login_dialog->hide();
     setCentralWidget(_chat_dialog);
     _chat_dialog->show();
+    // 禁用最大化按钮
+    setWindowFlags(windowFlags() | Qt::WindowMaximizeButtonHint);
+    show();  // 重新显示窗口以应用新的窗口标志
     this->setMinimumSize(QSize(910, 640));
     this->setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
     if (_register_dialog != nullptr) {
