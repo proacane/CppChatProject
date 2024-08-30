@@ -23,6 +23,8 @@ ChatPage::ChatPage(QWidget* parent) : QWidget(parent), ui(new Ui::ChatPage) {
     ui->lab_file->setState("normal", "hover", "press", "normal", "hover", "press");
     ui->lab_emoji->setText("");
     ui->lab_file->setText("");
+
+    connect(ui->chat_edit,&MessageTextEdit::send,this,&ChatPage::on_btn_send_clicked);
 }
 
 ChatPage::~ChatPage() {

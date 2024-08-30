@@ -21,7 +21,6 @@ class ChatUserList : public QListWidget {
   signals:
     void sig_loading_chat_user();
 
-    // QObject interface
 public:
     virtual bool eventFilter(QObject *watched, QEvent *event) override;
 };

@@ -1,5 +1,13 @@
 #ifndef CHATVIEW_H
 #define CHATVIEW_H
+/*****************************************************************************
+ * @file         chatview.h
+ * @brief
+ * @description  聊天区域
+ * @author       ACA
+ * @date         2024/08/30
+ * @history
+ *****************************************************************************/
 #include <QScrollArea>
 #include <QTimer>
 #include <QVBoxLayout>

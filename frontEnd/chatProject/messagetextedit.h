@@ -71,5 +71,6 @@ class MessageTextEdit : public QTextEdit {
   private:
     QVector<MsgInfo> mMsgList;
     QVector<MsgInfo> mGetMsgList;
+
 };
 #endif  // MESSAGETEXTEDIT_H

@@ -3,7 +3,7 @@
 /*****************************************************************************
  * @file         listitembase.h
  * @brief
- * @description  item 的基类
+ * @description  聊天列表 item 的基类
  * @author       ACA
  * @date         2024/08/29
  * @history

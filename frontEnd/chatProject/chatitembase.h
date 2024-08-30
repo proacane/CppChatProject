@@ -3,7 +3,7 @@
 /*****************************************************************************
  * @file         chatitembase.h
  * @brief
- * @description  气泡框整体布局
+ * @description  消息框整体布局
  * @author       ACA
  * @date         2024/08/30
  * @history
@@ -13,7 +13,7 @@
 #include <QWidget>
 
 #include "global.h"
-class BubbleFrame;
+// class BubbleFrame;
 
 class ChatItemBase : public QWidget {
     Q_OBJECT
@@ -24,9 +24,11 @@ class ChatItemBase : public QWidget {
     void setWidget(QWidget* w);
 
   private:
+    // 谁发送的消息
     ChatRole _role;
     QLabel* _lab_name;
     QLabel* _lab_avatar;
+    // 显示的气泡
     QWidget* _bubble;
 };
 

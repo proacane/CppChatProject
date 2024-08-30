@@ -21,7 +21,9 @@ class TextBubble : public BubbleFrame {
     virtual bool eventFilter(QObject* o, QEvent* e) override;
 
   private:
+    // 窗体大小改变自动换行调整大小
     void adjustTextHeight();
+    // 设置文本内容
     void setPlainText(const QString& text);
     void initStyleSheet();
     QTextEdit* _text_edit;

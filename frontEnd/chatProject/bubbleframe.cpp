@@ -4,12 +4,12 @@
 
 const int WIDTH_SANJIAO = 8;  // 三角宽
 
-BubbleFrame::BubbleFrame(ChatRole role, QWidget* parent) : m_role(role), QFrame(parent), m_margin(3) {
+BubbleFrame::BubbleFrame(ChatRole role, QWidget* parent) : m_role(role), QFrame(parent), m_margin(5) {
     m_pHLayout = new QHBoxLayout();
     if (m_role == ChatRole::Self)
-        m_pHLayout->setContentsMargins(m_margin, m_margin, WIDTH_SANJIAO + m_margin, m_margin);
+        m_pHLayout->setContentsMargins(m_margin, m_margin-2, WIDTH_SANJIAO + m_margin, m_margin-2);
     else
-        m_pHLayout->setContentsMargins(WIDTH_SANJIAO + m_margin, m_margin, m_margin, m_margin);
+        m_pHLayout->setContentsMargins(WIDTH_SANJIAO + m_margin, m_margin-2, m_margin, m_margin-2);
 
     this->setLayout(m_pHLayout);
 }
@@ -42,7 +42,7 @@ void BubbleFrame::paintEvent(QPaintEvent* e) {
         };
         painter.drawPolygon(points, 3);
     } else {
-        QColor background_color(158, 234, 106);
+        QColor background_color(149, 236, 105);
         painter.setBrush(QBrush(background_color));
         // 画气泡
         QRect rect = QRect(0, 0, this->width() - WIDTH_SANJIAO, this->height());

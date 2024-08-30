@@ -2,12 +2,20 @@
 
 #include <QDebug>
 #include <QMessageBox>
-
+// TODO 光标大小
 MessageTextEdit::MessageTextEdit(QWidget* parent) : QTextEdit(parent) {
     // this->setStyleSheet("border: none;");
     this->setMaximumHeight(60);
+    connect(this, SIGNAL(textChanged()), this, SLOT(textEditChanged()));
+    // 强制固定字体大小为 10
+    QFont font;
+    font.setPointSize(10);
+    this->setFont(font);
 
-    //    connect(this,SIGNAL(textChanged()),this,SLOT(textEditChanged()));
+    // 确保当前字符格式也设置为相同大小
+    QTextCharFormat format;
+    format.setFontPointSize(10);
+    this->setCurrentCharFormat(format);
 }
 
 MessageTextEdit::~MessageTextEdit() {
@@ -64,6 +72,11 @@ void MessageTextEdit::dropEvent(QDropEvent* event) {
 }
 
 void MessageTextEdit::keyPressEvent(QKeyEvent* e) {
+    QTextCursor cursor = this->textCursor();
+    QTextCharFormat format = cursor.charFormat();
+    format.setFontPointSize(10);
+    cursor.setCharFormat(format);
+    this->setCurrentCharFormat(format);  // 确保当前字符格式也设置为相同大小
     if ((e->key() == Qt::Key_Enter || e->key() == Qt::Key_Return) && !(e->modifiers() & Qt::ShiftModifier)) {
         emit send();
         return;
@@ -226,5 +239,10 @@ QString MessageTextEdit::getFileSize(qint64 size) {
 }
 
 void MessageTextEdit::textEditChanged() {
-    // qDebug() << "text changed!" << endl;
+    QTextCursor cursor = this->textCursor();
+    QTextCharFormat format = cursor.charFormat();
+    format.setFontPointSize(10);
+    cursor.setCharFormat(format);
+    this->setCurrentCharFormat(format);  // 确保当前字符格式也设置为相同大小
 }
+
