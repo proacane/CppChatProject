@@ -225,7 +225,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QTextEdit" name="chat_edit">
+       <widget class="MessageTextEdit" name="chat_edit">
         <property name="maximumSize">
          <size>
           <width>16777215</width>
@@ -342,20 +342,25 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>ClickedLabel</class>
-   <extends>QLabel</extends>
-   <header>clickedlabel.h</header>
-  </customwidget>
-  <customwidget>
    <class>ClickedBtn</class>
    <extends>QPushButton</extends>
    <header location="global">clickedbtn.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ClickedLabel</class>
+   <extends>QLabel</extends>
+   <header>clickedlabel.h</header>
   </customwidget>
   <customwidget>
    <class>ChatView</class>
    <extends>QWidget</extends>
    <header>chatview.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MessageTextEdit</class>
+   <extends>QTextEdit</extends>
+   <header>messagetextedit.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -20,6 +20,8 @@ class ChatPage : public QWidget {
     // QWidget interface
 protected:
     virtual void paintEvent(QPaintEvent *event) override;
+private slots:
+    void on_btn_send_clicked();
 };
 
 #endif  // CHATPAGE_H

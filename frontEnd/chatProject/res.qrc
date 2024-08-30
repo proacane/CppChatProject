@@ -37,5 +37,6 @@
         <file>images/smile_hover.png</file>
         <file>images/smile_press.png</file>
         <file>images/tipclose.png</file>
+        <file>images/logo.png</file>
     </qresource>
 </RCC>

@@ -25,7 +25,7 @@ class ListItemBase : public QWidget {
 
       // QWidget interface
   protected:
-      virtual void paintEvent(QPaintEvent *event) override;
+      // virtual void paintEvent(QPaintEvent *event) override;
 };
 
 #endif  // LISTITEMBASE_H
