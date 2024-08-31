@@ -27,11 +27,29 @@ ChatDialog::ChatDialog(QWidget* parent) :
     ui->edit_search->setPlaceholderText(QStringLiteral("搜索"));
     ui->edit_search->setMaxLength(15);
 
-    showSearchList(false);
-
     addChatUserList();
+    showSearchList(false);
     // 动态加载用户列表
     connect(ui->list_chat_user, &ChatUserList::sig_loading_chat_user, this, &ChatDialog::slot_loading_chat_user);
+    // TODO 从服务器中获取图片
+    QPixmap pixmap(":/images/head_1.jpg");
+    ui->lab_side_avatar->setPixmap(pixmap);  // 将图片设置到QLabel上
+    QPixmap scaledPixmap = pixmap.scaled(ui->lab_side_avatar->size(), Qt::KeepAspectRatio);  // 将图片缩放到label的大小
+    ui->lab_side_avatar->setPixmap(scaledPixmap);  // 将缩放后的图片设置到QLabel上
+    ui->lab_side_avatar->setScaledContents(true);  // 设置QLabel自动缩放图片内容以适应大小
+
+    ui->lab_side_chat->setState("normal", "hover", "pressed", "selected_normal", "selected_hover", "selected_pressed");
+    ui->lab_side_contact->setState("normal", "hover", "pressed", "selected_normal", "selected_hover",
+                                   "selected_pressed");
+    // 添加到侧边栏组
+    addLBGroup(ui->lab_side_chat);
+    addLBGroup(ui->lab_side_contact);
+    connect(ui->lab_side_chat, &StateWidget::clicked, this, &ChatDialog::slot_side_chat);
+    ui->lab_side_chat->setSelected(true);
+    connect(ui->lab_side_contact, &StateWidget::clicked, this, &ChatDialog::slot_side_contact);
+
+    // 链接搜索框输入变化
+    connect(ui->edit_search, &QLineEdit::textChanged, this, &ChatDialog::slot_text_changed);
 }
 
 ChatDialog::~ChatDialog() {
@@ -74,13 +92,27 @@ void ChatDialog::showSearchList(bool b_show) {
     }
 }
 
+void ChatDialog::addLBGroup(StateWidget* lb) {
+    _lb_list.push_back(lb);
+}
+
+void ChatDialog::clearLabelState(StateWidget* lb) {
+    for (auto& label : _lb_list) {
+        if (label == lb) {
+            continue;
+        }
+        // 其它侧边栏按钮变为正常状态
+        label->clearState();
+    }
+}
+
 void ChatDialog::slot_loading_chat_user() {
     if (_b_loading) {
         return;
     }
     _b_loading = true;
 
-    LoadingDialog *loadingDialog = new LoadingDialog(this);
+    LoadingDialog* loadingDialog = new LoadingDialog(this);
     loadingDialog->setModal(true);
     loadingDialog->show();
     // qDebug() << "add new data to list.....";
@@ -89,4 +121,26 @@ void ChatDialog::slot_loading_chat_user() {
     // 加载完成后关闭对话框
     loadingDialog->deleteLater();
     _b_loading = false;
+}
+
+void ChatDialog::slot_side_chat() {
+    clearLabelState(ui->lab_side_chat);
+    ui->stackedWidget->setCurrentWidget(ui->page_chat);
+    _state = ChatUIMode::ChatMode;
+    showSearchList(false);
+}
+
+void ChatDialog::slot_side_contact() {
+    clearLabelState(ui->lab_side_contact);
+    ui->stackedWidget->setCurrentWidget(ui->page_friend_apply);
+    _state = ChatUIMode::ContactMode;
+    showSearchList(false);
+}
+
+void ChatDialog::slot_text_changed(const QString& str) {
+    if (!str.isEmpty()) {
+        showSearchList(true);
+    }else{
+        showSearchList(false);
+    }
 }

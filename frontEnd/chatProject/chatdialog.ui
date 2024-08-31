@@ -93,7 +93,7 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QLabel" name="lab_side_chat">
+          <widget class="QLabel" name="lab_side_avatar">
            <property name="minimumSize">
             <size>
              <width>30</width>
@@ -107,21 +107,39 @@
             </size>
            </property>
            <property name="text">
-            <string>side1</string>
+            <string/>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="lab_side_contact">
-           <property name="text">
-            <string>side2</string>
+          <widget class="StateWidget" name="lab_side_chat" native="true">
+           <property name="minimumSize">
+            <size>
+             <width>30</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>30</width>
+             <height>30</height>
+            </size>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="lab_side_head">
-           <property name="text">
-            <string>side3</string>
+          <widget class="StateWidget" name="lab_side_contact" native="true">
+           <property name="minimumSize">
+            <size>
+             <width>30</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>30</width>
+             <height>30</height>
+            </size>
            </property>
           </widget>
          </item>
@@ -228,7 +246,7 @@
        <widget class="ChatUserList" name="list_chat_user"/>
       </item>
       <item>
-       <widget class="QListWidget" name="list_search"/>
+       <widget class="SearchList" name="list_search"/>
       </item>
       <item>
        <widget class="QListWidget" name="list_contact"/>
@@ -265,6 +283,17 @@
    <extends>QWidget</extends>
    <header location="global">chatpage.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>StateWidget</class>
+   <extends>QWidget</extends>
+   <header>statewidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>SearchList</class>
+   <extends>QListWidget</extends>
+   <header>searchlist.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

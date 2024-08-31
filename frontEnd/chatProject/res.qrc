@@ -38,5 +38,9 @@
         <file>images/smile_press.png</file>
         <file>images/tipclose.png</file>
         <file>images/logo.png</file>
+        <file>images/msg_chat_hover.png</file>
+        <file>images/msg_chat_normal.png</file>
+        <file>images/msg_chat_press.png</file>
+        <file>images/red_point.png</file>
     </qresource>
 </RCC>

@@ -13,6 +13,7 @@
 
 #include "global.h"
 #include "singleton.h"
+#include "userdata.h"
 
 class TcpMgr : public QObject, public SingleTon<TcpMgr>,public std::enable_shared_from_this<TcpMgr> {
     Q_OBJECT
@@ -44,6 +45,8 @@ public slots:
     void sig_send_data(ReqId reqId, QString data);
     void sig_swich_chatdlg();
     void sig_login_failed(int err);
+
+    void sig_user_search(std::shared_ptr<SearchInfo> si);
 };
 
 #endif  // TCPMGR_H

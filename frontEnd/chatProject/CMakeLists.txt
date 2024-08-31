@@ -49,6 +49,12 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         textbubble.h textbubble.cpp
         picturebubble.h picturebubble.cpp
         messagetextedit.h messagetextedit.cpp
+        statewidget.h statewidget.cpp
+        searchlist.h searchlist.cpp
+        userdata.h userdata.cpp
+        adduseritem.h adduseritem.cpp adduseritem.ui
+
+
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET chatProject APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

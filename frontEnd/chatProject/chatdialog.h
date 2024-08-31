@@ -11,6 +11,7 @@
 #include <QDialog>
 
 #include "global.h"
+#include "statewidget.h"
 
 namespace Ui {
     class ChatDialog;
@@ -24,6 +25,7 @@ class ChatDialog : public QDialog {
     ~ChatDialog();
     // 加载聊天列表
     void addChatUserList();
+
   private:
     Ui::ChatDialog* ui;
     // 在侧边栏切换
@@ -33,8 +35,16 @@ class ChatDialog : public QDialog {
     bool _b_loading;
     void showSearchList(bool b_show);
 
-private slots:
-    void  slot_loading_chat_user();
+    void addLBGroup(StateWidget* lb);
+    // 侧边栏组
+    QList<StateWidget*> _lb_list;
+    // 清楚侧边栏的状态
+    void clearLabelState(StateWidget* lb);
+  private slots:
+    void slot_loading_chat_user();
+    void slot_side_chat();
+    void slot_side_contact();
+    void slot_text_changed(const QString& str);
 };
 
 #endif  // CHATDIALOG_H
