@@ -53,8 +53,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         searchlist.h searchlist.cpp
         userdata.h userdata.cpp
         adduseritem.h adduseritem.cpp adduseritem.ui
-
-
+        findsuccessdlg.h findsuccessdlg.cpp findsuccessdlg.ui
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET chatProject APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -76,6 +75,19 @@ endif()
 
 target_link_libraries(chatProject PRIVATE Qt${QT_VERSION_MAJOR}::Widgets  Qt${QT_VERSION_MAJOR}::Network)
 
+# 定义源目录和目标目录
+set(STATIC_SOURCE_DIR "${CMAKE_SOURCE_DIR}/static")
+set(STATIC_BINARY_DIR "${CMAKE_BINARY_DIR}/static")
+
+# 添加一个自定义命令用于拷贝静态文件夹
+add_custom_command(
+    OUTPUT ${STATIC_BINARY_DIR}
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${STATIC_SOURCE_DIR} ${STATIC_BINARY_DIR}
+    COMMENT "Copying static files from ${STATIC_SOURCE_DIR} to ${STATIC_BINARY_DIR}"
+)
+
+# 创建一个自定义目标，以便在构建时自动执行
+add_custom_target(copy_static_files ALL DEPENDS ${STATIC_BINARY_DIR})
 
 # 添加自定义命令，将 config.ini 复制到构建目录
 configure_file(config.ini ${CMAKE_CURRENT_BINARY_DIR}/config.ini COPYONLY)

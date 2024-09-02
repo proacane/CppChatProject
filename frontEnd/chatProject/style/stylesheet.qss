@@ -306,3 +306,33 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
   font-family: "Microsoft YaHei";
   font-size: 12px;
 }
+
+#FindSuccessDlg{
+    background-color: #ffffff;
+}
+#lb_name{
+    font-size: 14px;
+    font-family:  "Microsoft YaHei";
+}
+#btn_add_friend[state='normal']{
+    background: #07c160;
+    color: #ffffff;
+    font-size: 14px;
+    font-family:  "Microsoft YaHei";
+    border-radius: 20px
+}
+#btn_add_friend[state='hover']{
+    background: #3bbb4b;
+    color: #ffffff;
+    font-size: 14px; /* 设置字体大小 */
+    font-family: "Microsoft YaHei"; /* 设置字体 */
+    border-radius: 20px; /* 设置圆角 */
+}
+
+#btn_add_friend[state='press']{
+   background: #07c160;
+   color: #ffffff;
+   font-size: 14px; /* 设置字体大小 */
+   font-family: "Microsoft YaHei"; /* 设置字体 */
+   border-radius: 20px; /* 设置圆角 */
+}

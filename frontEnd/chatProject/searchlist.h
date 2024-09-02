@@ -17,6 +17,7 @@
 #include "loadingdialog.h"
 #include "userdata.h"
 
+
 class SearchList : public QListWidget {
     Q_OBJECT
   public:

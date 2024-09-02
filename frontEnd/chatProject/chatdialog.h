@@ -40,11 +40,17 @@ class ChatDialog : public QDialog {
     QList<StateWidget*> _lb_list;
     // 清楚侧边栏的状态
     void clearLabelState(StateWidget* lb);
+    // 处理鼠标点击事件
+    void handleGlobalMousePress(QMouseEvent* mouseEvent);
   private slots:
     void slot_loading_chat_user();
     void slot_side_chat();
     void slot_side_contact();
     void slot_text_changed(const QString& str);
+
+    // QObject interface
+public:
+    virtual bool eventFilter(QObject *watched, QEvent *event) override;
 };
 
 #endif  // CHATDIALOG_H
