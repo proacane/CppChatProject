@@ -84,13 +84,9 @@ enum ListItemType {
     GROUP_TIP_ITEM,     // 分组提示条目
 };
 
+enum class ChatRole { Self, Other };
 
-enum class ChatRole{
-    Self,
-    Other
-};
-
-struct MsgInfo{
+struct MsgInfo {
     // 消息类型
     QString msgFlag;
     // 文件、图像的url，文本信息
@@ -98,5 +94,10 @@ struct MsgInfo{
     // 文件和图片的缩略图
     QPixmap pixmap;
 };
+
+// 申请好友标签输入框最低长度
+const int MIN_APPLY_LABEL_ED_LEN = 40;
+const QString add_prefix = "添加标签";
+const int tip_offser = 5;
 
 #endif  // GLOBAL_H

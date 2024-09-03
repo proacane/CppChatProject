@@ -40,7 +40,7 @@ class ClickedLabel : public QLabel {
     QString _selected_press;
     ClickLbState _curstate;
   signals:
-    void clicked(void);
+    void clicked(QString, ClickLbState);
 
 protected:
     // 鼠标点击
