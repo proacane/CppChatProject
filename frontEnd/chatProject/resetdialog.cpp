@@ -1,5 +1,6 @@
 #include "resetdialog.h"
 
+#include <QKeyEvent>
 #include <QRegularExpression>
 #include<QThread>
 #include "httpmgr.h"
@@ -15,9 +16,11 @@ ResetDialog::ResetDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ResetDia
     // 连接reset相关信号和注册处理回调
     initHttpHandlers();
     connect(HttpMgr::getInstance().get(), &HttpMgr::sig_reset_mod_finish, this, &ResetDialog::slotResetModFinish);
+    installEventFilter(this);
 }
 
 ResetDialog::~ResetDialog() {
+    removeEventFilter(this);
     delete ui;
 }
 
@@ -189,4 +192,16 @@ void ResetDialog::on_btn_ok_clicked() {
 
 void ResetDialog::on_btn_cancel_clicked() {
     emit sigSwitchLogin();
+}
+
+
+bool ResetDialog::eventFilter(QObject *watched, QEvent *event)
+{    if (event->type() == QEvent::KeyPress) {
+        QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
+        if (keyEvent->key() == Qt::Key_Escape) {  // 检查是否按下了 ESC 键
+            QCoreApplication::sendEvent(parent(), event);
+            return true;  // 表示事件已被处理
+        }
+    }
+    return QDialog::eventFilter(watched,event);
 }

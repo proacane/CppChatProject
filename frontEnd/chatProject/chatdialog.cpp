@@ -56,6 +56,7 @@ ChatDialog::ChatDialog(QWidget* parent) :
 }
 
 ChatDialog::~ChatDialog() {
+    removeEventFilter(this);
     delete ui;
 }
 
@@ -169,5 +170,12 @@ bool ChatDialog::eventFilter(QObject* watched, QEvent* event) {
         QMouseEvent* mouseEvent = static_cast<QMouseEvent*>(event);
         handleGlobalMousePress(mouseEvent);
     }
-    return QDialog::eventFilter(watched, event);
+    if (event->type() == QEvent::KeyPress) {
+        QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
+        if (keyEvent->key() == Qt::Key_Escape) {  // 检查是否按下了 ESC 键
+            QCoreApplication::sendEvent(parent(), event);
+            return true;  // 表示事件已被处理
+        }
+    }
+    return QDialog::eventFilter(watched,event);
 }

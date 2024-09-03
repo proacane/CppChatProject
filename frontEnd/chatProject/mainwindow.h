@@ -48,5 +48,13 @@ class MainWindow : public QMainWindow {
     void slot_switch_login2();
     // 从登录界面跳转到聊天界面
     void slot_switch_chatdlg();
+
+    // QObject interface
+public:
+    virtual bool eventFilter(QObject *watched, QEvent *event) override;
+
+    // QWidget interface
+protected:
+    virtual void closeEvent(QCloseEvent *event) override;
 };
 #endif  // MAINWINDOW_H

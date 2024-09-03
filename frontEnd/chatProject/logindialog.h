@@ -55,6 +55,10 @@ private slots:
     void slot_tcp_connect_finish(bool success);
     // 处理 tcp 连接失败
     void slot_login_failed(int err);
+
+    // QObject interface
+public:
+    virtual bool eventFilter(QObject *watched, QEvent *event) override;
 };
 
 #endif // LOGINDIALOG_H

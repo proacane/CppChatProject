@@ -46,6 +46,10 @@ class ResetDialog : public QDialog {
     void slotResetModFinish(ReqId id, QString res, ErrorCodes err);
     void on_btn_ok_clicked();
     void on_btn_cancel_clicked();
+
+    // QObject interface
+public:
+    virtual bool eventFilter(QObject *watched, QEvent *event) override;
 };
 
 #endif  // RESETDIALOG_H

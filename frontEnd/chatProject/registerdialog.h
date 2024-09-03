@@ -15,7 +15,7 @@
 namespace Ui {
     class RegisterDialog;
 }
-// TODO 取消 esc 关闭窗口的功能
+
 class RegisterDialog : public QDialog {
     Q_OBJECT
 
@@ -58,6 +58,10 @@ private:
     short _countdown = 5;
 signals:
     void sigSwitchLogin();
+
+    // QObject interface
+public:
+    virtual bool eventFilter(QObject *watched, QEvent *event) override;
 };
 
 #endif  // REGISTERDIALOG_H

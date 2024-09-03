@@ -1,12 +1,13 @@
 #include "registerdialog.h"
 
+#include <QEvent>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QKeyEvent>
 #include <QRegularExpression>
 
 #include "httpMgr.h"
 #include "ui_registerdialog.h"
-
 
 RegisterDialog::RegisterDialog(QWidget* parent) : QDialog(parent), ui(new Ui::RegisterDialog) {
     ui->setupUi(this);
@@ -62,10 +63,13 @@ RegisterDialog::RegisterDialog(QWidget* parent) : QDialog(parent), ui(new Ui::Re
         auto str = QString("注册成功，%1 s后返回登录界面").arg(_countdown);
         ui->lab_tip->setText(str);
     });
+
+    installEventFilter(this);
 }
 
 RegisterDialog::~RegisterDialog() {
     qDebug() << "RegisterDialog destructor";
+    removeEventFilter(this);
     delete ui;
 }
 
@@ -130,14 +134,13 @@ void RegisterDialog::initHttpHandlers() {
     // 注册请求
     _handlers.insert(ReqId::ID_REG_USER, [this](QJsonObject json_obj) {
         int error = json_obj["error"].toInt();
-        if(error == ErrorCodes::UserExist){
+        if (error == ErrorCodes::UserExist) {
             showTip(tr("用户已经存在"), true);
             return;
-        }else if(error== ErrorCodes::VerifyExpired){
+        } else if (error == ErrorCodes::VerifyExpired) {
             showTip(tr("验证码过期或失效"), true);
             return;
-        }
-        else if (error != ErrorCodes::SUCCESS) {
+        } else if (error != ErrorCodes::SUCCESS) {
             showTip(tr("参数错误"), true);
             return;
         }
@@ -255,9 +258,18 @@ void RegisterDialog::on_btn_cancel_clicked() {
     emit sigSwitchLogin();
 }
 
-void RegisterDialog::on_btn_to_login_clicked()
-{
+void RegisterDialog::on_btn_to_login_clicked() {
     _countdown_timer->stop();
     emit sigSwitchLogin();
 }
 
+bool RegisterDialog::eventFilter(QObject* watched, QEvent* event) {
+    if (event->type() == QEvent::KeyPress) {
+        QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
+        if (keyEvent->key() == Qt::Key_Escape) {  // 检查是否按下了 ESC 键
+            QCoreApplication::sendEvent(parent(), event);
+            return true;  // 表示事件已被处理
+        }
+    }
+    return QDialog::eventFilter(watched,event);
+}

@@ -3,6 +3,8 @@
 #include "httpmgr.h"
 #include "tcpmgr.h"
 #include "ui_logindialog.h"
+
+#include <QKeyEvent>
 LoginDialog::LoginDialog(QWidget* parent) : QDialog(parent), ui(new Ui::LoginDialog) {
     ui->setupUi(this);
     connect(ui->btn_register, &QPushButton::clicked, this, &LoginDialog::switch_to_register);
@@ -21,10 +23,12 @@ LoginDialog::LoginDialog(QWidget* parent) : QDialog(parent), ui(new Ui::LoginDia
     connect(TcpMgr::getInstance().get(), &TcpMgr::sig_connect_success, this, &LoginDialog::slot_tcp_connect_finish);
     // 连接tcp管理者发出的登陆失败信号
     connect(TcpMgr::getInstance().get(), &TcpMgr::sig_login_failed, this, &LoginDialog::slot_login_failed);
+    installEventFilter(this);
 }
 
 LoginDialog::~LoginDialog() {
     qDebug() << "LoginDialog destructor";
+    removeEventFilter(this);
     delete ui;
 }
 
@@ -182,4 +186,16 @@ bool LoginDialog::enableBtn(bool enabled) {
     ui->btn_login->setEnabled(enabled);
     ui->btn_register->setEnabled(enabled);
     return true;
+}
+
+bool LoginDialog::eventFilter(QObject* watched, QEvent* event) {
+    if (event->type() == QEvent::KeyPress) {
+        QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
+        if (keyEvent->key() == Qt::Key_Escape) {  // 检查是否按下了 ESC 键
+            // qDebug()<<"LoginDialog received esc key pressed";
+            QCoreApplication::sendEvent(parent(), event);
+            return true;  // 表示事件已被处理
+        }
+    }
+    return QDialog::eventFilter(watched,event);
 }

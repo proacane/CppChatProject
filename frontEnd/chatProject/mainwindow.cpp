@@ -1,10 +1,13 @@
 #include "mainwindow.h"
 
+#include <QKeyEvent>
+#include <QMessageBox>
+
 #include "./ui_mainwindow.h"
 #include "tcpmgr.h"
 MainWindow::MainWindow(QWidget* parent) :
     QMainWindow(parent), ui(new Ui::MainWindow), _login_dialog(new LoginDialog(this)), _register_dialog(nullptr),
-    _reset_dialog(nullptr),_chat_dialog(nullptr) {
+    _reset_dialog(nullptr), _chat_dialog(nullptr) {
     ui->setupUi(this);
     // 将 LoginDialog 设置为中心组件
     setCentralWidget(_login_dialog);
@@ -15,11 +18,11 @@ MainWindow::MainWindow(QWidget* parent) :
     // 自定义样式，设置无边框
     _login_dialog->setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);
     connect(TcpMgr::getInstance().get(), &TcpMgr::sig_swich_chatdlg, this, &MainWindow::slot_switch_chatdlg);
-
     // 禁用最大化按钮
     setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
     show();  // 重新显示窗口以应用新的窗口标志
     emit TcpMgr::getInstance().get() -> sig_swich_chatdlg();
+    installEventFilter(this);
 }
 
 MainWindow::~MainWindow() {
@@ -115,5 +118,34 @@ void MainWindow::slot_switch_chatdlg() {
     if (_reset_dialog != nullptr) {
         delete _reset_dialog;
         _reset_dialog = nullptr;
+    }
+}
+
+bool MainWindow::eventFilter(QObject* watched, QEvent* event) {
+    if (event->type() == QEvent::KeyPress) {
+        QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
+        // 检查是否按下 ESC 键
+        if (keyEvent->key() == Qt::Key_Escape) {
+            // 弹出确认对话框询问是否退出
+            // qDebug()<<"Mainwindow received signal esc key pressed";
+            int ret = QMessageBox::warning(this, tr("退出"), tr("确定要退出吗？"), QMessageBox::Yes | QMessageBox::No);
+            if (ret == QMessageBox::Yes) {
+                // 如果用户确认退出，关闭 MainWindow
+                this->close();
+            }
+            // 消耗掉 ESC 事件，避免其他地方处理
+            return true;
+        }
+    }
+    // 继续处理其他事件
+    return QMainWindow::eventFilter(watched, event);
+}
+
+void MainWindow::closeEvent(QCloseEvent* event) {
+    int ret = QMessageBox::warning(this, tr("退出"), tr("确定要退出吗？"), QMessageBox::Yes | QMessageBox::No);
+    if (ret == QMessageBox::Yes) {
+        event->accept();  // 如果用户确认退出，接受关闭事件
+    } else {
+        event->ignore();  // 如果用户取消关闭，忽略关闭事件
     }
 }
