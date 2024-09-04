@@ -8,6 +8,7 @@ ClickedOnceLabel::ClickedOnceLabel(QWidget* parent) : QLabel(parent) {
 
 void ClickedOnceLabel::mouseReleaseEvent(QMouseEvent* event) {
     if (event->button() == Qt::LeftButton) {
+        qDebug()<<"emit clicked once label clicked event";
         emit clicked(this->text());
         return;
     }

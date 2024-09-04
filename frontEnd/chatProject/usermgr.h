@@ -17,7 +17,9 @@ class UserMgr : public QObject, public SingleTon<UserMgr>, public std::enable_sh
     void setUserName(QString name);
     void setUid(int uid);
     void setToken(QString token);
-
+    QString getName(){
+        return _user_name;
+    }
   private:
     UserMgr() = default;
     QString _user_name;

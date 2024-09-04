@@ -23,8 +23,8 @@ public:
     ~FriendLabel();
 
     void setText(QString text);
-    int width();
-    int height();
+    int width()const;
+    int height()const;
     QString text();
 private:
     Ui::FriendLabel *ui;

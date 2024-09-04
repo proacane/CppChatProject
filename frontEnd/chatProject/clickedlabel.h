@@ -30,7 +30,8 @@ class ClickedLabel : public QLabel {
                   QString select="", QString select_hover="", QString select_press="");
     // 获取当前标签状态
     ClickLbState getCurState();
-
+    void resetNormalState();
+    void setCurState(ClickLbState state);
   private:
     QString _normal;
     QString _normal_hover;

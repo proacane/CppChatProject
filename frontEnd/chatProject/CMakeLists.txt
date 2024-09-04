@@ -54,7 +54,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         userdata.h userdata.cpp
         adduseritem.h adduseritem.cpp adduseritem.ui
         findsuccessdlg.h findsuccessdlg.cpp findsuccessdlg.ui
-        applyfrienddialog.h applyfrienddialog.cpp applyfrienddialog.ui
+        applyfriend.h applyfriend.cpp applyfriend.ui
         clickedoncelabel.h clickedoncelabel.cpp
         friendlabel.h friendlabel.cpp friendlabel.ui
     )

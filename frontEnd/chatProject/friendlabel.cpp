@@ -20,23 +20,24 @@ void FriendLabel::setText(QString text) {
     ui->tip_lb->adjustSize();
     // 获取字体
     QFontMetrics fontMetrics(ui->tip_lb->font());
-    auto text_width = fontMetrics.lineWidth();
+    auto text_width = fontMetrics.horizontalAdvance(ui->tip_lb->text());
     auto text_height = fontMetrics.height();
 
-    qDebug()<<"ui->tip_lb.width is "<<ui->tip_lb->width();
-    qDebug()<<"ui->close_lab->width is "<<ui->close_label->width();
-    qDebug()<<"text_width is "<<text_width;
-    setFixedWidth(ui->tip_lb->width()+ui->close_label->width()+5);
-    setFixedHeight(text_height+2);
-    _width = width();
-    _height = height();
+    qDebug() << "ui->tip_lb.width is " << ui->tip_lb->width();
+    qDebug() << "ui->close_lab->width is " << ui->close_label->width();
+    qDebug() << "text_width is " << text_width;
+    qDebug()<<"text_height is "<<text_height;
+    this->setFixedWidth(ui->tip_lb->width() + ui->close_label->width() + 5);
+    this->setFixedHeight(text_height + 2);
+    _width =ui->tip_lb->width() + ui->close_label->width() + 5;
+    _height = text_height + 2;
 }
 
-int FriendLabel::width() {
+int FriendLabel::width() const{
     return _width;
 }
 
-int FriendLabel::height() {
+int FriendLabel::height() const{
     return _height;
 }
 
