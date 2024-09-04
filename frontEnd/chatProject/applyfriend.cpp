@@ -42,8 +42,7 @@ ApplyFriend::ApplyFriend(QWidget* parent) : QDialog(parent), ui(new Ui::ApplyFri
     connect(ui->tip_lb, &ClickedOnceLabel::clicked, this, &ApplyFriend::slot_add_friend_label_by_click_tip);
 
     ui->scrollArea->horizontalScrollBar()->setHidden(true);
-    // ui->scrollArea->verticalScrollBar()->setHidden(true);
-    ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     ui->scrollArea->installEventFilter(this);
     ui->sure_btn->setState("normal", "hover", "press");
     ui->cancel_btn->setState("normal", "hover", "press");
@@ -99,11 +98,11 @@ void ApplyFriend::AddTipLbs(ClickedLabel* lb, QPoint cur_point, QPoint& next_poi
 }
 
 bool ApplyFriend::eventFilter(QObject* obj, QEvent* event) {
-    if (obj == ui->scrollArea && event->type() == QEvent::Enter) {
-            ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-    } else if (obj == ui->scrollArea && event->type() == QEvent::Leave) {
-            ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    }
+    // if (obj == ui->scrollArea && event->type() == QEvent::Enter) {
+    //         ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    // } else if (obj == ui->scrollArea && event->type() == QEvent::Leave) {
+    //         ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    // }
     return QObject::eventFilter(obj, event);
 }
 
