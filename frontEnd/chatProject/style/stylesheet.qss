@@ -515,3 +515,39 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
     font-family: "Microsoft YaHei"; /* 设置字体 */
     border-radius: 20px; /* 设置圆角 */
 }
+
+#list_contact {
+    background-color: rgb(247,247,248);
+    border: none;
+}
+#list_contact::item:selected {
+    background-color: #d3d7d4;
+    border: none;
+    outline: none;
+}
+#list_contact::item:hover {
+    background-color: rgb(206,207,208);
+    border: none;
+    outline: none;
+}
+#list_contact::focus {
+    border: none;
+    outline: none;
+}
+#GroupTipItem {
+    background-color: #eaeaea;
+    border: none;
+}
+#GroupTipItem QLabel{
+    color: #2e2f30;
+    font-size: 12px; /* 设置字体大小 */
+    font-family: "Microsoft YaHei"; /* 设置字体 */
+    border: none;
+}
+#new_friend_item {
+     border-bottom: 1px solid #eaeaea;
+}
+#LineItem {
+    background-color:rgb(247,247,247);
+    border: none;
+}

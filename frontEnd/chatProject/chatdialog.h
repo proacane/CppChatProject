@@ -42,6 +42,13 @@ class ChatDialog : public QDialog {
     void clearLabelState(StateWidget* lb);
     // 处理鼠标点击事件
     void handleGlobalMousePress(QMouseEvent* mouseEvent);
+
+    // TODO 测试数据
+    std::vector<QString> strs = {"hello world !", "nice to meet u", "New year，new life", "You have to love yourself",
+                                 "My love is written in the wind ever since the whole world is you"};
+    std::vector<QString> heads = {":/images/head_1.jpg", ":/images/head_2.jpg", ":/images/head_3.jpg",
+                                  ":/images/head_4.jpg", ":/images/head_5.jpg"};
+    std::vector<QString> names = {"mmmm", "zack", "golang", "cpp", "java", "nodejs", "python", "rust"};
   private slots:
     void slot_loading_chat_user();
     void slot_side_chat();

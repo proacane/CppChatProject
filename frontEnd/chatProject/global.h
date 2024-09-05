@@ -82,6 +82,8 @@ enum ListItemType {
     ADD_USER_TIP_ITEM,  // 提示添加用户
     INVALID_ITEM,       // 不可点击条目
     GROUP_TIP_ITEM,     // 分组提示条目
+    LINE_ITEM,          // 分割线
+    APPLY_FRIEND_ITEM,  // 好友申请
 };
 
 enum class ChatRole { Self, Other };
@@ -99,5 +101,6 @@ struct MsgInfo {
 const int MIN_APPLY_LABEL_ED_LEN = 30;
 const QString add_prefix = "添加标签";
 const int tip_offset = 5;
+
 
 #endif  // GLOBAL_H

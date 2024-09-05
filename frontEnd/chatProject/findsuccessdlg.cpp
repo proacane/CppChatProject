@@ -36,7 +36,6 @@ void FindSuccessDlg::setSearchInfo(std::shared_ptr<SearchInfo> si) {
 }
 
 void FindSuccessDlg::on_btn_add_friend_clicked() {
-    // TODO 添加好友界面弹出
     this->hide();
     //弹出加好友界面
     auto applyFriend = new ApplyFriend(_parent);

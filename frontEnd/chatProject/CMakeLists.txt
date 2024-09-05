@@ -57,6 +57,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         applyfriend.h applyfriend.cpp applyfriend.ui
         clickedoncelabel.h clickedoncelabel.cpp
         friendlabel.h friendlabel.cpp friendlabel.ui
+        contactuserlist.h contactuserlist.cpp
+        contactuseritem.h contactuseritem.cpp contactuseritem.ui
+        grouptipitem.h grouptipitem.cpp grouptipitem.ui
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET chatProject APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

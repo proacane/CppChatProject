@@ -246,10 +246,10 @@
        <widget class="ChatUserList" name="list_chat_user"/>
       </item>
       <item>
-       <widget class="SearchList" name="list_search"/>
+       <widget class="ContactUserList" name="list_contact"/>
       </item>
       <item>
-       <widget class="QListWidget" name="list_contact"/>
+       <widget class="SearchList" name="list_search"/>
       </item>
      </layout>
     </widget>
@@ -294,6 +294,11 @@
    <class>SearchList</class>
    <extends>QListWidget</extends>
    <header>searchlist.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ContactUserList</class>
+   <extends>QListWidget</extends>
+   <header>contactuserlist.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
