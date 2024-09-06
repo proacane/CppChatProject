@@ -47,6 +47,12 @@ public slots:
     void sig_login_failed(int err);
 
     void sig_user_search(std::shared_ptr<SearchInfo> si);
+    // 对方发来的好友申请
+    void sig_friend_apply(std::shared_ptr<AddFriendApply>);
+    // 接收到对方的同意请求
+    void sig_add_auth_friend(std::shared_ptr<AuthInfo>);
+    // 自己同意别人的好友请求
+    void sig_auth_rsp(std::shared_ptr<AuthRsp>);
 };
 
 #endif  // TCPMGR_H
