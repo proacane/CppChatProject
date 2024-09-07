@@ -58,6 +58,15 @@ add_executable(ChatServer main.cpp
         proto/message.pb.h
         proto/message.proto
         include/StatusGrpcClient.h
-src/StatusGrpcClient.cpp)
+        include/RedisMgr.h
+        src/RedisMgr.cpp
+src/StatusGrpcClient.cpp
+        include/ChatGrpcClient.h
+        src/ChatGrpcClient.cpp
+        include/data.h
+        include/UserMgr.h
+        src/UserMgr.cpp
+        include/ChatServiceImpl.h
+        src/ChatServiceImpl.cpp)
 
 target_link_libraries(ChatServer PRIVATE ${Boost_LIBRARIES} JsonCpp::JsonCpp gRPC::grpc++ protobuf::libprotobuf hiredis::hiredis spdlog::spdlog mysqlcppconn)

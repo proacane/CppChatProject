@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget* parent) :
     // 禁用最大化按钮
     setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
     show();  // 重新显示窗口以应用新的窗口标志
-    emit TcpMgr::getInstance().get() -> sig_swich_chatdlg();
+    // emit TcpMgr::getInstance().get() -> sig_swich_chatdlg();
     installEventFilter(this);
 }
 

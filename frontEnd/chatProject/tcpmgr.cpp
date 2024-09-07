@@ -48,7 +48,9 @@ TcpMgr::TcpMgr(QObject* parent) :
             QByteArray message_body = _buffer.mid(0, _message_len);
             // 移除包体
             _buffer = _buffer.mid(_message_len);
-            qDebug() << "Receive message is " << message_body;
+            QByteArray printMessage(message_body);
+            QJsonDocument jsondoc = QJsonDocument::fromJson(printMessage);
+            qDebug() << "Receive message is " << jsondoc;
             // 处理消息
             handleMsg(ReqId(_message_id), _message_len, std::move(message_body));
         }

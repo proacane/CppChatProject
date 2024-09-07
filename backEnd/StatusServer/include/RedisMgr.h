@@ -134,6 +134,7 @@ public:
      */
     void close();
 
+    bool HDel(const std::string& key, const std::string& field);
 private:
     RedisMgr();
     std::unique_ptr<RedisConPool> _con_pool;

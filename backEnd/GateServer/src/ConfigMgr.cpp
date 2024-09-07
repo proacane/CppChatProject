@@ -6,7 +6,8 @@
 */
 #include "../include/ConfigMgr.h"
 #include <spdlog/spdlog.h>
-
+#include <boost/filesystem.hpp>
+#include <boost/property_tree/ini_parser.hpp>
 ConfigMgr::ConfigMgr() {
     // 读取当前文件的路径
     boost::filesystem::path current_path = boost::filesystem::current_path();
@@ -44,4 +45,11 @@ ConfigMgr::ConfigMgr() {
             spdlog::info("{}={}", key_value_pair.first, key_value_pair.second);
         }
     }
+}
+
+std::string ConfigMgr::getValue(const std::string &s1, const std::string &s2) {
+    if (_config_data.find(s1) == _config_data.end()) {
+        return "";
+    }
+    return _config_data[s1].getValue(s2);
 }

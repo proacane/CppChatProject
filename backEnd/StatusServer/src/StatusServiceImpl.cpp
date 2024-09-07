@@ -10,6 +10,7 @@
 #include <boost/uuid/uuid_generators.hpp>
 #include <boost/uuid/uuid_io.hpp>
 #include <utility>
+#include "../include/RedisMgr.h"
 
 std::string generate_unique_string() {
     // 创建UUID对象
@@ -21,19 +22,26 @@ std::string generate_unique_string() {
 
 StatusServiceImpl::StatusServiceImpl() {
     auto &cfg = ConfigMgr::getInstance();
+    auto server_list = cfg["chatServers"]["Name"];
+    std::vector<std::string> words;
+    std::stringstream ss(server_list);
+    std::string word;
+    while (std::getline(ss, word, ',')) {
+        words.push_back(word);
+    }
+
     ChatServer server;
-    server.port = cfg["ChatServer1"]["Port"];
-    server.host = cfg["ChatServer1"]["Host"];
-    server.name = cfg["ChatServer1"]["Name"];
-    server.connect_count = 0;
-    _servers[server.name] = server;
-
-    server.port = cfg["ChatServer2"]["Port"];
-    server.host = cfg["ChatServer2"]["Host"];
-    server.name = cfg["ChatServer2"]["Name"];
-    server.connect_count = 0;
-    _servers[server.name] = server;
-
+    for (auto &w: words) {
+        if (cfg[w]["Name"].empty()) {
+            continue;
+        }
+        server.name = cfg[w]["Name"];
+        server.host = cfg[w]["Host"];
+        server.port = cfg[w]["Port"];
+        server.connect_count = 0;
+        _servers[server.name] = server;
+    }
+    spdlog::info("Init {} chat servers", _servers.size());
 }
 
 Status
@@ -51,23 +59,36 @@ StatusServiceImpl::GetChatServer(ServerContext *context, const GetChatServerReq 
 
 ChatServer StatusServiceImpl::getChatServer() {
     std::lock_guard<std::mutex> lock(_server_mutex);
-    // TODO 本地测试只用一个
-    // 获取连接数最少的 server
-//    auto min_server = _servers.begin()->second;
-//    for (const auto &server: _servers) {
-//        if (server.second.connect_count < min_server.connect_count) {
-//            min_server = server.second;
-//        }
-//    }
-    auto min_server = _servers["server1"];
-    spdlog::info("Chosen chat server port is {}", min_server.port);
-//    return min_server;
-    return min_server;
+//     获取连接数最少的 server
+    auto minServer = _servers.begin()->second;
+    auto count_str = RedisMgr::getInstance()->hGet(LOGIN_COUNT, minServer.name);
+    if (count_str.empty()) {
+        //不存在则默认设置为最大
+        minServer.connect_count = INT_MAX;
+    } else {
+        minServer.connect_count = std::stoi(count_str);
+    }
+    for (auto &server: _servers) {
+        if (server.second.name == minServer.name) {
+            continue;
+        }
+        auto count_str = RedisMgr::getInstance()->hGet(LOGIN_COUNT, server.second.name);
+        if (count_str.empty()) {
+            server.second.connect_count = INT_MAX;
+        } else {
+            server.second.connect_count = std::stoi(count_str);
+        }
+        if (server.second.connect_count < minServer.connect_count) {
+            minServer = server.second;
+        }
+    }
+    return minServer;
 }
 
 void StatusServiceImpl::insertToken(int uid, std::string token) {
-    std::lock_guard<std::mutex> lock(_token_mutex);
-    _tokens[uid] = std::move(token);
+    std::string uid_str = std::to_string(uid);
+    std::string token_key = USERTOKENPREFIX + uid_str;
+    RedisMgr::getInstance()->set(token_key,token);
 }
 
 Status StatusServiceImpl::Login(ServerContext *context, const LoginReq *request,
@@ -75,15 +96,15 @@ Status StatusServiceImpl::Login(ServerContext *context, const LoginReq *request,
     auto uid = request->uid();
     auto token = request->token();
     spdlog::info("uid is {}, token is {}", uid, token);
-    std::lock_guard<std::mutex> lock(_token_mutex);
-    // 查询 uid是否有 token
-    auto iter = _tokens.find(uid);
-    if (iter == _tokens.end()) {
+    std::string uid_str = std::to_string(uid);
+    std::string token_key = USERTOKENPREFIX + uid_str;
+    std::string token_value = "";
+    bool success = RedisMgr::getInstance()->get(token_key,token_value);
+    if(!success){
         response->set_error(ErrorCodes::UidInvalid);
         return Status::OK;
     }
-    if (iter->second != token) {
-        // token 不对应
+    if(token_value != token){
         response->set_error(ErrorCodes::TokenInvalid);
         return Status::OK;
     }

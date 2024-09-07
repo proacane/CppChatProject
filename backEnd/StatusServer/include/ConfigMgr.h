@@ -7,6 +7,8 @@
 #ifndef GATESERVER_CONFIGMGR_H
 #define GATESERVER_CONFIGMGR_H
 #include "const.h"
+#include <map>
+#include <string>
 struct SectionInfo {
     std::map<std::string, std::string> _section_data;
 
@@ -34,6 +36,14 @@ struct SectionInfo {
         } else {}
         return _section_data[key];
     }
+    std::string getValue(const std::string & key) {
+        if (_section_data.find(key) == _section_data.end()) {
+            return "";
+        }
+        // 这里可以添加一些边界检查
+        return _section_data[key];
+    }
+
 };
 
 class ConfigMgr {
@@ -64,6 +74,8 @@ public:
         this->_config_data = src._config_data;
         return *this;
     };
+
+    std::string getValue(const std::string& s1,const std::string& s2);
 private:
     std::map<std::string, SectionInfo> _config_data;
     ConfigMgr();

@@ -10,7 +10,9 @@
 #include <json/reader.h>
 #include <json/value.h>
 #include "../include/StatusGrpcClient.h"
-
+#include "../include/RedisMgr.h"
+#include "../include/ConfigMgr.h"
+#include "../include/UserMgr.h"
 
 LogicSystem::LogicSystem() : _b_stop(false) {
     registerCallBacks();
@@ -86,38 +88,103 @@ void LogicSystem::loginHandler(std::shared_ptr<CSession> session, const short &m
     auto token = root["token"].asString();
     spdlog::info("User Login uid is {}, token is {}", uid, token);
 
-    // 从状态服务器验证 token 和 uid
-    // TODO 不知道为什么发送不到 StatusServer
-    auto rsp = StatusGrpcClient::getInstance()->Login(uid, token);
-    Json::Value return_value;
 
+//    auto rsp = StatusGrpcClient::getInstance()->Login(uid, token);
+    Json::Value return_value;
     Defer defer([this, &return_value, session]() {
         // 在 loginhandler 执行结束后执行
         std::string return_str = return_value.toStyledString();
         session->send(return_str, MSG_CHAT_LOGIN_RSP);
     });
-
-    return_value["error"] = rsp.error();
-    if (rsp.error() != ErrorCodes::Success) {
-        spdlog::warn("Token or id verify failed, error is {}, uid is {}",rsp.error(),rsp.uid());
+    // 从redis中查询 token 和 uid
+    std::string uid_str = std::to_string(uid);
+    std::string token_key = USERTOKENPREFIX + uid_str;
+    std::string token_value = "";
+    bool success = RedisMgr::getInstance()->get(token_key, token_value);
+    if (!success) {
+        return_value["error"] = ErrorCodes::UidInvalid;
         return;
     }
-    // 在内存中查询用户信息
-    auto find_iter = _users.find(uid);
-    std::shared_ptr<UserInfo> user_info = nullptr;
-    if (find_iter == _users.end()) {
-        // 没找到就去查数据库
-        user_info = MysqlMgr::getInstance()->getUser(uid);
-        if (user_info == nullptr) {
-            return_value["error"] = ErrorCodes::UidInvalid;
-            return;
-        }
-        _users[uid] = user_info;
-    } else {
-        user_info = find_iter->second;
+    if (token_value != token) {
+        return_value["error"] = ErrorCodes::TokenInvalid;
+        return;
+    }
+
+    // TODO 逻辑修改
+    // 在redis中查询用户信息
+    std::string base_key = USER_BASE_INFO + uid_str;
+    auto user_info = std::make_shared<UserInfo>();
+    bool b_base = getBaseInfo(base_key, uid, user_info);
+    if (!b_base) {
+        return_value["error"] = ErrorCodes::UidInvalid;
+        return;
     }
     // 返回给客户端
     return_value["uid"] = uid;
+//    return_value["password"] = user_info->pwd;
     return_value["token"] = token;
-    return_value["user_name"] = user_info->user_name;
+    return_value["name"] = user_info->name;
+    return_value["error"] = ErrorCodes::Success;
+
+    // TODO 从数据库获取申请列表
+    // TODO 获取好友列表
+
+    auto server_name = ConfigMgr::getInstance().getValue("SelfServer", "Name");
+    //将登录数量增加
+    auto rd_res = RedisMgr::getInstance()->hGet(LOGIN_COUNT, server_name);
+    int count = 0;
+    if (!rd_res.empty()) {
+        count = std::stoi(rd_res);
+    }
+    count++;
+    auto count_str = std::to_string(count);
+    // 登陆数量写入 redis
+    RedisMgr::getInstance()->hSet(LOGIN_COUNT, server_name, count_str);
+    //session绑定用户uid
+    session->setUserId(uid);
+    //为用户设置登录ip server的名字
+    std::string ipkey = USERIPPREFIX + uid_str;
+    RedisMgr::getInstance()->set(ipkey, server_name);
+    // uid和session绑定管理,方便以后踢人操作
+    UserMgr::getInstance()->setUserSession(uid, session);
+
+}
+
+bool LogicSystem::getBaseInfo(std::string base_key, int uid, std::shared_ptr<UserInfo> userInfo) {
+    // 先在 redis 中查，查不到去数据库查，数据库查到了就写进redis
+    std::string info_str = "";
+    bool b_base = RedisMgr::getInstance()->get(base_key, info_str);
+    if (b_base) {
+        Json::Reader reader;
+        Json::Value root;
+        reader.parse(info_str, root);
+        userInfo->uid = root["uid"].asInt();
+        userInfo->name = root["name"].asString();
+        userInfo->pwd = root["pwd"].asString();
+        userInfo->email = root["email"].asString();
+        userInfo->nick = root["nick"].asString();
+        userInfo->desc = root["desc"].asString();
+        userInfo->sex = root["sex"].asInt();
+        userInfo->icon = root["icon"].asString();
+        spdlog::info("user login uid is {}, name is {}, email is {}", userInfo->uid, userInfo->name, userInfo->email);
+    } else {
+        std::shared_ptr<UserInfo> user_info = nullptr;
+        user_info = MysqlMgr::getInstance()->getUser(uid);
+        if (user_info == nullptr) {
+            return false;
+        }
+        userInfo = user_info;
+        // 写入 redis
+        Json::Value redis_root;
+        redis_root["uid"] = uid;
+        redis_root["pwd"] = userInfo->pwd;
+        redis_root["name"] = userInfo->name;
+        redis_root["email"] = userInfo->email;
+        redis_root["nick"] = userInfo->nick;
+        redis_root["desc"] = userInfo->desc;
+        redis_root["sex"] = userInfo->sex;
+        redis_root["icon"] = userInfo->icon;
+        RedisMgr::getInstance()->set(base_key, redis_root.toStyledString());
+    }
+    return true;
 }
