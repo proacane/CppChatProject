@@ -1,6 +1,7 @@
 #pragma once
 #ifndef GLOBAL_H
 #    define GLOBAL_H
+#include <QJsonDocument>
 #    include <QJsonObject>
 #    include <QStyle>
 #    include <QWidget>
@@ -101,6 +102,7 @@ struct MsgInfo {
 const int MIN_APPLY_LABEL_ED_LEN = 30;
 const QString add_prefix = "添加标签";
 const int tip_offset = 5;
+
 
 
 #endif  // GLOBAL_H

@@ -48,9 +48,9 @@ TcpMgr::TcpMgr(QObject* parent) :
             QByteArray message_body = _buffer.mid(0, _message_len);
             // 移除包体
             _buffer = _buffer.mid(_message_len);
-            QByteArray printMessage(message_body);
-            QJsonDocument jsondoc = QJsonDocument::fromJson(printMessage);
-            qDebug() << "Receive message is " << jsondoc;
+
+            qDebug() << "Receive message is :" ;
+            qDebug().noquote() <<message_body;
             // 处理消息
             handleMsg(ReqId(_message_id), _message_len, std::move(message_body));
         }
@@ -75,7 +75,8 @@ TcpMgr::TcpMgr(QObject* parent) :
 
 void TcpMgr::initHandlers() {
     _handlers.insert(ReqId::ID_CHAT_LOGIN_RSP, [this](ReqId id, int len, QByteArray data) {
-        qDebug() << "Handle id is " << id << ", data is " << data;
+        qDebug() << "Handle id is " << id << ", data is ";
+        qDebug().quote()<<data;
         // 转换为 json
         QJsonDocument json_doc = QJsonDocument::fromJson(data);
         if (json_doc.isNull()) {
