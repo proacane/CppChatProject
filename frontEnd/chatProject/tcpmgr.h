@@ -45,7 +45,7 @@ public slots:
     void sig_send_data(ReqId reqId, QString data);
     void sig_swich_chatdlg();
     void sig_login_failed(int err);
-
+    void sig_user_search_failed(int err);
     void sig_user_search(std::shared_ptr<SearchInfo> si);
     // 对方发来的好友申请
     void sig_friend_apply(std::shared_ptr<AddFriendApply>);

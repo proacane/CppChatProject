@@ -50,7 +50,7 @@ void ApplyFriendPage::loadApplyList() {
         int randomValue = QRandomGenerator::global()->bounded(100);  // 生成0到99之间的随机整数
         int head_i = randomValue % heads.size();
         auto* apply_item = new ApplyFriendItem();
-        apply->SetIcon(heads[head_i]);
+        apply->setIcon(heads[head_i]);
         apply_item->setInfo(apply);
         QListWidgetItem* item = new QListWidgetItem;
         // qDebug()<<"chat_user_wid sizeHint is " << chat_user_wid->sizeHint();

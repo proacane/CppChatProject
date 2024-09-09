@@ -20,7 +20,7 @@ QSize ContactUserItem::sizeHint() const {
 void ContactUserItem::setInfo(std::shared_ptr<AuthInfo> auth_info) {
     _info = std::make_shared<UserInfo>(auth_info);
     // 加载图片
-    QPixmap pixmap(_info->_icon);
+    QPixmap pixmap(_info->_avatar);
     // 设置图片自动缩放
     ui->lab_avatar->setPixmap(pixmap.scaled(ui->lab_avatar->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->lab_avatar->setScaledContents(true);
@@ -30,7 +30,7 @@ void ContactUserItem::setInfo(std::shared_ptr<AuthInfo> auth_info) {
 void ContactUserItem::setInfo(std::shared_ptr<AuthRsp> auth_rsp) {
     _info = std::make_shared<UserInfo>(auth_rsp);
     // 加载图片
-    QPixmap pixmap(_info->_icon);
+    QPixmap pixmap(_info->_avatar);
     // 设置图片自动缩放
     ui->lab_avatar->setPixmap(pixmap.scaled(ui->lab_avatar->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->lab_avatar->setScaledContents(true);
@@ -40,7 +40,7 @@ void ContactUserItem::setInfo(std::shared_ptr<AuthRsp> auth_rsp) {
 void ContactUserItem::setInfo(int uid, QString name, QString icon) {
     _info = std::make_shared<UserInfo>(uid, name, icon);
     // 加载图片
-    QPixmap pixmap(_info->_icon);
+    QPixmap pixmap(_info->_avatar);
     // 设置图片自动缩放
     ui->lab_avatar->setPixmap(pixmap.scaled(ui->lab_avatar->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->lab_avatar->setScaledContents(true);

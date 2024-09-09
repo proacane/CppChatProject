@@ -17,15 +17,15 @@ void LogicSystem::registerGet(std::string url, httpHandler handler) {
 }
 
 LogicSystem::LogicSystem() {
-    registerGet("/get_test", [](std::shared_ptr<HttpConnection> connection) {
-        beast::ostream(connection->_response.body()) << "receive get_test req\r\n";
-        int i = 0;
-        for (const auto &item: connection->_get_params) {
-            i++;
-            beast::ostream(connection->_response.body()) << "param " << i << " key is " << item.first;
-            beast::ostream(connection->_response.body()) << ", " << i << " value is " << item.second << std::endl;
-        }
-    });
+//    registerGet("/get_test", [](std::shared_ptr<HttpConnection> connection) {
+//        beast::ostream(connection->_response.body()) << "receive get_test req\r\n";
+//        int i = 0;
+//        for (const auto &item: connection->_get_params) {
+//            i++;
+//            beast::ostream(connection->_response.body()) << "param " << i << " key is " << item.first;
+//            beast::ostream(connection->_response.body()) << ", " << i << " value is " << item.second << std::endl;
+//        }
+//    });
     // 处理验证码
     registerPost("/get_verifycode", [](std::shared_ptr<HttpConnection> connection) {
         // 请求转换为 string

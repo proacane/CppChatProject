@@ -3,6 +3,8 @@
 #include <QWheelEvent>
 
 #include "adduseritem.h"
+#include "customizeedit.h"
+#include "findfaildialog.h"
 #include "findsuccessdlg.h"
 #include "tcpmgr.h"
 SearchList::SearchList(QWidget* parent) :
@@ -18,6 +20,7 @@ SearchList::SearchList(QWidget* parent) :
     addTipItem();
     // 连接搜索条目
     connect(TcpMgr::getInstance().get(), &TcpMgr::sig_user_search, this, &SearchList::slot_user_search);
+    connect(TcpMgr::getInstance().get(), &TcpMgr::sig_user_search_failed, this, &SearchList::slot_user_search_failed);
 }
 
 void SearchList::closeFindDlg() {
@@ -28,6 +31,7 @@ void SearchList::closeFindDlg() {
 }
 
 void SearchList::setSearchEdit(QWidget* edit) {
+    _search_edit = edit;
 }
 
 bool SearchList::eventFilter(QObject* watched, QEvent* event) {
@@ -54,6 +58,16 @@ bool SearchList::eventFilter(QObject* watched, QEvent* event) {
 }
 
 void SearchList::waitPending(bool pending) {
+    if (pending) {
+        _loadingDialog = new LoadingDialog(this);
+        _loadingDialog->setModal(true);
+        _loadingDialog->show();
+        _send_pending = pending;
+    } else {
+        _loadingDialog->hide();
+        _loadingDialog->deleteLater();
+        _send_pending = pending;
+    }
 }
 
 void SearchList::addTipItem() {
@@ -92,16 +106,49 @@ void SearchList::slot_item_clicked(QListWidgetItem* item) {
         return;
     }
     if (itemType == ListItemType::ADD_USER_TIP_ITEM) {
-        // TODO...
-        _find_dialog = std::make_shared<FindSuccessDlg>(this);
-        auto si = std::make_shared<SearchInfo>(0, "test", "testnick", "hello , my friend!", 0);
-        (std::dynamic_pointer_cast<FindSuccessDlg>(_find_dialog))->setSearchInfo(si);
-        _find_dialog->show();
-        return;
+        // 根据 uid、姓名查询用户
+        if (_send_pending) {
+            // 上次发送的查找请求还没处理完
+            return;
+        }
+        if (!_search_edit) {
+            qDebug() << "searchlist: _search_edit is nullptr";
+            return;
+        }
+        // 显示加载场景
+        waitPending(true);
+
+        // 转换成原本的类型
+        auto search_edit = dynamic_cast<CustomizeEdit*>(_search_edit);
+        auto uid_str = search_edit->text().toInt();
+        QJsonObject json_obj;
+        json_obj["searchInfo"] = uid_str;
+        QJsonDocument doc(json_obj);
+        QByteArray jsonData = doc.toJson(QJsonDocument::Compact);
+        emit TcpMgr::getInstance() -> sig_send_data(ReqId::ID_SEARCH_USER_REQ, jsonData);
     }
     // 清除弹出框
     closeFindDlg();
 }
 
 void SearchList::slot_user_search(std::shared_ptr<SearchInfo> si) {
+    waitPending(false);
+    if (si == nullptr) {
+        // TODO 查询失败的 dialog
+        _find_dialog = std::make_shared<FindFailDialog>(this);
+    } else {
+        // 可能是自己的好友，也可能不是自己的好友，也可能是自己
+        // TODO 处理已经是自己的好友或者是自己的情况
+        _find_dialog = std::make_shared<FindSuccessDlg>(this);
+        std::dynamic_pointer_cast<FindSuccessDlg>(_find_dialog)->setSearchInfo(si);
+    }
+
+    _find_dialog->show();
+}
+
+void SearchList::slot_user_search_failed(int err) {
+    waitPending(false);
+    // 弹出 dialog 显示查询失败
+    _find_dialog = std::make_shared<FindFailDialog>(this);
+    _find_dialog->show();
 }

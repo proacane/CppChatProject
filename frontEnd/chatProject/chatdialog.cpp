@@ -26,6 +26,9 @@ ChatDialog::ChatDialog(QWidget* parent) :
     showSearchList(false);
     // 动态加载用户列表
     connect(ui->list_chat_user, &ChatUserList::sig_loading_chat_user, this, &ChatDialog::slot_loading_chat_user);
+
+    ui->list_search->setSearchEdit(ui->edit_search);
+
     // TODO 从服务器中获取图片
     QPixmap pixmap(":/images/head_1.jpg");
     ui->lab_side_avatar->setPixmap(pixmap);  // 将图片设置到QLabel上

@@ -11,7 +11,6 @@
 #include <jdbc/mysql_driver.h>
 #include <queue>
 #include <mutex>
-
 class SqlConnection {
 public:
     SqlConnection(sql::Connection *con, int64_t lasttime);
@@ -65,8 +64,8 @@ private:
 };
 
 struct UserInfo {
-    std::string user_name;
-    std::string password;
+    std::string name;
+    std::string pwd;
     int uid;
     std::string email;
 };
@@ -117,6 +116,12 @@ public:
      * @return
      */
     std::shared_ptr<UserInfo> getUser(int uid );
+    /**
+     * 查询用户信息
+     * @param name
+     * @return
+     */
+    std::shared_ptr<UserInfo> getUser(const std::string&name );
 private:
     std::unique_ptr<MysqlPool> _pool;
 };

@@ -19,6 +19,7 @@ public:
     int updatePassword(const std::string&user_name,const std::string& password);
     bool checkPassword(const std::string &user_name, const std::string &password, UserInfo &userInfo);
     std::shared_ptr<UserInfo> getUser(int uid);
+    std::shared_ptr<UserInfo> getUser(const std::string&name);
 private:
     MysqlMgr() = default;
     MysqlDao _dao;

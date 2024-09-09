@@ -8,7 +8,7 @@ TcpMgr::TcpMgr(QObject* parent) :
     QObject{parent}, _host(""), _port(0), _b_rec_pending(false), _message_id(0), _message_len(0) {
     // 连接成功后的处理
     connect(&_socket, &QTcpSocket::connected, this, [&] {
-        qDebug() << "Connected to chat server: ";
+        // qDebug() << "Connected to chat server: ";
         // 连接成功后发送信号
         emit sig_connect_success(true);
     });
@@ -76,7 +76,7 @@ TcpMgr::TcpMgr(QObject* parent) :
 void TcpMgr::initHandlers() {
     _handlers.insert(ReqId::ID_CHAT_LOGIN_RSP, [this](ReqId id, int len, QByteArray data) {
         qDebug() << "Handle id is " << id << ", data is ";
-        qDebug().quote()<<data;
+        qDebug().noquote()<<data;
         // 转换为 json
         QJsonDocument json_doc = QJsonDocument::fromJson(data);
         if (json_doc.isNull()) {
@@ -88,7 +88,7 @@ void TcpMgr::initHandlers() {
         // json 必须包含 error
         if (!json_obj.contains("error")) {
             int err = ErrorCodes::ERR_JSON;
-            qDebug() << "Login Failed, err is Json Parse Err" << err;
+            qDebug() << "Login Failed, err is Json Parse Err: " << err;
             emit sig_login_failed(err);
             return;
         }
@@ -105,6 +105,42 @@ void TcpMgr::initHandlers() {
         UserMgr::getInstance()->setToken(json_obj["token"].toString());
         // 切换到聊天窗口
         emit sig_swich_chatdlg();
+    });
+
+    // 查询用户
+    _handlers.insert(ReqId::ID_SEARCH_USER_RSP,[this](ReqId id, int len, QByteArray data){
+        qDebug() << "Handle id is " << id << ", data is ";
+        qDebug().noquote()<<data;
+
+        QJsonDocument json_doc = QJsonDocument::fromJson(data);
+        if (json_doc.isNull()) {
+            qDebug() << "Failed to create QJsonDocument.";
+            return;
+        }
+
+        QJsonObject json_obj = json_doc.object();
+        // json 必须包含 error
+        if (!json_obj.contains("error")) {
+            int err = ErrorCodes::ERR_JSON;
+            qDebug() << "Search user Failed, err is Json Parse Err: " << err;
+            emit sig_user_search_failed(err);
+            return;
+        }
+
+        int err = json_obj["error"].toInt();
+        if(err != ErrorCodes::SUCCESS){
+            qDebug() << "Search user Failed, err is " << err ;
+            emit sig_user_search_failed(err);
+            return;
+        }
+
+        // 创建用户信息
+        auto search_info = std::make_shared<SearchInfo>(json_obj["uid"].toInt(),
+                                                        json_obj["name"].toString(), json_obj["nick"].toString(),
+                                                        json_obj["desc"].toString(), json_obj["gender"].toInt(), json_obj["avatar"].toString());
+        // 通知 SearchList
+        emit sig_user_search(search_info);
+
     });
 }
 
@@ -143,6 +179,7 @@ void TcpMgr::slot_send_data(ReqId reqId, QString data) {
     // 写入 id 和长度
     out << id << len;
     send_data.append(dataBytes);
-    qDebug()<<"slot send data to tcp server is "<<data;
+    qDebug()<<"slot send data to tcp server is: ";
+    qDebug().noquote()<<dataBytes;
     _socket.write(send_data);
 }

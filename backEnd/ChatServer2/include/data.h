@@ -8,8 +8,8 @@
 #define CHATSERVER_DATA_H
 #include <string>
 struct UserInfo {
-    UserInfo(): name(""), pwd(""), uid(0), email(""), nick(""), desc(""), sex(0), icon(""), back("") {}
-    // 用户名？
+    UserInfo(): name(""), pwd(""), uid(0), email(""), nick(""), desc(""), gender(0), avatar(""), back("") {}
+    // 用户名
     std::string name;
     std::string pwd;
     int uid;
@@ -18,9 +18,9 @@ struct UserInfo {
     std::string nick;
     // 描述
     std::string desc;
-    int sex;
+    int gender;
     // 头像
-    std::string icon;
+    std::string avatar;
     // 备注
     std::string back;
 };
@@ -28,18 +28,18 @@ struct UserInfo {
 struct ApplyInfo {
     ApplyInfo(int uid, std::string name, std::string desc,
               std::string icon, std::string nick, int sex, int status)
-            :_uid(uid),_name(name),_desc(desc),
-             _icon(icon),_nick(nick),_sex(sex),_status(status){}
+            : _uid(uid), _name(name), _desc(desc),
+              _avatar(icon), _nick(nick), _gender(sex), _status(status){}
 
     int _uid;
     std::string _name;
     // 描述
     std::string _desc;
     // 头像
-    std::string _icon;
+    std::string _avatar;
     // 昵称
     std::string _nick;
-    int _sex;
+    int _gender;
     // ？？
     int _status;
 };

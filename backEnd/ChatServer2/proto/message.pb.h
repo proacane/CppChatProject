@@ -3034,10 +3034,10 @@ class AddFriendReq final :
   enum : int {
     kNameFieldNumber = 2,
     kDescFieldNumber = 3,
-    kIconFieldNumber = 4,
+    kAvatarFieldNumber = 4,
     kNickFieldNumber = 5,
     kApplyuidFieldNumber = 1,
-    kSexFieldNumber = 6,
+    kGenderFieldNumber = 6,
     kTouidFieldNumber = 7,
   };
   // string name = 2;
@@ -3072,20 +3072,20 @@ class AddFriendReq final :
   std::string* _internal_mutable_desc();
 
   public:
-  // string icon = 4;
-  void clear_icon() ;
-  const std::string& icon() const;
+  // string avatar = 4;
+  void clear_avatar() ;
+  const std::string& avatar() const;
   template <typename Arg_ = const std::string&, typename... Args_>
-  void set_icon(Arg_&& arg, Args_... args);
-  std::string* mutable_icon();
-  PROTOBUF_NODISCARD std::string* release_icon();
-  void set_allocated_icon(std::string* value);
+  void set_avatar(Arg_&& arg, Args_... args);
+  std::string* mutable_avatar();
+  PROTOBUF_NODISCARD std::string* release_avatar();
+  void set_allocated_avatar(std::string* value);
 
   private:
-  const std::string& _internal_icon() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_icon(
+  const std::string& _internal_avatar() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_avatar(
       const std::string& value);
-  std::string* _internal_mutable_icon();
+  std::string* _internal_mutable_avatar();
 
   public:
   // string nick = 5;
@@ -3114,14 +3114,14 @@ class AddFriendReq final :
   void _internal_set_applyuid(::int32_t value);
 
   public:
-  // int32 sex = 6;
-  void clear_sex() ;
-  ::int32_t sex() const;
-  void set_sex(::int32_t value);
+  // int32 gender = 6;
+  void clear_gender() ;
+  ::int32_t gender() const;
+  void set_gender(::int32_t value);
 
   private:
-  ::int32_t _internal_sex() const;
-  void _internal_set_sex(::int32_t value);
+  ::int32_t _internal_gender() const;
+  void _internal_set_gender(::int32_t value);
 
   public:
   // int32 touid = 7;
@@ -3141,7 +3141,7 @@ class AddFriendReq final :
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       3, 7, 0,
-      45, 2>
+      47, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -3159,10 +3159,10 @@ class AddFriendReq final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::ArenaStringPtr name_;
     ::google::protobuf::internal::ArenaStringPtr desc_;
-    ::google::protobuf::internal::ArenaStringPtr icon_;
+    ::google::protobuf::internal::ArenaStringPtr avatar_;
     ::google::protobuf::internal::ArenaStringPtr nick_;
     ::int32_t applyuid_;
-    ::int32_t sex_;
+    ::int32_t gender_;
     ::int32_t touid_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -4328,57 +4328,57 @@ inline void AddFriendReq::set_allocated_desc(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:message.AddFriendReq.desc)
 }
 
-// string icon = 4;
-inline void AddFriendReq::clear_icon() {
+// string avatar = 4;
+inline void AddFriendReq::clear_avatar() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.icon_.ClearToEmpty();
+  _impl_.avatar_.ClearToEmpty();
 }
-inline const std::string& AddFriendReq::icon() const
+inline const std::string& AddFriendReq::avatar() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:message.AddFriendReq.icon)
-  return _internal_icon();
+  // @@protoc_insertion_point(field_get:message.AddFriendReq.avatar)
+  return _internal_avatar();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void AddFriendReq::set_icon(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void AddFriendReq::set_avatar(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.icon_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:message.AddFriendReq.icon)
+  _impl_.avatar_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:message.AddFriendReq.avatar)
 }
-inline std::string* AddFriendReq::mutable_icon() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_icon();
-  // @@protoc_insertion_point(field_mutable:message.AddFriendReq.icon)
+inline std::string* AddFriendReq::mutable_avatar() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_avatar();
+  // @@protoc_insertion_point(field_mutable:message.AddFriendReq.avatar)
   return _s;
 }
-inline const std::string& AddFriendReq::_internal_icon() const {
+inline const std::string& AddFriendReq::_internal_avatar() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.icon_.Get();
+  return _impl_.avatar_.Get();
 }
-inline void AddFriendReq::_internal_set_icon(const std::string& value) {
+inline void AddFriendReq::_internal_set_avatar(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.icon_.Set(value, GetArena());
+  _impl_.avatar_.Set(value, GetArena());
 }
-inline std::string* AddFriendReq::_internal_mutable_icon() {
+inline std::string* AddFriendReq::_internal_mutable_avatar() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  return _impl_.icon_.Mutable( GetArena());
+  return _impl_.avatar_.Mutable( GetArena());
 }
-inline std::string* AddFriendReq::release_icon() {
+inline std::string* AddFriendReq::release_avatar() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:message.AddFriendReq.icon)
-  return _impl_.icon_.Release();
+  // @@protoc_insertion_point(field_release:message.AddFriendReq.avatar)
+  return _impl_.avatar_.Release();
 }
-inline void AddFriendReq::set_allocated_icon(std::string* value) {
+inline void AddFriendReq::set_allocated_avatar(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.icon_.SetAllocated(value, GetArena());
+  _impl_.avatar_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.icon_.IsDefault()) {
-          _impl_.icon_.Set("", GetArena());
+        if (_impl_.avatar_.IsDefault()) {
+          _impl_.avatar_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:message.AddFriendReq.icon)
+  // @@protoc_insertion_point(field_set_allocated:message.AddFriendReq.avatar)
 }
 
 // string nick = 5;
@@ -4434,27 +4434,27 @@ inline void AddFriendReq::set_allocated_nick(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:message.AddFriendReq.nick)
 }
 
-// int32 sex = 6;
-inline void AddFriendReq::clear_sex() {
+// int32 gender = 6;
+inline void AddFriendReq::clear_gender() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.sex_ = 0;
+  _impl_.gender_ = 0;
 }
-inline ::int32_t AddFriendReq::sex() const {
-  // @@protoc_insertion_point(field_get:message.AddFriendReq.sex)
-  return _internal_sex();
+inline ::int32_t AddFriendReq::gender() const {
+  // @@protoc_insertion_point(field_get:message.AddFriendReq.gender)
+  return _internal_gender();
 }
-inline void AddFriendReq::set_sex(::int32_t value) {
-  _internal_set_sex(value);
-  // @@protoc_insertion_point(field_set:message.AddFriendReq.sex)
+inline void AddFriendReq::set_gender(::int32_t value) {
+  _internal_set_gender(value);
+  // @@protoc_insertion_point(field_set:message.AddFriendReq.gender)
 }
-inline ::int32_t AddFriendReq::_internal_sex() const {
+inline ::int32_t AddFriendReq::_internal_gender() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.sex_;
+  return _impl_.gender_;
 }
-inline void AddFriendReq::_internal_set_sex(::int32_t value) {
+inline void AddFriendReq::_internal_set_gender(::int32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.sex_ = value;
+  _impl_.gender_ = value;
 }
 
 // int32 touid = 7;

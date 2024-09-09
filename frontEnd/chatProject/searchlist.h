@@ -17,7 +17,6 @@
 #include "loadingdialog.h"
 #include "userdata.h"
 
-
 class SearchList : public QListWidget {
     Q_OBJECT
   public:
@@ -31,6 +30,7 @@ class SearchList : public QListWidget {
 
   private:
     void waitPending(bool pending = true);
+    // true 表示发送阻塞
     bool _send_pending;
     void addTipItem();
     std::shared_ptr<QDialog> _find_dialog;
@@ -39,6 +39,7 @@ class SearchList : public QListWidget {
   private slots:
     void slot_item_clicked(QListWidgetItem* item);
     void slot_user_search(std::shared_ptr<SearchInfo> si);
+    void slot_user_search_failed(int err);
 };
 
 #endif  // SEARCHLIST_H

@@ -117,6 +117,12 @@ public:
      * @return
      */
     std::shared_ptr<UserInfo> getUser(int uid );
+    /**
+     * 查询用户信息
+     * @param name
+     * @return
+     */
+    std::shared_ptr<UserInfo> getUser(const std::string&name );
 private:
     std::unique_ptr<MysqlPool> _pool;
 };
