@@ -6,8 +6,8 @@
 */
 #include <spdlog/spdlog.h>
 #include "../include/ChatGrpcClient.h"
-#include "../include/RedisMgr.h"
-#include "../include/MysqlMgr.h"
+#include "../../ChatServer2/include/RedisMgr.h"
+#include "../../ChatServer2/include/MysqlMgr.h"
 #include "../include/UserMgr.h"
 ChatConnectionPool::ChatConnectionPool(size_t pool_size, std::string host, std::string port) : _pool_size(pool_size),
                                                                                                _host(host), _port(port),
@@ -84,8 +84,37 @@ ChatGrpcClient::ChatGrpcClient() {
 }
 
 // TODO 后续完善
-AddFriendRsp ChatGrpcClient::NotifyAddFriend(std::string server_ip, const AddFriendReq &req) {
-    return AddFriendRsp();
+AddFriendRsp ChatGrpcClient::NotifyAddFriend(std::string server_name, const AddFriendReq &req) {
+    AddFriendRsp rsp;
+    Defer defer([&req,&rsp]{
+            rsp.set_error(ErrorCodes::Success);
+            rsp.set_touid(req.touid());
+            rsp.set_applyuid(req.applyuid());
+    });
+    auto find_iter = _pools.find(server_name);
+    if (find_iter == _pools.end()) {
+        spdlog::warn("can't find server");
+        return rsp;
+    }
+
+    auto& pool = find_iter->second;
+
+    ClientContext context;
+    auto stub = pool->getConnection();
+    Status status = stub->NotifyAddFriend(&context, req, &rsp);
+    Defer defercon([&stub, this, &pool]() {
+        pool->returnConnection(std::move(stub));
+    });
+
+    if (!status.ok()) {
+        spdlog::error("gRPC call failed: {}", status.error_message());
+        rsp.set_error(ErrorCodes::RPCFailed);
+        return rsp;
+    } else {
+        spdlog::info("gRPC call succeeded.");
+    }
+
+    return rsp;
 }
 
 AuthFriendRsp ChatGrpcClient::NotifyAuthFriend(std::string server_ip, const AuthFriendReq &req) {

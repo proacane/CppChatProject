@@ -4,9 +4,9 @@
 
 #include "chatuserwidget.h"
 #include "loadingdialog.h"
+#include "tcpmgr.h"
 #include "ui_chatdialog.h"
-
-
+#include "usermgr.h"
 
 ChatDialog::ChatDialog(QWidget* parent) :
     QDialog(parent), ui(new Ui::ChatDialog), _mode(ChatUIMode::ChatMode), _state(ChatUIMode::ChatMode),
@@ -49,6 +49,9 @@ ChatDialog::ChatDialog(QWidget* parent) :
     // 链接搜索框输入变化
     connect(ui->edit_search, &QLineEdit::textChanged, this, &ChatDialog::slot_text_changed);
 
+    // 连接申请添加好友信号
+    connect(TcpMgr::getInstance().get(), &TcpMgr::sig_friend_apply, this, &ChatDialog::slot_apply_friend);
+
     // 检测鼠标点击位置，判断是否需要关闭搜索框
     installEventFilter(this);
 }
@@ -60,19 +63,20 @@ ChatDialog::~ChatDialog() {
 
 void ChatDialog::addChatUserList() {
     // 创建QListWidgetItem，并设置自定义的widget
-    for (int i = 0; i < 13; i++) {
-        int randomValue = QRandomGenerator::global()->bounded(100);  // 生成0到99之间的随机整数
-        int str_i = randomValue % strs.size();
-        int head_i = randomValue % heads.size();
-        int name_i = randomValue % names.size();
-        auto* chat_user_wid = new ChatUserWidget();
-        chat_user_wid->setInfo(names[name_i], heads[head_i], strs[str_i]);
-        QListWidgetItem* item = new QListWidgetItem;
-        // qDebug()<<"chat_user_wid sizeHint is " << chat_user_wid->sizeHint();
-        item->setSizeHint(chat_user_wid->sizeHint());
-        ui->list_chat_user->addItem(item);
-        ui->list_chat_user->setItemWidget(item, chat_user_wid);
-    }
+    // for (int i = 0; i < 13; i++) {
+    //     int randomValue = QRandomGenerator::global()->bounded(100);  // 生成0到99之间的随机整数
+    //     int str_i = randomValue % strs.size();
+    //     int head_i = randomValue % heads.size();
+    //     int name_i = randomValue % names.size();
+    //     auto* chat_user_wid = new ChatUserWidget();
+    //     chat_user_wid->setInfo(names[name_i], heads[head_i], strs[str_i]);
+    //     QListWidgetItem* item = new QListWidgetItem;
+    //     // qDebug()<<"chat_user_wid sizeHint is " << chat_user_wid->sizeHint();
+    //     item->setSizeHint(chat_user_wid->sizeHint());
+    //     ui->list_chat_user->addItem(item);
+    //     ui->list_chat_user->setItemWidget(item, chat_user_wid);
+    // }
+    // TODO 从数据库获取
 }
 
 void ChatDialog::showSearchList(bool b_show) {
@@ -163,6 +167,20 @@ void ChatDialog::slot_text_changed(const QString& str) {
     }
 }
 
+void ChatDialog::slot_apply_friend(std::shared_ptr<AddFriendApply> apply) {
+    qDebug() << "receive apply friend slot, applyuid is " << apply->_from_uid << " name is " << apply->_name
+             << " desc is " << apply->_desc;
+    bool b_already = UserMgr::getInstance()->alreadyApply(apply->_from_uid);
+    if (b_already) {
+        // 已经添加过了就不管
+        return;
+    }
+    UserMgr::getInstance()->addApplyList(std::make_shared<ApplyInfo>(apply));
+    ui->lab_side_contact->showRedPoint(true);
+    ui->list_contact->showRedPoint(true);
+    ui->page_friend_apply->addNewApply(apply);
+}
+
 bool ChatDialog::eventFilter(QObject* watched, QEvent* event) {
     if (event->type() == QEvent::MouseButtonPress) {
         QMouseEvent* mouseEvent = static_cast<QMouseEvent*>(event);
@@ -175,5 +193,5 @@ bool ChatDialog::eventFilter(QObject* watched, QEvent* event) {
             return true;  // 表示事件已被处理
         }
     }
-    return QDialog::eventFilter(watched,event);
+    return QDialog::eventFilter(watched, event);
 }

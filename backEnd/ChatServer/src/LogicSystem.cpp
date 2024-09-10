@@ -4,15 +4,16 @@
  *  Description: 
  *  Author: ACAね
 */
-#include "../include/LogicSystem.h"
+#include "../../ChatServer2/include/LogicSystem.h"
 #include "../include/CSession.h"
 #include <spdlog/spdlog.h>
 #include <json/reader.h>
 #include <json/value.h>
-#include "../include/StatusGrpcClient.h"
-#include "../include/RedisMgr.h"
+#include "../../ChatServer2/include/StatusGrpcClient.h"
+#include "../../ChatServer2/include/RedisMgr.h"
 #include "../include/ConfigMgr.h"
 #include "../include/UserMgr.h"
+#include "../include/ChatGrpcClient.h"
 
 LogicSystem::LogicSystem() : _b_stop(false) {
     registerCallBacks();
@@ -80,6 +81,8 @@ void LogicSystem::registerCallBacks() {
                                                std::placeholders::_2, std::placeholders::_3);
     _fun_callbacks[ID_SEARCH_USER_REQ] = std::bind(&LogicSystem::searchInfo, this, std::placeholders::_1,
                                                    std::placeholders::_2, std::placeholders::_3);
+    _fun_callbacks[ID_ADD_FRIEND_REQ] = std::bind(&LogicSystem::addFriendApply, this, std::placeholders::_1,
+                                                  std::placeholders::_2, std::placeholders::_3);
 }
 
 void LogicSystem::loginHandler(std::shared_ptr<CSession> session, const short &msg_id, const std::string &msg_data) {
@@ -292,19 +295,20 @@ void LogicSystem::getUserByName(const std::string &name, Json::Value &return_val
         Json::Value root;
         reader.parse(info_str, root);
         auto uid = root["uid"].asInt();
-        auto name = root["name"].asString();
+        auto r_name = root["name"].asString();
         auto pwd = root["pwd"].asString();
         auto email = root["email"].asString();
         auto nick = root["nick"].asString();
         auto desc = root["desc"].asString();
         auto gender = root["gender"].asInt();
         auto avatar = root["avatar"].asString();
-        spdlog::info("Search user info: \nuid : {},\nname : {},\npwd : {},\nemail : {},\navatar : {}\n", uid, name, pwd,
+        spdlog::info("Search user info: \nuid : {},\nname : {},\npwd : {},\nemail : {},\navatar : {}\n", uid, r_name,
+                     pwd,
                      email, avatar);
 
         return_value["uid"] = uid;
         return_value["pwd"] = pwd;
-        return_value["name"] = name;
+        return_value["name"] = r_name;
         return_value["email"] = email;
         return_value["nick"] = nick;
         return_value["desc"] = desc;
@@ -342,4 +346,89 @@ void LogicSystem::getUserByName(const std::string &name, Json::Value &return_val
     return_value["desc"] = user_info->desc;
     return_value["gender"] = user_info->gender;
     return_value["avatar"] = user_info->avatar;
+}
+
+void LogicSystem::addFriendApply(std::shared_ptr<CSession> session, const short &msg_id, const std::string &msg_data) {
+    Json::Reader reader;
+    Json::Value root;
+    reader.parse(msg_data, root);
+    auto uid = root["uid"].asInt();
+    auto applyname = root["applyname"].asString();
+    auto bakname = root["bakname"].asString();
+    auto touid = root["touid"].asInt();
+    spdlog::info("uid: {}, apply name: {}, backName: {}, to uid: {}",uid,applyname,bakname,touid);
+
+    Json::Value return_value;
+    return_value["error"] = ErrorCodes::Success;
+    // 发送回申请的客户端
+    Defer defer([this, &return_value, session]() {
+        std::string return_str = return_value.toStyledString();
+        session->send(return_str, ID_ADD_FRIEND_RSP);
+    });
+
+    // 更新数据库
+    bool up_database = MysqlMgr::getInstance()->addFriendApply(uid, touid);
+    if(!up_database){
+        spdlog::error("Error occurred in addFriendApply while updating database");
+        return_value["error"] = ErrorCodes::ApplyFriendFail;
+        return;
+    }
+
+    // 在 redis 中查 touid 所在的服务器
+    auto to_str = std::to_string(touid);
+    auto to_ip_key = USERIPPREFIX + to_str;
+    std::string to_ip_value = "";
+    bool b_ip = RedisMgr::getInstance()->get(to_ip_key,to_ip_value);
+    if(!b_ip){
+        spdlog::error("Error occurred in addFriendApply while querying redis");
+        return_value["error"] = ErrorCodes::ApplyFriendFail;
+        return;
+    }
+
+    // 获取自己的服务器名称
+    auto& cfg = ConfigMgr::getInstance();
+    auto self_name = cfg["SelfServer"]["Name"];
+
+    std::string base_key = USER_BASE_INFO + std::to_string(uid);
+    auto apply_info = std::make_shared<UserInfo>();
+    bool b_info = getBaseInfo(base_key,uid,apply_info);
+
+    // 处于一个服务器，直接发送就行
+    if(to_ip_value == self_name){
+        spdlog::info("They are in the same server");
+        auto s = UserMgr::getInstance()->getSession(touid);
+        if(s){
+            // 缓存在了内存中就直接发送
+            return_value["error"] = ErrorCodes::Success;
+            return_value["applyuid"] = uid;
+            return_value["name"] = applyname;
+            return_value["desc"] = "";
+            if(b_info){
+                return_value["avatar"] = apply_info->avatar;
+                return_value["gender"] = apply_info->gender;
+                return_value["nick"] = apply_info->nick;
+            }
+        }else{
+            return_value["error"] = ErrorCodes::ApplyFriendFail;
+            spdlog::error("user is not online");
+        }
+        std::string return_str = return_value.toStyledString();
+        // 发送到被申请的客户端
+        s->send(return_str, ID_NOTIFY_ADD_FRIEND_REQ);
+        return;
+    }
+
+    // 不在一个服务器，调用 grpc 通信
+    AddFriendReq add_req;
+    add_req.set_applyuid(uid);
+    add_req.set_name(applyname);
+    add_req.set_touid(touid);
+    add_req.set_desc("");
+    if(b_info){
+        add_req.set_avatar(apply_info->avatar) ;
+        add_req.set_gender(apply_info->gender) ;
+        add_req.set_nick(apply_info->nick) ;
+    }
+
+    ChatGrpcClient::getInstance()->NotifyAddFriend(to_ip_value,add_req);
 }

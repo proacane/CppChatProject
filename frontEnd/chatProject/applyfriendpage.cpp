@@ -5,7 +5,7 @@
 #include"usermgr.h"
 #include "tcpmgr.h"
 #include "ui_applyfriendpage.h"
-
+#include"authenfriend.h"
 ApplyFriendPage::ApplyFriendPage(QWidget* parent) : QWidget(parent), ui(new Ui::ApplyFriendPage) {
     ui->setupUi(this);
     connect(ui->apply_friend_list, &ApplyFriendList::sig_show_search, this, &ApplyFriendPage::sig_show_search);
@@ -35,10 +35,10 @@ void ApplyFriendPage::addNewApply(std::shared_ptr<AddFriendApply> apply) {
     apply_item->showAddBtn(true);
     // 收到审核好友信号
     connect(apply_item, &ApplyFriendItem::sig_auth_friend, [this](std::shared_ptr<ApplyInfo> apply_info) {
-        //        auto* authFriend = new AuthenFriend(this);
-        //        authFriend->setModal(true);
-        //        authFriend->SetApplyInfo(apply_info);
-        //        authFriend->show();
+               auto* authFriend = new AuthenFriend(this);
+               authFriend->setModal(true);
+               authFriend->setApplyInfo(apply_info);
+               authFriend->show();
     });
 }
 
@@ -67,10 +67,10 @@ void ApplyFriendPage::loadApplyList() {
         }
         // 收到审核好友信号
         connect(apply_item, &ApplyFriendItem::sig_auth_friend, [this](std::shared_ptr<ApplyInfo> apply_info) {
-            //            auto* authFriend = new AuthenFriend(this);
-            //            authFriend->setModal(true);
-            //            authFriend->SetApplyInfo(apply_info);
-            //            authFriend->show();
+                       auto* authFriend = new AuthenFriend(this);
+                       authFriend->setModal(true);
+                       authFriend->setApplyInfo(apply_info);
+                       authFriend->show();
         });
     }
     bool s = true;

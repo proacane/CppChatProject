@@ -20,6 +20,7 @@ public:
     bool checkPassword(const std::string &user_name, const std::string &password, UserInfo &userInfo);
     std::shared_ptr<UserInfo> getUser(int uid);
     std::shared_ptr<UserInfo> getUser(const std::string&name);
+    bool addFriendApply(int from,int to);
 private:
     MysqlMgr() = default;
     MysqlDao _dao;

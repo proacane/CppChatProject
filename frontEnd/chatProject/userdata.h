@@ -26,7 +26,7 @@ class SearchInfo {
 class AddFriendApply {
 public:
     AddFriendApply(int from_uid, QString name, QString desc,
-                   QString icon, QString nick, int gender);
+                   QString icon, QString nick, int gender) : _from_uid(from_uid), _name(name), _desc(desc), _avatar(icon), _nick(nick), _gender(gender){};
     int _from_uid;
     QString _name;
     QString _desc;

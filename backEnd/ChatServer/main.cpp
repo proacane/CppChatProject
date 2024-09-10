@@ -5,7 +5,7 @@
 #include "include/AsioIOServicePool.h"
 #include "include/CServer.h"
 #include "include/ConfigMgr.h"
-#include "include/RedisMgr.h"
+#include "../ChatServer2/include/RedisMgr.h"
 #include "include/ChatServiceImpl.h"
 using namespace std;
 bool b_stop = false;
@@ -43,7 +43,7 @@ int main() {
         auto port_str = cfg["SelfServer"]["Port"];
         CServer s(io_context, atoi(port_str.c_str()));
         io_context.run();
-        RedisMgr::getInstance()->HDel(LOGIN_COUNT, server_name);
+        RedisMgr::getInstance()->hDel(LOGIN_COUNT, server_name);
         RedisMgr::getInstance()->close();
         grpc_server_thread.join();
     }

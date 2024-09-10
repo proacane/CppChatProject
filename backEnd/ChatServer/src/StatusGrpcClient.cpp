@@ -7,7 +7,7 @@
 #include <memory>
 #include <spdlog/spdlog.h>
 
-#include "../include/StatusGrpcClient.h"
+#include "../../ChatServer2/include/StatusGrpcClient.h"
 #include "../include/ConfigMgr.h"
 
 StatusGrpcClient::~StatusGrpcClient() = default;

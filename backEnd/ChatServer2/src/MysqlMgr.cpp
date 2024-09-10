@@ -4,7 +4,7 @@
  *  Description: 
  *  Author: ACAね
 */
-#include "../include/MysqlMgr.h"
+#include "../../ChatServer2/include/MysqlMgr.h"
 
 int MysqlMgr::registerUser(const std::string &user_name, const std::string &email, const std::string &password) {
     return _dao.registerUser(user_name, email, password);
@@ -28,4 +28,8 @@ std::shared_ptr<UserInfo> MysqlMgr::getUser(int uid) {
 
 std::shared_ptr<UserInfo> MysqlMgr::getUser(const std::string &name) {
     return _dao.getUser(name);
+}
+
+bool MysqlMgr::addFriendApply(int from, int to) {
+    return _dao.addFriendApply(from,to);
 }

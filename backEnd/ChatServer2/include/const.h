@@ -27,6 +27,7 @@
 #define HEAD_DATA_LEN 2
 #define MAX_REC_QUE  10000
 #define MAX_SEND_QUE 1000
+
 namespace beast = boost::beast;         // from <boost/beast.hpp>
 namespace http = beast::http;           // from <boost/beast/http.hpp>
 namespace net = boost::asio;            // from <boost/asio.hpp>
@@ -46,6 +47,7 @@ enum ErrorCodes {
     UserPasswordError = 1010,// 密码错误或用户不存在
     TokenInvalid = 1011,   //Token失效
     UidInvalid = 1012,  //uid无效
+    ApplyFriendFail = 1013, // 申请添加好友失败
 };
 
 class Defer {

@@ -15,3 +15,17 @@ void UserMgr::setToken(QString token) {
 std::vector<std::shared_ptr<ApplyInfo> > UserMgr::getApplyList() {
     return _apply_list;
 }
+
+bool UserMgr::alreadyApply(int uid) {
+    for (auto& apply : _apply_list) {
+        if (apply->_uid == uid) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+void UserMgr::addApplyList(std::shared_ptr<ApplyInfo> app) {
+    _apply_list.push_back(app);
+}

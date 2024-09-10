@@ -26,7 +26,7 @@ class LogicSystem : public SingleTon<LogicSystem> {
     friend class SingleTon<LogicSystem>;
 
 public:
-    ~LogicSystem();
+    ~LogicSystem() override;
 
     void postMsgQue(std::shared_ptr<LogicNode> msg);
 
@@ -48,6 +48,8 @@ private:
 
     // 处理查询用户请求
     void searchInfo(std::shared_ptr<CSession> session, const short &msg_id, const std::string &msg_data);
+    // 处理添加好友的请求
+    void addFriendApply(std::shared_ptr<CSession> session, const short &msg_id, const std::string &msg_data);
 
     std::thread _worker_thread;
     std::queue<std::shared_ptr<LogicNode>> _msg_que;
@@ -63,7 +65,7 @@ private:
 
     void getUserById(const std::string &str, Json::Value& value);
 
-    void getUserByName(const std::string&name, Json::Value& value);
+    void getUserByName(const std::string& name, Json::Value& value);
 };
 
 #endif //CHATSERVER_LOGICSYSTEM_H

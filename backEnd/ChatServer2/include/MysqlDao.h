@@ -123,6 +123,14 @@ public:
      * @return
      */
     std::shared_ptr<UserInfo> getUser(const std::string&name );
+
+    /**
+     * 发送好友申请
+     * @param uid 发送方
+     * @param to_uid 接收方
+     * @return
+     */
+    bool addFriendApply(int uid,int to_uid);
 private:
     std::unique_ptr<MysqlPool> _pool;
 };

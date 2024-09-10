@@ -7,7 +7,7 @@
 #include <memory>
 #include <utility>
 #include <spdlog/spdlog.h>
-#include "../include/MysqlDao.h"
+#include "../../ChatServer2/include/MysqlDao.h"
 #include "../include/const.h"
 #include <jdbc/cppconn/statement.h>
 #include "../include/ConfigMgr.h"
@@ -390,5 +390,34 @@ std::shared_ptr<UserInfo> MysqlDao::getUser(const std::string &name) {
                      e.getErrorCode(),
                      e.getSQLState());
         return nullptr;
+    }
+}
+
+bool MysqlDao::addFriendApply(int uid, int to_uid) {
+    auto con = _pool->getConnection();
+    try {
+        if (con == nullptr) {
+            return false;
+        }
+        std::unique_ptr<sql::PreparedStatement> preparedStatement(
+                con->_connection->prepareStatement(
+                        "INSERT IGNORE INTO friend_apply (from_uid, to_uid) VALUES (?, ?);"));
+        preparedStatement->setInt(1, uid);
+        preparedStatement->setInt(2, to_uid);
+
+        // 执行更新
+        int row_affected = preparedStatement->executeUpdate();
+        if (row_affected < 0) {
+            return false;
+        }
+        _pool->returnConnection(std::move(con));
+        return true;
+    } catch (const sql::SQLException &e) {
+        _pool->returnConnection(std::move(con));
+        spdlog::warn("SQLException: {} (MySQL error code: {}, SQLState: {})",
+                     e.what(),
+                     e.getErrorCode(),
+                     e.getSQLState());
+        return false;
     }
 }

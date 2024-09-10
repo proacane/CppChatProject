@@ -47,6 +47,7 @@ enum ErrorCodes {
     UserPasswordError = 1010,// 密码错误或用户不存在
     TokenInvalid = 1011,   //Token失效
     UidInvalid = 1012,  //uid无效
+    ApplyFriendFail = 1013, // 申请添加好友失败
 };
 
 class Defer {

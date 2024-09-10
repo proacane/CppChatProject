@@ -22,6 +22,8 @@ using message::GetChatServerRsp;
 using message::StatusService;
 using message::LoginRsp;
 using message::LoginReq;
+using message::AddFriendReq;
+
 
 class StatusConPool {
 public:

@@ -50,6 +50,7 @@ void StateWidget::setSelected(bool bselected) {
 void StateWidget::addRedPoint() {
     // 添加红点示意图
     _red_point = new QLabel();
+    _red_point->setPixmap(QPixmap(":/images/red_point.png"));
     _red_point->setObjectName("red_point");
     QVBoxLayout* layout2 = new QVBoxLayout;
     _red_point->setAlignment(Qt::AlignCenter);

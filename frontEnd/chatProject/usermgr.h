@@ -23,7 +23,11 @@ class UserMgr : public QObject, public SingleTon<UserMgr>, public std::enable_sh
         return _user_name;
     }
     std::vector<std::shared_ptr<ApplyInfo>> getApplyList();
-
+    int getUid()const{
+        return _uid;
+    }
+    bool alreadyApply(int uid);
+    void addApplyList(std::shared_ptr<ApplyInfo> app);
   private:
     UserMgr() = default;
     QString _user_name;

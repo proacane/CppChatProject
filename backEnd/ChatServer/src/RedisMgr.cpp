@@ -7,7 +7,7 @@
 #include <memory>
 #include <utility>
 #include "../include/ConfigMgr.h"
-#include "../include/RedisMgr.h"
+#include "../../ChatServer2/include/RedisMgr.h"
 #include <spdlog/spdlog.h>
 
 RedisMgr::RedisMgr() {
@@ -302,7 +302,7 @@ void RedisMgr::close() {
     _con_pool->close();
 }
 
-bool RedisMgr::HDel(const std::string &key, const std::string &field) {
+bool RedisMgr::hDel(const std::string &key, const std::string &field) {
     auto connect = _con_pool->getConnection();
     if (connect == nullptr) {
         return false;

@@ -1,8 +1,8 @@
 #include "tcpmgr.h"
 
-#include "usermgr.h"
-
 #include <QJsonDocument>
+
+#include "usermgr.h"
 
 TcpMgr::TcpMgr(QObject* parent) :
     QObject{parent}, _host(""), _port(0), _b_rec_pending(false), _message_id(0), _message_len(0) {
@@ -49,8 +49,8 @@ TcpMgr::TcpMgr(QObject* parent) :
             // 移除包体
             _buffer = _buffer.mid(_message_len);
 
-            qDebug() << "Receive message is :" ;
-            qDebug().noquote() <<message_body;
+            qDebug() << "Receive message is :";
+            qDebug().noquote() << message_body;
             // 处理消息
             handleMsg(ReqId(_message_id), _message_len, std::move(message_body));
         }
@@ -76,7 +76,7 @@ TcpMgr::TcpMgr(QObject* parent) :
 void TcpMgr::initHandlers() {
     _handlers.insert(ReqId::ID_CHAT_LOGIN_RSP, [this](ReqId id, int len, QByteArray data) {
         qDebug() << "Handle id is " << id << ", data is ";
-        qDebug().noquote()<<data;
+        qDebug().noquote() << data;
         // 转换为 json
         QJsonDocument json_doc = QJsonDocument::fromJson(data);
         if (json_doc.isNull()) {
@@ -99,7 +99,7 @@ void TcpMgr::initHandlers() {
             emit sig_login_failed(err);
             return;
         }
-
+        // TODO 登录后缓存其它信息
         UserMgr::getInstance()->setUid(json_obj["uid"].toInt());
         UserMgr::getInstance()->setUserName(json_obj["user_name"].toString());
         UserMgr::getInstance()->setToken(json_obj["token"].toString());
@@ -108,9 +108,9 @@ void TcpMgr::initHandlers() {
     });
 
     // 查询用户
-    _handlers.insert(ReqId::ID_SEARCH_USER_RSP,[this](ReqId id, int len, QByteArray data){
+    _handlers.insert(ReqId::ID_SEARCH_USER_RSP, [this](ReqId id, int len, QByteArray data) {
         qDebug() << "Handle id is " << id << ", data is ";
-        qDebug().noquote()<<data;
+        qDebug().noquote() << data;
 
         QJsonDocument json_doc = QJsonDocument::fromJson(data);
         if (json_doc.isNull()) {
@@ -128,19 +128,81 @@ void TcpMgr::initHandlers() {
         }
 
         int err = json_obj["error"].toInt();
-        if(err != ErrorCodes::SUCCESS){
-            qDebug() << "Search user Failed, err is " << err ;
+        if (err != ErrorCodes::SUCCESS) {
+            qDebug() << "Search user Failed, err is " << err;
             emit sig_user_search_failed(err);
             return;
         }
 
         // 创建用户信息
-        auto search_info = std::make_shared<SearchInfo>(json_obj["uid"].toInt(),
-                                                        json_obj["name"].toString(), json_obj["nick"].toString(),
-                                                        json_obj["desc"].toString(), json_obj["gender"].toInt(), json_obj["avatar"].toString());
+        auto search_info = std::make_shared<SearchInfo>(json_obj["uid"].toInt(), json_obj["name"].toString(),
+                                                        json_obj["nick"].toString(), json_obj["desc"].toString(),
+                                                        json_obj["gender"].toInt(), json_obj["avatar"].toString());
         // 通知 SearchList
         emit sig_user_search(search_info);
+    });
+    // TODO 发送好友请求后，返回给自己的响应
+    _handlers.insert(ReqId::ID_ADD_FRIEND_RSP,[this](ReqId id, int len, QByteArray data){
+        qDebug() << "Handle id is " << id << ", data is ";
+        qDebug().noquote() << data;
 
+        QJsonDocument json_doc = QJsonDocument::fromJson(data);
+        if (json_doc.isNull()) {
+            qDebug() << "Failed to create QJsonDocument.";
+            return;
+        }
+
+        QJsonObject json_obj = json_doc.object();
+        // json 必须包含 error
+        if (!json_obj.contains("error")) {
+            int err = ErrorCodes::ERR_JSON;
+            qDebug() << "Apply friend Failed, err is Json Parse Err: " << err;
+            emit sig_friend_apply_failed(err);
+            return;
+        }
+
+        int err = json_obj["error"].toInt();
+        if (err != ErrorCodes::SUCCESS) {
+            qDebug() << "Apply friend Failed, err is " << err;
+            emit sig_friend_apply_failed(err);
+            return;
+        }
+    });
+
+    // 收到了好友请求
+    _handlers.insert(ReqId::ID_NOTIFY_ADD_FRIEND_REQ, [this](ReqId id, int len, QByteArray data) {
+        qDebug() << "Handle id is " << id << ", data is ";
+        qDebug().noquote() << data;
+
+        QJsonDocument json_doc = QJsonDocument::fromJson(data);
+        if (json_doc.isNull()) {
+            qDebug() << "Failed to create QJsonDocument.";
+            return;
+        }
+
+        QJsonObject json_obj = json_doc.object();
+        // json 必须包含 error
+        if (!json_obj.contains("error")) {
+            int err = ErrorCodes::ERR_JSON;
+            qDebug() << "Receive Apply friend Failed, err is Json Parse Err: " << err;
+            return;
+        }
+
+        int err = json_obj["error"].toInt();
+        if (err != ErrorCodes::SUCCESS) {
+            qDebug() << "Receive Apply friend Failed, err is " << err;
+            return;
+        }
+
+        int from_uid = json_obj["applyuid"].toInt();
+        QString name = json_obj["name"].toString();
+        QString desc = json_obj["desc"].toString();
+        QString icon = json_obj["avatar"].toString();
+        QString nick = json_obj["nick"].toString();
+        int gender = json_obj["gender"].toInt();
+        auto apply_info = std::make_shared<AddFriendApply>(from_uid, name, desc, icon, nick, gender);
+        // 接收好友请求
+        emit sig_friend_apply(apply_info);
     });
 }
 
@@ -158,7 +220,7 @@ void TcpMgr::handleMsg(ReqId id, int len, QByteArray data) {
 void TcpMgr::slot_tcp_connect(ServerInfo si) {
     qDebug() << "receive tcp connect signal";
     // 尝试连接到服务器
-    qDebug() << "Trying to connect to chat server, ip "<<si.Host<<", port "<<si.Port;
+    qDebug() << "Trying to connect to chat server, ip " << si.Host << ", port " << si.Port;
     _host = si.Host;
     _port = si.Port.toUInt();
     _socket.connectToHost(si.Host, _port);
@@ -179,7 +241,7 @@ void TcpMgr::slot_send_data(ReqId reqId, QString data) {
     // 写入 id 和长度
     out << id << len;
     send_data.append(dataBytes);
-    qDebug()<<"slot send data to tcp server is: ";
-    qDebug().noquote()<<dataBytes;
+    qDebug() << "slot send data to tcp server is: ";
+    qDebug().noquote() << dataBytes;
     _socket.write(send_data);
 }

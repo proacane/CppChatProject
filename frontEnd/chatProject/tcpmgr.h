@@ -41,6 +41,7 @@ public slots:
     void slot_tcp_connect(ServerInfo);
     void slot_send_data(ReqId reqId, QString data);
   signals:
+    // TODO TCP 响应失败统一处理
     void sig_connect_success(bool bsuccess);
     void sig_send_data(ReqId reqId, QString data);
     void sig_swich_chatdlg();
@@ -53,6 +54,8 @@ public slots:
     void sig_add_auth_friend(std::shared_ptr<AuthInfo>);
     // 自己同意别人的好友请求
     void sig_auth_rsp(std::shared_ptr<AuthRsp>);
+
+    void sig_friend_apply_failed(int err);
 };
 
 #endif  // TCPMGR_H
