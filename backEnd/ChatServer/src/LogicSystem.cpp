@@ -4,13 +4,13 @@
  *  Description: 
  *  Author: ACAね
 */
-#include "../../ChatServer2/include/LogicSystem.h"
+#include "../include/LogicSystem.h"
 #include "../include/CSession.h"
 #include <spdlog/spdlog.h>
 #include <json/reader.h>
 #include <json/value.h>
-#include "../../ChatServer2/include/StatusGrpcClient.h"
-#include "../../ChatServer2/include/RedisMgr.h"
+#include "../include/StatusGrpcClient.h"
+#include "../include/RedisMgr.h"
 #include "../include/ConfigMgr.h"
 #include "../include/UserMgr.h"
 #include "../include/ChatGrpcClient.h"
@@ -123,14 +123,35 @@ void LogicSystem::loginHandler(std::shared_ptr<CSession> session, const short &m
         return_value["error"] = ErrorCodes::UidInvalid;
         return;
     }
-    // 返回给客户端
+
     return_value["uid"] = uid;
-//    return_value["password"] = user_info->pwd;
     return_value["token"] = token;
     return_value["name"] = user_info->name;
     return_value["error"] = ErrorCodes::Success;
+    return_value["gender"] = user_info->gender;
+    return_value["avatar"] = user_info->avatar;
+    return_value["nick"] = user_info->nick;
+    // TODO 从数据库获取自己发出的好友申请与接收到的申请列表
+    // 从数据库获取申请列表，暂时显示自己接收到的
+    std::vector<std::shared_ptr<ApplyInfo>> apply_list;
+    // 最多显示 20 条
+    auto b_apply = MysqlMgr::getInstance()->getFriendApplyList(uid,20,apply_list);
+    if(b_apply){
+        for (auto & apply : apply_list) {
+            Json::Value obj;
+            obj["name"] = apply->_name;
+            obj["uid"] = apply->_uid;
+            obj["avatar"] = apply->_avatar;
+            obj["nick"] = apply->_nick;
+            obj["gender"] = apply->_gender;
+            obj["desc"] = apply->_desc;
+            obj["status"] = apply->_status;
+            return_value["apply_list"].append(obj);
+        }
+    }else{
+        spdlog::error("Some error occurred when query friend apply list");
+    }
 
-    // TODO 从数据库获取申请列表
     // TODO 获取好友列表
 
     auto server_name = ConfigMgr::getInstance().getValue("SelfServer", "Name");

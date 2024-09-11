@@ -27,9 +27,9 @@ struct UserInfo {
 
 struct ApplyInfo {
     ApplyInfo(int uid, std::string name, std::string desc,
-              std::string icon, std::string nick, int sex, int status)
+              std::string avatar, std::string nick, int gender, int status)
             : _uid(uid), _name(name), _desc(desc),
-              _avatar(icon), _nick(nick), _gender(sex), _status(status){}
+              _avatar(avatar), _nick(nick), _gender(gender), _status(status){}
 
     int _uid;
     std::string _name;

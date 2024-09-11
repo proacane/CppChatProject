@@ -6,8 +6,8 @@
 */
 #include <spdlog/spdlog.h>
 #include "../include/ChatGrpcClient.h"
-#include "../../ChatServer2/include/RedisMgr.h"
-#include "../../ChatServer2/include/MysqlMgr.h"
+#include "../include/RedisMgr.h"
+#include "../include/MysqlMgr.h"
 #include "../include/UserMgr.h"
 ChatConnectionPool::ChatConnectionPool(size_t pool_size, std::string host, std::string port) : _pool_size(pool_size),
                                                                                                _host(host), _port(port),

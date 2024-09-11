@@ -7,10 +7,11 @@
 #include <memory>
 #include <utility>
 #include <spdlog/spdlog.h>
-#include "../../ChatServer2/include/MysqlDao.h"
+#include "../include/MysqlDao.h"
 #include "../include/const.h"
 #include <jdbc/cppconn/statement.h>
 #include "../include/ConfigMgr.h"
+
 #include <jdbc/cppconn/prepared_statement.h>
 
 SqlConnection::SqlConnection(sql::Connection *con, int64_t lasttime) : _connection(con),
@@ -409,6 +410,42 @@ bool MysqlDao::addFriendApply(int uid, int to_uid) {
         int row_affected = preparedStatement->executeUpdate();
         if (row_affected < 0) {
             return false;
+        }
+        _pool->returnConnection(std::move(con));
+        return true;
+    } catch (const sql::SQLException &e) {
+        _pool->returnConnection(std::move(con));
+        spdlog::warn("SQLException: {} (MySQL error code: {}, SQLState: {})",
+                     e.what(),
+                     e.getErrorCode(),
+                     e.getSQLState());
+        return false;
+    }
+}
+
+bool MysqlDao::getFriendApplyList(int uid, int limit, std::vector<std::shared_ptr<ApplyInfo>> &apply_list) {
+    auto con = _pool->getConnection();
+    try {
+        if (con == nullptr) {
+            return false;
+        }
+        // 查询申请列表,查出的都是申请人的信息
+        std::unique_ptr<sql::PreparedStatement> preparedStatement(
+                con->_connection->prepareStatement(
+                        "select apply.from_uid, apply.status, user.name, user.nick, user.gender from friend_apply as apply join user on apply.from_uid = user.uid where apply.to_uid = ? order by apply.id ASC LIMIT ? "));
+        preparedStatement->setInt(1, uid);
+        preparedStatement->setInt(2, limit);
+        // 执行查询
+        std::unique_ptr<sql::ResultSet> res(preparedStatement->executeQuery());
+        // 遍历结果集
+        while (res->next()) {
+            auto name = res->getString("name");
+            auto uid_f = res->getInt("from_uid");
+            auto status = res->getInt("status");
+            auto nick = res->getString("nick");
+            auto gender = res->getInt("gender");
+            auto apply_ptr = std::make_shared<ApplyInfo>(uid_f, name, "", "", nick, gender, status);
+            apply_list.push_back(apply_ptr);
         }
         _pool->returnConnection(std::move(con));
         return true;

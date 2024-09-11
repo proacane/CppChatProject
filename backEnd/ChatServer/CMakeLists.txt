@@ -32,7 +32,6 @@ include_directories(${MYSQL_CONNECTOR_CPP_INCLUDE_DIR})
 # 添加库文件路径
 link_directories(${MYSQL_CONNECTOR_CPP_LIBRARY_DIR})
 
-
 add_executable(ChatServer main.cpp
         include/ConfigMgr.h
         src/ConfigMgr.cpp
@@ -58,8 +57,9 @@ add_executable(ChatServer main.cpp
         proto/message.grpc.pb.h
         proto/message.pb.h
         proto/message.proto
+        include/RedisMgr.h
         src/RedisMgr.cpp
-src/StatusGrpcClient.cpp
+        src/StatusGrpcClient.cpp
         include/ChatGrpcClient.h
         src/ChatGrpcClient.cpp
         include/data.h

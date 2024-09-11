@@ -5,7 +5,7 @@
 #include "include/AsioIOServicePool.h"
 #include "include/CServer.h"
 #include "include/ConfigMgr.h"
-#include "../ChatServer2/include/RedisMgr.h"
+#include "include/RedisMgr.h"
 #include "include/ChatServiceImpl.h"
 using namespace std;
 bool b_stop = false;

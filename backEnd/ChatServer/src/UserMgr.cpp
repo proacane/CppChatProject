@@ -6,7 +6,7 @@
 */
 #include "../include/UserMgr.h"
 #include "../include/CSession.h"
-#include "../../ChatServer2/include/RedisMgr.h"
+#include "../include/RedisMgr.h"
 
 UserMgr::~UserMgr() {
     _uid_to_session.clear();

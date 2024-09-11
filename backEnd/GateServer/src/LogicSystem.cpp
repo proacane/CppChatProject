@@ -254,7 +254,7 @@ LogicSystem::LogicSystem() {
             return ;
         }
 
-        spdlog::info("Login succeed, user uid is {}", userInfo.uid);
+        spdlog::info("Login verify succeed, user uid is {}", userInfo.uid);
         root["error"] = ErrorCodes::Success;
         root["user"] = user_name;
         root["uid"] = userInfo.uid;

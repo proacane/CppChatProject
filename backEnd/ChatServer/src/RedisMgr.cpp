@@ -7,7 +7,7 @@
 #include <memory>
 #include <utility>
 #include "../include/ConfigMgr.h"
-#include "../../ChatServer2/include/RedisMgr.h"
+#include "../include/RedisMgr.h"
 #include <spdlog/spdlog.h>
 
 RedisMgr::RedisMgr() {

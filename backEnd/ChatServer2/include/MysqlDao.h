@@ -12,6 +12,7 @@
 #include <queue>
 #include <mutex>
 #include "data.h"
+
 class SqlConnection {
 public:
     SqlConnection(sql::Connection *con, int64_t lasttime);
@@ -131,6 +132,14 @@ public:
      * @return
      */
     bool addFriendApply(int uid,int to_uid);
+
+    /**
+     * 查询申请列表
+     * @param uid
+     * @param limit
+     * @return
+     */
+    bool getFriendApplyList(int uid,int limit,std::vector<std::shared_ptr<ApplyInfo>>& apply_list);
 private:
     std::unique_ptr<MysqlPool> _pool;
 };
