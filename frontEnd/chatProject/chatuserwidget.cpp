@@ -26,3 +26,20 @@ void ChatUserWidget::setInfo(QString name, QString avatar, QString msg) {
     ui->lab_user_name->setText(_name);
     ui->lab_chat_msg->setText(_msg);
 }
+
+void ChatUserWidget::setInfo(std::shared_ptr<UserInfo> user_info) {
+    _name = user_info->_name;
+    _avatar = user_info->_avatar;
+    _msg = user_info->_last_msg;
+
+    // 加载图片
+    QPixmap pix(_avatar);
+
+    // 设置图片自动缩放
+    // 设置图片自动缩放
+    ui->lab_avatar->setPixmap(pix.scaled(ui->lab_avatar->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->lab_avatar->setScaledContents(true);
+
+    ui->lab_user_name->setText(_name);
+    ui->lab_chat_msg->setText(_msg);
+}

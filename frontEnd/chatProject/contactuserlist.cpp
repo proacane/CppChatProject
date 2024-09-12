@@ -7,7 +7,8 @@
 
 #include "contactuseritem.h"
 #include "grouptipitem.h"
-
+#include "tcpmgr.h"
+#include "usermgr.h"
 
 ContactUserList::ContactUserList(QWidget* parent) : QListWidget(parent) {
     this->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -19,12 +20,10 @@ ContactUserList::ContactUserList(QWidget* parent) : QListWidget(parent) {
     addContactUserList();
 
     connect(this, &ContactUserList::itemClicked, this, &ContactUserList::slot_item_clicked);
-    //    //链接对端同意认证后通知的信号
-    //    connect(TcpMgr::GetInstance().get(), &TcpMgr::sig_add_auth_friend,this,
-    //            &ContactUserList::slot_add_auth_firend);
-    //    //链接自己点击同意认证后界面刷新
-    //    connect(TcpMgr::GetInstance().get(), &TcpMgr::sig_auth_rsp,this,
-    //            &ContactUserList::slot_auth_rsp);
+    // 链接对端同意认证后通知的信号，添加到联系人列表
+    connect(TcpMgr::getInstance().get(), &TcpMgr::sig_add_auth_friend, this, &ContactUserList::slot_add_auth_firend);
+    // 链接自己点击同意认证后界面刷新，添加到联系人列表
+    connect(TcpMgr::getInstance().get(), &TcpMgr::sig_auth_rsp, this, &ContactUserList::slot_auth_rsp);
 }
 
 void ContactUserList::showRedPoint(bool b_show) {
@@ -65,19 +64,19 @@ void ContactUserList::addContactUserList() {
 
     // 添加模拟用户
     // 创建QListWidgetItem，并设置自定义的widget
-    for (int i = 0; i < 13; i++) {
-        int randomValue = QRandomGenerator::global()->bounded(100);  // 生成0到99之间的随机整数
-        int str_i = randomValue % strs.size();
-        int head_i = randomValue % heads.size();
-        int name_i = randomValue % names.size();
-        auto* con_user_wid = new ContactUserItem();
-        con_user_wid->setInfo(0, names[name_i], heads[head_i]);
-        QListWidgetItem* item = new QListWidgetItem;
-        // qDebug()<<"chat_user_wid sizeHint is " << chat_user_wid->sizeHint();
-        item->setSizeHint(con_user_wid->sizeHint());
-        this->addItem(item);
-        this->setItemWidget(item, con_user_wid);
-    }
+    // for (int i = 0; i < 13; i++) {
+    //     int randomValue = QRandomGenerator::global()->bounded(100);  // 生成0到99之间的随机整数
+    //     int str_i = randomValue % strs.size();
+    //     int head_i = randomValue % heads.size();
+    //     int name_i = randomValue % names.size();
+    //     auto* con_user_wid = new ContactUserItem();
+    //     con_user_wid->setInfo(0, names[name_i], heads[head_i]);
+    //     QListWidgetItem* item = new QListWidgetItem;
+    //     // qDebug()<<"chat_user_wid sizeHint is " << chat_user_wid->sizeHint();
+    //     item->setSizeHint(con_user_wid->sizeHint());
+    //     this->addItem(item);
+    //     this->setItemWidget(item, con_user_wid);
+    // }
 }
 
 void ContactUserList::slot_item_clicked(QListWidgetItem* item) {
@@ -112,6 +111,44 @@ void ContactUserList::slot_item_clicked(QListWidgetItem* item) {
         emit sig_switch_friend_info_page();
         return;
     }
+}
+
+void ContactUserList::slot_add_auth_firend(std::shared_ptr<AuthInfo> auth_info) {
+    qDebug() << "slot add auth friend called";
+    bool isFriend = UserMgr::getInstance()->checkFriendById(auth_info->_uid);
+    if (isFriend) {
+        return;
+    }
+    // 在 groupitem 之后插入新项
+    auto* con_user_wid = new ContactUserItem();
+    con_user_wid->setInfo(auth_info->_uid, auth_info->_name, auth_info->_avatar);
+    QListWidgetItem* item = new QListWidgetItem;
+    // qDebug()<<"chat_user_wid sizeHint is " << chat_user_wid->sizeHint();
+    item->setSizeHint(con_user_wid->sizeHint());
+    // 获取 groupitem 的索引
+    int index = this->row(_groupitem);
+    // 在 groupitem 之后插入新项
+    this->insertItem(index + 1, item);
+    this->setItemWidget(item, con_user_wid);
+}
+
+void ContactUserList::slot_auth_rsp(std::shared_ptr<AuthRsp> auth_rsp) {
+    qDebug() << "slot auth rsp called";
+    bool isFriend = UserMgr::getInstance()->checkFriendById(auth_rsp->_uid);
+    if (isFriend) {
+        return;
+    }
+    // 在 groupitem 之后插入新项
+    auto* con_user_wid = new ContactUserItem();
+    con_user_wid->setInfo(auth_rsp->_uid, auth_rsp->_name, auth_rsp->_avatar);
+    QListWidgetItem* item = new QListWidgetItem;
+    // qDebug()<<"chat_user_wid sizeHint is " << chat_user_wid->sizeHint();
+    item->setSizeHint(con_user_wid->sizeHint());
+    // 获取 groupitem 的索引
+    int index = this->row(_groupitem);
+    // 在 groupitem 之后插入新项
+    this->insertItem(index + 1, item);
+    this->setItemWidget(item, con_user_wid);
 }
 
 bool ContactUserList::eventFilter(QObject* watched, QEvent* event) {

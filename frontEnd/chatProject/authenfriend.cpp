@@ -11,7 +11,7 @@
 AuthenFriend::AuthenFriend(QWidget* parent) : QDialog(parent), ui(new Ui::AuthenFriend), _label_point(2, 6) {
     ui->setupUi(this);
     // 隐藏对话框标题栏
-    setWindowFlags(windowFlags() | Qt::FramelessWindowHint);
+    setWindowFlags(windowFlags() | Qt::WindowCloseButtonHint);
     this->setObjectName("AuthenFriend");
     this->setModal(true);
     ui->lb_ed->setPlaceholderText("搜索、添加标签");

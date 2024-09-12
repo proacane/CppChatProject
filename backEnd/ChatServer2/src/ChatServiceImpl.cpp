@@ -7,6 +7,8 @@
 #include "../include/ChatServiceImpl.h"
 #include "../include/UserMgr.h"
 #include "../include/CSession.h"
+#include "../include/RedisMgr.h"
+#include"../include/MysqlMgr.h"
 
 ChatServiceImpl::~ChatServiceImpl() = default;
 
@@ -51,9 +53,80 @@ Status ChatServiceImpl::SendChatMsg(::grpc::ServerContext *context, const ::mess
     return Service::SendChatMsg(context, request, response);
 }
 
+bool ChatServiceImpl::getBaseInfo(const std::string &base_key, int uid, std::shared_ptr<UserInfo> userInfo) {
+    // 先在 redis 中查，查不到去数据库查，数据库查到了就写进redis
+    std::string info_str = "";
+    bool b_base = RedisMgr::getInstance()->get(base_key, info_str);
+    if (b_base) {
+        Json::Reader reader;
+        Json::Value root;
+        reader.parse(info_str, root);
+        userInfo->uid = root["uid"].asInt();
+        userInfo->name = root["name"].asString();
+        userInfo->pwd = root["pwd"].asString();
+        userInfo->email = root["email"].asString();
+        userInfo->nick = root["nick"].asString();
+        userInfo->desc = root["desc"].asString();
+        userInfo->gender = root["gender"].asInt();
+        userInfo->avatar = root["avatar"].asString();
+        spdlog::info("user login uid is {}, name is {}, email is {}", userInfo->uid, userInfo->name, userInfo->email);
+    } else {
+        std::shared_ptr<UserInfo> user_info = nullptr;
+        user_info = MysqlMgr::getInstance()->getUser(uid);
+        if (user_info == nullptr) {
+            return false;
+        }
+        userInfo = user_info;
+        // 写入 redis
+        Json::Value redis_root;
+        redis_root["uid"] = uid;
+        redis_root["pwd"] = userInfo->pwd;
+        redis_root["name"] = userInfo->name;
+        redis_root["email"] = userInfo->email;
+        redis_root["nick"] = userInfo->nick;
+        redis_root["desc"] = userInfo->desc;
+        redis_root["gender"] = userInfo->gender;
+        redis_root["avatar"] = userInfo->avatar;
+        RedisMgr::getInstance()->set(base_key, redis_root.toStyledString());
+    }
+    return true;
+}
+
 Status ChatServiceImpl::NotifyAuthFriend(::grpc::ServerContext *context, const ::message::AuthFriendReq *request,
-                                         ::message::AuthFriendRsp *response) {
-    return Service::NotifyAuthFriend(context, request, response);
+                                         ::message::AuthFriendRsp *reply) {
+    //查找用户是否在本服务器
+    auto touid = request->touid();
+    auto fromuid = request->fromuid();
+    auto session = UserMgr::getInstance()->getSession(touid);
+    Defer defer([request, reply]() {
+        reply->set_error(ErrorCodes::Success);
+        reply->set_fromuid(request->fromuid());
+        reply->set_touid(request->touid());
+    });
+    //用户不在内存中则直接返回
+    if (session == nullptr) {
+        spdlog::warn("can't find server");
+        return Status::OK;
+    }
+    //在内存中则直接发送通知对方
+    Json::Value rtvalue;
+    rtvalue["error"] = ErrorCodes::Success;
+    rtvalue["fromuid"] = request->fromuid();
+    rtvalue["touid"] = request->touid();
+    std::string base_key = USER_BASE_INFO + std::to_string(fromuid);
+    auto user_info = std::make_shared<UserInfo>();
+    bool b_info = getBaseInfo(base_key, fromuid, user_info);
+    if (b_info) {
+        rtvalue["name"] = user_info->name;
+        rtvalue["nick"] = user_info->nick;
+        rtvalue["avatar"] = user_info->avatar;
+        rtvalue["gender"] = user_info->gender;
+    } else {
+        rtvalue["error"] = ErrorCodes::UidInvalid;
+    }
+    std::string return_str = rtvalue.toStyledString();
+    session->send(return_str, ID_NOTIFY_AUTH_FRIEND_REQ);
+    return Status::OK;
 }
 
 Status ChatServiceImpl::NotifyTextChatMsg(::grpc::ServerContext *context, const ::message::TextChatMsgReq *request,

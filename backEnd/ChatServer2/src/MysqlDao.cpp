@@ -432,7 +432,7 @@ bool MysqlDao::getFriendApplyList(int uid, int limit, std::vector<std::shared_pt
         // 查询申请列表,查出的都是申请人的信息
         std::unique_ptr<sql::PreparedStatement> preparedStatement(
                 con->_connection->prepareStatement(
-                        "select apply.from_uid, apply.status, user.name, user.nick, user.gender from friend_apply as apply join user on apply.from_uid = user.uid where apply.to_uid = ? order by apply.id ASC LIMIT ? "));
+                        "select apply.from_uid, apply.status, user.name, user.nick, user.gender, user.avatar from friend_apply as apply join user on apply.from_uid = user.uid where apply.to_uid = ? order by apply.id ASC LIMIT ? "));
         preparedStatement->setInt(1, uid);
         preparedStatement->setInt(2, limit);
         // 执行查询
@@ -444,9 +444,86 @@ bool MysqlDao::getFriendApplyList(int uid, int limit, std::vector<std::shared_pt
             auto status = res->getInt("status");
             auto nick = res->getString("nick");
             auto gender = res->getInt("gender");
-            auto apply_ptr = std::make_shared<ApplyInfo>(uid_f, name, "", "", nick, gender, status);
+            auto avatar = res->getString("avatar");
+            auto apply_ptr = std::make_shared<ApplyInfo>(uid_f, name, "", avatar, nick, gender, status);
             apply_list.push_back(apply_ptr);
         }
+        _pool->returnConnection(std::move(con));
+        return true;
+    } catch (const sql::SQLException &e) {
+        _pool->returnConnection(std::move(con));
+        spdlog::warn("SQLException: {} (MySQL error code: {}, SQLState: {})",
+                     e.what(),
+                     e.getErrorCode(),
+                     e.getSQLState());
+        return false;
+    }
+}
+
+bool MysqlDao::authFriendApply(int uid, int to_uid) {
+    auto con = _pool->getConnection();
+    try {
+        if (con == nullptr) {
+            return false;
+        }
+        // 查询申请列表,查出的都是申请人的信息
+        std::unique_ptr<sql::PreparedStatement> preparedStatement(
+                con->_connection->prepareStatement(
+                        "UPDATE friend_apply SET status = 1 WHERE from_uid = ? AND to_uid = ?"));
+        // 认证的时候发起方和接收方是相反的
+        preparedStatement->setInt(1, to_uid);
+        preparedStatement->setInt(2, uid);
+        // 执行更新
+        int rowAffected = preparedStatement->executeUpdate();
+        if (rowAffected < 0) {
+            _pool->returnConnection(std::move(con));
+            return false;
+        }
+        return true;
+    } catch (const sql::SQLException &e) {
+        _pool->returnConnection(std::move(con));
+        spdlog::warn("SQLException: {} (MySQL error code: {}, SQLState: {})",
+                     e.what(),
+                     e.getErrorCode(),
+                     e.getSQLState());
+        return false;
+    }
+}
+
+bool MysqlDao::addFriend(int from_uid, int to_uid, const std::string &back_name) {
+    auto con = _pool->getConnection();
+    try {
+        if (con == nullptr) {
+            return false;
+        }
+        // 开启事务
+        con->_connection->setAutoCommit(false);
+        // 添加两条记录，表示互为好友
+        std::unique_ptr<sql::PreparedStatement> preparedStatement(
+                con->_connection->prepareStatement("INSERT IGNORE INTO friend(self_id, friend_id, back) VALUES (?, ?, ?) "));
+        preparedStatement->setInt(1, from_uid);
+        preparedStatement->setInt(2, to_uid);
+        preparedStatement->setString(3, back_name);
+        int rowAffected = preparedStatement->executeUpdate();
+        if (rowAffected < 0) {
+            con->_connection->rollback();
+            _pool->returnConnection(std::move(con));
+            return false;
+        }
+        std::unique_ptr<sql::PreparedStatement> preparedStatement2(
+                con->_connection->prepareStatement("INSERT IGNORE INTO friend(self_id, friend_id, back) VALUES (?, ?, ?) "));
+        preparedStatement2->setInt(1, to_uid);
+        preparedStatement2->setInt(2, from_uid);
+        // TODO 对方同意好友请求后，用户可以自定义备注
+        preparedStatement2->setString(3, "");
+        rowAffected = preparedStatement2->executeUpdate();
+        if (rowAffected < 0) {
+            con->_connection->rollback();
+            _pool->returnConnection(std::move(con));
+            return false;
+        }
+
+        con->_connection->commit();
         _pool->returnConnection(std::move(con));
         return true;
     } catch (const sql::SQLException &e) {

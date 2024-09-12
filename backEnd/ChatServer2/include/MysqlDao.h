@@ -140,6 +140,22 @@ public:
      * @return
      */
     bool getFriendApplyList(int uid,int limit,std::vector<std::shared_ptr<ApplyInfo>>& apply_list);
+
+    /**
+     * 认证好友
+     * @param uid
+     * @param to_uid
+     * @return
+     */
+    bool authFriendApply(int uid,int to_uid);
+    /**
+     * 添加到好友表
+     * @param from_uid
+     * @param to_uid
+     * @param back_name
+     * @return
+     */
+    bool addFriend(int from_uid,int to_uid,const std::string& back_name);
 private:
     std::unique_ptr<MysqlPool> _pool;
 };

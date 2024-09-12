@@ -52,6 +52,9 @@ public:
 
     Status NotifyTextChatMsg(::grpc::ServerContext *context, const ::message::TextChatMsgReq *request,
                              ::message::TextChatMsgRsp *response) override;
+
+private:
+    bool getBaseInfo(const std::string& base_key, int uid, std::shared_ptr<UserInfo> userInfo);
 };
 
 #endif //CHATSERVER_CHATSERVICEIMPL_H

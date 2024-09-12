@@ -29,8 +29,8 @@ ChatDialog::ChatDialog(QWidget* parent) :
 
     ui->list_search->setSearchEdit(ui->edit_search);
 
-    // TODO 从服务器中获取图片
-    QPixmap pixmap(":/images/head_1.jpg");
+    //  从服务器中获取图片
+    QPixmap pixmap(UserMgr::getInstance()->getAvatar());
     ui->lab_side_avatar->setPixmap(pixmap);  // 将图片设置到QLabel上
     QPixmap scaledPixmap = pixmap.scaled(ui->lab_side_avatar->size(), Qt::KeepAspectRatio);  // 将图片缩放到label的大小
     ui->lab_side_avatar->setPixmap(scaledPixmap);  // 将缩放后的图片设置到QLabel上
@@ -52,6 +52,9 @@ ChatDialog::ChatDialog(QWidget* parent) :
     // 连接申请添加好友信号
     connect(TcpMgr::getInstance().get(), &TcpMgr::sig_friend_apply, this, &ChatDialog::slot_apply_friend);
 
+    // 添加好友到聊天列表
+    connect(TcpMgr::getInstance().get(), &TcpMgr::sig_add_auth_friend, this, &ChatDialog::slot_add_auth_friend);
+    connect(TcpMgr::getInstance().get(), &TcpMgr::sig_auth_rsp, this, &ChatDialog::slot_auth_rsp);
     // 检测鼠标点击位置，判断是否需要关闭搜索框
     installEventFilter(this);
 }
@@ -179,6 +182,50 @@ void ChatDialog::slot_apply_friend(std::shared_ptr<AddFriendApply> apply) {
     ui->lab_side_contact->showRedPoint(true);
     ui->list_contact->showRedPoint(true);
     ui->page_friend_apply->addNewApply(apply);
+}
+
+void ChatDialog::slot_add_auth_friend(std::shared_ptr<AuthInfo> auth_info) {
+    qDebug() << "receive slot_add_auth__friend uid is " << auth_info->_uid << " name is " << auth_info->_name
+             << " nick is " << auth_info->_nick;
+    // 判断如果已经是好友则跳过
+    auto bfriend = UserMgr::getInstance()->checkFriendById(auth_info->_uid);
+    if (bfriend) {
+        return;
+    }
+    // 添加好友
+    UserMgr::getInstance()->addFriend(auth_info);
+
+    auto* chat_user_wid = new ChatUserWidget();
+    auto user_info = std::make_shared<UserInfo>(auth_info);
+    chat_user_wid->setInfo(user_info);
+    QListWidgetItem* item = new QListWidgetItem;
+    // qDebug()<<"chat_user_wid sizeHint is " << chat_user_wid->sizeHint();
+    item->setSizeHint(chat_user_wid->sizeHint());
+    ui->list_chat_user->insertItem(0, item);
+    ui->list_chat_user->setItemWidget(item, chat_user_wid);
+    _chat_items_added.insert(auth_info->_uid, item);
+}
+
+void ChatDialog::slot_auth_rsp(std::shared_ptr<AuthRsp> auth_rsp) {
+    qDebug() << "receive slot_auth_rsp uid is " << auth_rsp->_uid << " name is " << auth_rsp->_name << " nick is "
+             << auth_rsp->_nick;
+    // 判断如果已经是好友则跳过
+    auto bfriend = UserMgr::getInstance()->checkFriendById(auth_rsp->_uid);
+    if (bfriend) {
+        return;
+    }
+    // 添加好友
+    UserMgr::getInstance()->addFriend(auth_rsp);
+
+    auto* chat_user_wid = new ChatUserWidget();
+    auto user_info = std::make_shared<UserInfo>(auth_rsp);
+    chat_user_wid->setInfo(user_info);
+    QListWidgetItem* item = new QListWidgetItem;
+    // qDebug()<<"chat_user_wid sizeHint is " << chat_user_wid->sizeHint();
+    item->setSizeHint(chat_user_wid->sizeHint());
+    ui->list_chat_user->insertItem(0, item);
+    ui->list_chat_user->setItemWidget(item, chat_user_wid);
+    _chat_items_added.insert(auth_rsp->_uid, item);
 }
 
 bool ChatDialog::eventFilter(QObject* watched, QEvent* event) {

@@ -48,7 +48,7 @@ struct ApplyInfo {
         _status(0)
     {}
 
-    void setIcon(QString head){
+    void setAvatar(QString head){
         _avatar = head;
     }
     int _uid;
@@ -76,13 +76,13 @@ struct AuthRsp {
     AuthRsp(int peer_uid, QString peer_name,
             QString peer_nick, QString peer_icon, int peer_gender)
         :_uid(peer_uid),_name(peer_name),_nick(peer_nick),
-        _icon(peer_icon),_gender(peer_gender)
+        _avatar(peer_icon),_gender(peer_gender)
     {}
 
     int _uid;
     QString _name;
     QString _nick;
-    QString _icon;
+    QString _avatar;
     int _gender;
 };
 
@@ -98,7 +98,7 @@ struct FriendInfo {
         _gender(auth_info->_gender){}
 
     FriendInfo(std::shared_ptr<AuthRsp> auth_rsp):_uid(auth_rsp->_uid),
-        _nick(auth_rsp->_nick),_avatar(auth_rsp->_icon),_name(auth_rsp->_name),
+        _nick(auth_rsp->_nick),_avatar(auth_rsp->_avatar),_name(auth_rsp->_name),
         _gender(auth_rsp->_gender){}
 
     void AppendChatMsgs(const std::vector<std::shared_ptr<TextChatData>> text_vec);
@@ -130,7 +130,7 @@ struct UserInfo {
 
     UserInfo(std::shared_ptr<AuthRsp> auth):
         _uid(auth->_uid),_name(auth->_name),_nick(auth->_nick),
-        _avatar(auth->_icon),_gender(auth->_gender),_last_msg(""){}
+        _avatar(auth->_avatar),_gender(auth->_gender),_last_msg(""){}
 
     UserInfo(std::shared_ptr<SearchInfo> search_info):
         _uid(search_info->_uid),_name(search_info->_name),_nick(search_info->_nick),

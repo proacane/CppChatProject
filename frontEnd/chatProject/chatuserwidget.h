@@ -11,6 +11,7 @@
 #include <QWidget>
 
 #include "listitembase.h"
+#include "userdata.h"
 namespace Ui {
     class ChatUserWidget;
 }
@@ -26,7 +27,7 @@ class ChatUserWidget : public ListItemBase {
         return QSize(250, 70);
     }
     void setInfo(QString name, QString avatar, QString msg);
-
+    void setInfo(std::shared_ptr<UserInfo> user_info);
   private:
     Ui::ChatUserWidget* ui;
     // 用户名

@@ -50,7 +50,8 @@ private:
     void searchInfo(std::shared_ptr<CSession> session, const short &msg_id, const std::string &msg_data);
     // 处理添加好友的请求
     void addFriendApply(std::shared_ptr<CSession> session, const short &msg_id, const std::string &msg_data);
-
+    // 处理同意好友申请的请求
+    void authFriendApply(std::shared_ptr<CSession> session, const short &msg_id, const std::string &msg_data);
     std::thread _worker_thread;
     std::queue<std::shared_ptr<LogicNode>> _msg_que;
     std::mutex _mutex;
@@ -58,7 +59,7 @@ private:
     bool _b_stop;
     std::map<short, funCallBack> _fun_callbacks;
 
-    bool getBaseInfo(std::string basicString, int uid, std::shared_ptr<UserInfo> sharedPtr);
+    bool getBaseInfo(const std::string& basicString, int uid, std::shared_ptr<UserInfo> sharedPtr);
 
     // 判断字符串是否为纯数字
     bool isPureDigit(const std::string &s);

@@ -116,8 +116,34 @@ AddFriendRsp ChatGrpcClient::NotifyAddFriend(std::string server_name, const AddF
     return rsp;
 }
 
-AuthFriendRsp ChatGrpcClient::NotifyAuthFriend(std::string server_ip, const AuthFriendReq &req) {
-    return AuthFriendRsp();
+AuthFriendRsp ChatGrpcClient::NotifyAuthFriend(std::string server_name, const AuthFriendReq &req) {
+    AuthFriendRsp rsp;
+    rsp.set_error(ErrorCodes::Success);
+    Defer defer([&req,&rsp]{
+        rsp.set_fromuid(req.fromuid());
+        rsp.set_touid(req.touid());
+    });
+    // 查询对方的服务器
+    auto find_iter = _pools.find(server_name);
+    if (find_iter == _pools.end()) {
+        spdlog::warn("can't find server");
+        return rsp;
+    }
+    auto& pool = find_iter->second;
+    ClientContext context;
+    auto stub = pool->getConnection();
+    Status status = stub->NotifyAuthFriend(&context, req, &rsp);
+    Defer defercon([&stub, this, &pool]() {
+        pool->returnConnection(std::move(stub));
+    });
+    if (!status.ok()) {
+        spdlog::error("gRPC call failed: {}", status.error_message());
+        rsp.set_error(ErrorCodes::RPCFailed);
+        return rsp;
+    } else {
+        spdlog::info("gRPC call succeeded.");
+    }
+    return rsp;
 }
 
 bool ChatGrpcClient::GetBaseInfo(std::string base_key, int uid, std::shared_ptr<UserInfo> &userinfo) {

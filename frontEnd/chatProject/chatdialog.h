@@ -9,6 +9,7 @@
  * @history
  *****************************************************************************/
 #include <QDialog>
+#include <QListWidgetItem>
 
 #include "global.h"
 #include "statewidget.h"
@@ -44,7 +45,8 @@ class ChatDialog : public QDialog {
     // 处理鼠标点击事件
     void handleGlobalMousePress(QMouseEvent* mouseEvent);
 
-
+    // 已经添加的聊天列表
+    QMap<int, QListWidgetItem*> _chat_items_added;
   private slots:
     void slot_loading_chat_user();
     void slot_side_chat();
@@ -52,9 +54,12 @@ class ChatDialog : public QDialog {
     void slot_text_changed(const QString& str);
 
     void slot_apply_friend(std::shared_ptr<AddFriendApply> apply);
+
+    void slot_add_auth_friend(std::shared_ptr<AuthInfo> auth_info);
+    void slot_auth_rsp(std::shared_ptr<AuthRsp> auth_rsp);
     // QObject interface
-public:
-    virtual bool eventFilter(QObject *watched, QEvent *event) override;
+  public:
+    virtual bool eventFilter(QObject* watched, QEvent* event) override;
 };
 
 #endif  // CHATDIALOG_H

@@ -99,10 +99,20 @@ void TcpMgr::initHandlers() {
             emit sig_login_failed(err);
             return;
         }
-        // TODO 登录后缓存其它信息
-        UserMgr::getInstance()->setUid(json_obj["uid"].toInt());
-        UserMgr::getInstance()->setUserName(json_obj["user_name"].toString());
+        // 登录后缓存其它信息
+        auto uid = json_obj["uid"].toInt();
+        auto name = json_obj["name"].toString();
+        auto nick = json_obj["nick"].toString();
+        auto avatar = json_obj["avatar"].toString();
+        auto gender = json_obj["gender"].toInt();
+        auto user_info = std::make_shared<UserInfo>(uid, name, nick, avatar, gender);
+
+        UserMgr::getInstance()->setUserInfo(user_info);
         UserMgr::getInstance()->setToken(json_obj["token"].toString());
+        // 获取申请列表
+        if(json_obj.contains("apply_list")){
+            UserMgr::getInstance()->appendApplyList(json_obj["apply_list"].toArray());
+        }
         // 切换到聊天窗口
         emit sig_swich_chatdlg();
     });
@@ -141,8 +151,9 @@ void TcpMgr::initHandlers() {
         // 通知 SearchList
         emit sig_user_search(search_info);
     });
+
     // TODO 发送好友请求后，返回给自己的响应
-    _handlers.insert(ReqId::ID_ADD_FRIEND_RSP,[this](ReqId id, int len, QByteArray data){
+    _handlers.insert(ReqId::ID_ADD_FRIEND_RSP, [this](ReqId id, int len, QByteArray data) {
         qDebug() << "Handle id is " << id << ", data is ";
         qDebug().noquote() << data;
 
@@ -203,6 +214,74 @@ void TcpMgr::initHandlers() {
         auto apply_info = std::make_shared<AddFriendApply>(from_uid, name, desc, icon, nick, gender);
         // 接收好友请求
         emit sig_friend_apply(apply_info);
+    });
+
+    // 同意好友请求后的处理
+    _handlers.insert(ReqId::ID_AUTH_FRIEND_RSP,[this](ReqId id, int len, QByteArray data){
+        qDebug() << "Handle id is " << id << ", data is ";
+        qDebug().noquote() << data;
+
+        QJsonDocument json_doc = QJsonDocument::fromJson(data);
+        if (json_doc.isNull()) {
+            qDebug() << "Failed to create QJsonDocument.";
+            return;
+        }
+
+        QJsonObject json_obj = json_doc.object();
+        // json 必须包含 error
+        if (!json_obj.contains("error")) {
+            int err = ErrorCodes::ERR_JSON;
+            qDebug() << "Auth friend Failed, err is Json Parse Err: " << err;
+            return;
+        }
+
+        int err = json_obj["error"].toInt();
+        if (err != ErrorCodes::SUCCESS) {
+            qDebug() << "Auth friend Failed, err is " << err;
+            return;
+        }
+
+        auto name = json_obj["name"].toString();
+        auto nick = json_obj["nick"].toString();
+        auto avatar = json_obj["avatar"].toString();
+        auto gender = json_obj["gender"].toInt();
+        auto uid = json_obj["uid"].toInt();
+        auto rsp = std::make_shared<AuthRsp>(uid, name, nick, avatar, gender);
+        emit sig_auth_rsp(rsp);
+    });
+    // 接收到了对方同意好友的请求
+    _handlers.insert(ReqId::ID_NOTIFY_AUTH_FRIEND_REQ,[this](ReqId id, int len, QByteArray data){
+        qDebug() << "Handle id is " << id << ", data is ";
+        qDebug().noquote() << data;
+
+        QJsonDocument json_doc = QJsonDocument::fromJson(data);
+        if (json_doc.isNull()) {
+            qDebug() << "Failed to create QJsonDocument.";
+            return;
+        }
+
+        QJsonObject json_obj = json_doc.object();
+        // json 必须包含 error
+        if (!json_obj.contains("error")) {
+            int err = ErrorCodes::ERR_JSON;
+            qDebug() << "Auth friend Failed, err is Json Parse Err: " << err;
+            return;
+        }
+
+        int err = json_obj["error"].toInt();
+        if (err != ErrorCodes::SUCCESS) {
+            qDebug() << "Auth friend Failed, err is " << err;
+            return;
+        }
+
+        int from_uid = json_obj["fromuid"].toInt();
+        QString name = json_obj["name"].toString();
+        QString nick = json_obj["nick"].toString();
+        QString avatar = json_obj["avatar"].toString();
+        int gender = json_obj["gender"].toInt();
+        auto auth_info = std::make_shared<AuthInfo>(from_uid,name,
+                                                    nick, avatar, gender);
+        emit sig_add_auth_friend(auth_info);
     });
 }
 
