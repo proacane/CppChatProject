@@ -156,6 +156,13 @@ public:
      * @return
      */
     bool addFriend(int from_uid,int to_uid,const std::string& back_name);
+    /**
+     * 加载好友列表
+     * @param uid
+     * @param friend_list
+     * @return
+     */
+    bool getFriendList(int uid,std::vector<std::shared_ptr<UserInfo>>& friend_list);
 private:
     std::unique_ptr<MysqlPool> _pool;
 };

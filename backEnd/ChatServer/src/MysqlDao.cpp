@@ -500,7 +500,8 @@ bool MysqlDao::addFriend(int from_uid, int to_uid, const std::string &back_name)
         con->_connection->setAutoCommit(false);
         // 添加两条记录，表示互为好友
         std::unique_ptr<sql::PreparedStatement> preparedStatement(
-                con->_connection->prepareStatement("INSERT IGNORE INTO friend(self_id, friend_id, back) VALUES (?, ?, ?) "));
+                con->_connection->prepareStatement(
+                        "INSERT IGNORE INTO friend(self_id, friend_id, back) VALUES (?, ?, ?) "));
         preparedStatement->setInt(1, from_uid);
         preparedStatement->setInt(2, to_uid);
         preparedStatement->setString(3, back_name);
@@ -511,7 +512,8 @@ bool MysqlDao::addFriend(int from_uid, int to_uid, const std::string &back_name)
             return false;
         }
         std::unique_ptr<sql::PreparedStatement> preparedStatement2(
-                con->_connection->prepareStatement("INSERT IGNORE INTO friend(self_id, friend_id, back) VALUES (?, ?, ?) "));
+                con->_connection->prepareStatement(
+                        "INSERT IGNORE INTO friend(self_id, friend_id, back) VALUES (?, ?, ?) "));
         preparedStatement2->setInt(1, to_uid);
         preparedStatement2->setInt(2, from_uid);
         // TODO 对方同意好友请求后，用户可以自定义备注
@@ -524,6 +526,39 @@ bool MysqlDao::addFriend(int from_uid, int to_uid, const std::string &back_name)
         }
 
         con->_connection->commit();
+        _pool->returnConnection(std::move(con));
+        return true;
+    } catch (const sql::SQLException &e) {
+        _pool->returnConnection(std::move(con));
+        spdlog::warn("SQLException: {} (MySQL error code: {}, SQLState: {})",
+                     e.what(),
+                     e.getErrorCode(),
+                     e.getSQLState());
+        return false;
+    }
+}
+
+bool MysqlDao::getFriendList(int uid, std::vector<std::shared_ptr<UserInfo>> &friend_list) {
+    auto con = _pool->getConnection();
+    try {
+        if (con == nullptr) {
+            return false;
+        }
+        std::unique_ptr<sql::PreparedStatement> preparedStatement(
+                con->_connection->prepareStatement("Select * from friend where self_id = ?"));
+        preparedStatement->setInt(1, uid);
+        std::unique_ptr<sql::ResultSet> res(preparedStatement->executeQuery());
+        while (res->next()) {
+            auto friend_id = res->getInt("friend_id");
+            std::string back = res->getString("back");
+            auto friend_user = getUser(friend_id);
+            if (friend_user == nullptr) {
+                continue;
+            }
+            // 有备注就显示备注，没有就显示名字
+            friend_user->back = ((back.empty()) ? friend_user->name : back);
+            friend_list.push_back(friend_user);
+        }
         _pool->returnConnection(std::move(con));
         return true;
     } catch (const sql::SQLException &e) {

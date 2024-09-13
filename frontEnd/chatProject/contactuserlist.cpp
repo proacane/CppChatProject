@@ -16,7 +16,7 @@ ContactUserList::ContactUserList(QWidget* parent) : QListWidget(parent) {
     // 安装事件过滤器
     this->viewport()->installEventFilter(this);
 
-    // TODO 后期改用数据库的信息
+    //  后期改用数据库的信息
     addContactUserList();
 
     connect(this, &ContactUserList::itemClicked, this, &ContactUserList::slot_item_clicked);
@@ -62,21 +62,17 @@ void ContactUserList::addContactUserList() {
     setItemWidget(_groupitem, groupContact);
     _groupitem->setFlags(_groupitem->flags() & ~Qt::ItemIsSelectable);
 
-    // 添加模拟用户
-    // 创建QListWidgetItem，并设置自定义的widget
-    // for (int i = 0; i < 13; i++) {
-    //     int randomValue = QRandomGenerator::global()->bounded(100);  // 生成0到99之间的随机整数
-    //     int str_i = randomValue % strs.size();
-    //     int head_i = randomValue % heads.size();
-    //     int name_i = randomValue % names.size();
-    //     auto* con_user_wid = new ContactUserItem();
-    //     con_user_wid->setInfo(0, names[name_i], heads[head_i]);
-    //     QListWidgetItem* item = new QListWidgetItem;
-    //     // qDebug()<<"chat_user_wid sizeHint is " << chat_user_wid->sizeHint();
-    //     item->setSizeHint(con_user_wid->sizeHint());
-    //     this->addItem(item);
-    //     this->setItemWidget(item, con_user_wid);
-    // }
+    auto friend_list = UserMgr::getInstance()->getFriendList();
+    if (!friend_list.empty()) {
+        for (const auto& f : friend_list) {
+            auto* con_user_wid = new ContactUserItem();
+            con_user_wid->setInfo(f->_uid, f->_name, f->_avatar);
+            QListWidgetItem* item = new QListWidgetItem;
+            item->setSizeHint(con_user_wid->sizeHint());
+            addItem(item);
+            setItemWidget(item,con_user_wid);
+        }
+    }
 }
 
 void ContactUserList::slot_item_clicked(QListWidgetItem* item) {

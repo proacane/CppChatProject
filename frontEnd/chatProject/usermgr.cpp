@@ -15,6 +15,7 @@ void UserMgr::setToken(QString token) {
 
 void UserMgr::addFriend(std::shared_ptr<AuthRsp> auth_rsp) {
     auto friend_info = std::make_shared<FriendInfo>(auth_rsp);
+    _friend_list.push_back(friend_info);
     _friend_map[friend_info->_uid] = friend_info;
 }
 
@@ -58,4 +59,24 @@ void UserMgr::appendApplyList(QJsonArray array) {
         auto info = std::make_shared<ApplyInfo>(uid, name, desc, icon, nick, sex, status);
         _apply_list.push_back(info);
     }
+}
+
+void UserMgr::appendFriendList(QJsonArray array) {
+    // 遍历 QJsonArray 并输出每个元素
+    for (const QJsonValue& value : array) {
+        auto name = value["name"].toString();
+        auto desc = value["desc"].toString();
+        auto icon = value["avatar"].toString();
+        auto nick = value["nick"].toString();
+        auto gender = value["gender"].toInt();
+        auto uid = value["uid"].toInt();
+        auto back = value["back"].toString();
+        auto info = std::make_shared<FriendInfo>(uid, name, nick, icon, gender, desc, back);
+        _friend_list.push_back(info);
+        _friend_map[uid] = info;
+    }
+}
+
+std::vector<std::shared_ptr<FriendInfo> > UserMgr::getFriendList() {
+    return _friend_list;
 }

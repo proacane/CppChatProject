@@ -66,20 +66,19 @@ ChatDialog::~ChatDialog() {
 
 void ChatDialog::addChatUserList() {
     // 创建QListWidgetItem，并设置自定义的widget
-    // for (int i = 0; i < 13; i++) {
-    //     int randomValue = QRandomGenerator::global()->bounded(100);  // 生成0到99之间的随机整数
-    //     int str_i = randomValue % strs.size();
-    //     int head_i = randomValue % heads.size();
-    //     int name_i = randomValue % names.size();
-    //     auto* chat_user_wid = new ChatUserWidget();
-    //     chat_user_wid->setInfo(names[name_i], heads[head_i], strs[str_i]);
-    //     QListWidgetItem* item = new QListWidgetItem;
-    //     // qDebug()<<"chat_user_wid sizeHint is " << chat_user_wid->sizeHint();
-    //     item->setSizeHint(chat_user_wid->sizeHint());
-    //     ui->list_chat_user->addItem(item);
-    //     ui->list_chat_user->setItemWidget(item, chat_user_wid);
-    // }
-    // TODO 从数据库获取
+    // TODO 聊天列表分页显示，按消息时间排序
+    auto friend_list = UserMgr::getInstance()->getFriendList();
+    if (!friend_list.empty()) {
+        for (const auto& f : friend_list) {
+            auto* chat_user_wid = new ChatUserWidget();
+            auto user_info = std::make_shared<UserInfo>(f);
+            chat_user_wid->setInfo(user_info);
+            QListWidgetItem* item = new QListWidgetItem;
+            item->setSizeHint(chat_user_wid->sizeHint());
+            ui->list_chat_user->addItem(item);
+            ui->list_chat_user->setItemWidget(item, chat_user_wid);
+        }
+    }
 }
 
 void ChatDialog::showSearchList(bool b_show) {
@@ -142,6 +141,7 @@ void ChatDialog::slot_loading_chat_user() {
     loadingDialog->show();
     // qDebug() << "add new data to list.....";
     // 添加新 item
+    // TODO 加载聊天列表做分页处理
     addChatUserList();
     // 加载完成后关闭对话框
     loadingDialog->deleteLater();

@@ -95,7 +95,6 @@ void LogicSystem::loginHandler(std::shared_ptr<CSession> session, const short &m
     auto token = root["token"].asString();
     spdlog::info("User Login uid is {}, token is {}", uid, token);
 
-
 //    auto rsp = StatusGrpcClient::getInstance()->Login(uid, token);
     Json::Value return_value;
     Defer defer([this, &return_value, session]() {
@@ -154,7 +153,24 @@ void LogicSystem::loginHandler(std::shared_ptr<CSession> session, const short &m
         spdlog::error("Some error occurred when query friend apply list");
     }
 
-    // TODO 获取好友列表
+    // 获取好友列表
+    std::vector<std::shared_ptr<UserInfo>> friend_list;
+    auto b_friend = MysqlMgr::getInstance()->getFriendList(uid,friend_list);
+    if(b_friend){
+        for (auto & friend_user : friend_list) {
+            Json::Value obj;
+            obj["name"] = friend_user->name;
+            obj["uid"] = friend_user->uid;
+            obj["avatar"] = friend_user->avatar;
+            obj["nick"] = friend_user->nick;
+            obj["gender"] = friend_user->gender;
+            obj["desc"] = friend_user->desc;
+            obj["back"] = friend_user->back;
+            return_value["friend_list"].append(obj);
+        }
+    }else{
+        spdlog::error("Some error occurred when query friend list");
+    }
 
     auto server_name = ConfigMgr::getInstance().getValue("SelfServer", "Name");
     //将登录数量增加

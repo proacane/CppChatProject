@@ -37,6 +37,8 @@ class UserMgr : public QObject, public SingleTon<UserMgr>, public std::enable_sh
     void setUserInfo(std::shared_ptr<UserInfo> userinfo);
     void addApplyList(std::shared_ptr<ApplyInfo> app);
     void appendApplyList(QJsonArray array);
+    void appendFriendList(QJsonArray array);
+    std::vector<std::shared_ptr<FriendInfo>> getFriendList();
   private:
     std::shared_ptr<UserInfo> _user_info;
     UserMgr() = default;

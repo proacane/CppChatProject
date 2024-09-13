@@ -113,6 +113,10 @@ void TcpMgr::initHandlers() {
         if(json_obj.contains("apply_list")){
             UserMgr::getInstance()->appendApplyList(json_obj["apply_list"].toArray());
         }
+        // 获取好友列表
+        if(json_obj.contains("friend_list")){
+            UserMgr::getInstance()->appendFriendList(json_obj["friend_list"].toArray());
+        }
         // 切换到聊天窗口
         emit sig_swich_chatdlg();
     });
