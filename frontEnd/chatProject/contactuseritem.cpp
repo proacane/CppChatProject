@@ -54,3 +54,7 @@ void ContactUserItem::showRedPoint(bool show) {
         ui->lab_point->hide();
     }
 }
+
+std::shared_ptr<UserInfo> ContactUserItem::getInfo() const {
+    return _info;
+}

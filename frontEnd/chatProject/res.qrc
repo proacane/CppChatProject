@@ -42,5 +42,11 @@
         <file>images/msg_chat_normal.png</file>
         <file>images/msg_chat_press.png</file>
         <file>images/red_point.png</file>
+        <file>images/video_chat_hover.png</file>
+        <file>images/video_chat_normal.png</file>
+        <file>images/video_chat_press.png</file>
+        <file>images/voice_chat_hover.png</file>
+        <file>images/voice_chat_normal.png</file>
+        <file>images/voice_chat_press.png</file>
     </qresource>
 </RCC>

@@ -52,6 +52,8 @@ private:
     void addFriendApply(std::shared_ptr<CSession> session, const short &msg_id, const std::string &msg_data);
     // 处理同意好友申请的请求
     void authFriendApply(std::shared_ptr<CSession> session, const short &msg_id, const std::string &msg_data);
+    // 处理文本信息
+    void dealChatTextMsg(std::shared_ptr<CSession> session, const short &msg_id, const std::string &msg_data);
     std::thread _worker_thread;
     std::queue<std::shared_ptr<LogicNode>> _msg_que;
     std::mutex _mutex;

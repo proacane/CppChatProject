@@ -102,13 +102,13 @@ public:
     int updatePassword(const std::string &user_name, const std::string &password);
 
     /**
-     * 登录验证用户名和密码
-     * @param user_name
+     * 登录验证邮箱和密码
+     * @param email
      * @param password
      * @param userInfo
      * @return
      */
-    bool checkPassword(const std::string &user_name, const std::string &password, UserInfo &userInfo);
+    bool checkPassword(const std::string &email, const std::string &password, UserInfo &userInfo);
 
     /**
      * 获取用户信息

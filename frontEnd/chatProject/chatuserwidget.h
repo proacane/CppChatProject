@@ -26,7 +26,8 @@ class ChatUserWidget : public ListItemBase {
     QSize sizeHint() const override {
         return QSize(250, 70);
     }
-    void setInfo(QString name, QString avatar, QString msg);
+    void setInfo(std::shared_ptr<FriendInfo> friend_info);
+     std::shared_ptr<UserInfo> getUserInfo();
     void setInfo(std::shared_ptr<UserInfo> user_info);
   private:
     Ui::ChatUserWidget* ui;
@@ -36,6 +37,7 @@ class ChatUserWidget : public ListItemBase {
     QString _avatar;
     // 最后一条消息
     QString _msg;
+    std::shared_ptr<UserInfo> _user_info;
 };
 
 #endif  // CHATUSERWIDGET_H

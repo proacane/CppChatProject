@@ -289,15 +289,15 @@ int MysqlDao::updatePassword(const std::string &user_name, const std::string &pa
     }
 }
 
-bool MysqlDao::checkPassword(const std::string &user_name, const std::string &password, UserInfo &userInfo) {
+bool MysqlDao::checkPassword(const std::string &email, const std::string &password, UserInfo &userInfo) {
     auto con = _pool->getConnection();
     try {
         if (con == nullptr) {
             return false;
         }
         std::unique_ptr<sql::PreparedStatement> preparedStatement(
-                con->_connection->prepareStatement("SELECT * FROM user WHERE name = ?"));
-        preparedStatement->setString(1, user_name);
+                con->_connection->prepareStatement("SELECT * FROM user WHERE email = ?"));
+        preparedStatement->setString(1, email);
         std::unique_ptr<sql::ResultSet> res(preparedStatement->executeQuery());
         std::string origin_pwd;
         while (res->next()) {
@@ -308,8 +308,8 @@ bool MysqlDao::checkPassword(const std::string &user_name, const std::string &pa
         if (origin_pwd != password) {
             return false;
         }
-        userInfo.name = user_name;
-        userInfo.email = res->getString("email");
+        userInfo.name = res->getString("name");
+        userInfo.email = email;
         userInfo.pwd = origin_pwd;
         userInfo.uid = res->getInt("uid");
         return true;

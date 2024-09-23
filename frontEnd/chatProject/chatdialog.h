@@ -47,6 +47,8 @@ class ChatDialog : public QDialog {
 
     // 已经添加的聊天列表
     QMap<int, QListWidgetItem*> _chat_items_added;
+    // 当天聊天的好友uid
+    int _cur_chat_uid;
   private slots:
     void slot_loading_chat_user();
     void slot_side_chat();
@@ -57,7 +59,7 @@ class ChatDialog : public QDialog {
 
     void slot_add_auth_friend(std::shared_ptr<AuthInfo> auth_info);
     void slot_auth_rsp(std::shared_ptr<AuthRsp> auth_rsp);
-    // QObject interface
+    void slot_item_clicked(QListWidgetItem* item);
   public:
     virtual bool eventFilter(QObject* watched, QEvent* event) override;
 };

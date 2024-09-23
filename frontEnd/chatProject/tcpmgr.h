@@ -39,11 +39,11 @@ private:
 
 public slots:
     void slot_tcp_connect(ServerInfo);
-    void slot_send_data(ReqId reqId, QString data);
+    void slot_send_data(ReqId reqId, QByteArray data);
   signals:
     // TODO TCP 响应失败统一处理
     void sig_connect_success(bool bsuccess);
-    void sig_send_data(ReqId reqId, QString data);
+    void sig_send_data(ReqId reqId, QByteArray data);
     void sig_swich_chatdlg();
     void sig_login_failed(int err);
     void sig_user_search_failed(int err);

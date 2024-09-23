@@ -120,7 +120,7 @@ void SearchList::slot_item_clicked(QListWidgetItem* item) {
 
         // 转换成原本的类型
         auto search_edit = dynamic_cast<CustomizeEdit*>(_search_edit);
-        auto uid_str = search_edit->text().toInt();
+        auto uid_str = search_edit->text();
         QJsonObject json_obj;
         json_obj["searchInfo"] = uid_str;
         QJsonDocument doc(json_obj);

@@ -19,7 +19,7 @@ class ChatView : public QWidget {
     void appendChatItem(QWidget* item);                   // 尾插
     void prependChatItem(QWidget* item);                  // 头插
     void insertChatItem(QWidget* before, QWidget* item);  // 中间插
-
+    void removeAllItem();
   public:
     virtual bool eventFilter(QObject* watched, QEvent* event) override;
     virtual void paintEvent(QPaintEvent* event) override;

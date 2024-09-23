@@ -55,6 +55,20 @@ ChatDialog::ChatDialog(QWidget* parent) :
     // 添加好友到聊天列表
     connect(TcpMgr::getInstance().get(), &TcpMgr::sig_add_auth_friend, this, &ChatDialog::slot_add_auth_friend);
     connect(TcpMgr::getInstance().get(), &TcpMgr::sig_auth_rsp, this, &ChatDialog::slot_auth_rsp);
+
+    // 点击添加按钮进行查找
+    // TODO 查找按钮点击闪退
+    connect(ui->btn_add, &QPushButton::clicked, this, [this]() {
+        auto uid_str = ui->edit_search->text();
+        QJsonObject json_obj;
+        json_obj["searchInfo"] = uid_str;
+        QJsonDocument doc(json_obj);
+        QByteArray jsonData = doc.toJson(QJsonDocument::Compact);
+        emit TcpMgr::getInstance() -> sig_send_data(ReqId::ID_SEARCH_USER_REQ, jsonData);
+    });
+
+    // 点击聊天列表的对象，跳转到其聊天界面
+    connect(ui->list_chat_user, &QListWidget::itemClicked, this, &ChatDialog::slot_item_clicked);
     // 检测鼠标点击位置，判断是否需要关闭搜索框
     installEventFilter(this);
 }
@@ -226,6 +240,39 @@ void ChatDialog::slot_auth_rsp(std::shared_ptr<AuthRsp> auth_rsp) {
     ui->list_chat_user->insertItem(0, item);
     ui->list_chat_user->setItemWidget(item, chat_user_wid);
     _chat_items_added.insert(auth_rsp->_uid, item);
+}
+
+void ChatDialog::slot_item_clicked(QListWidgetItem* item) {
+    QWidget* widget = ui->list_chat_user->itemWidget(item);  // 获取自定义widget对象
+    if (!widget) {
+        qDebug() << "slot item clicked widget is nullptr";
+        return;
+    }
+
+    // 对自定义widget进行操作， 将item 转化为基类ListItemBase
+    ListItemBase* customItem = qobject_cast<ListItemBase*>(widget);
+    if (!customItem) {
+        qDebug() << "slot item clicked widget is nullptr";
+        return;
+    }
+
+    auto itemType = customItem->getItemType();
+    if (itemType == ListItemType::INVALID_ITEM || itemType == ListItemType::GROUP_TIP_ITEM) {
+        qDebug() << "slot invalid item clicked ";
+        return;
+    }
+
+    if (itemType == ListItemType::CHAT_USER_ITEM) {
+        // 创建对话框，提示用户
+        qDebug() << "contact user item clicked ";
+
+        auto chat_wid = qobject_cast<ChatUserWidget*>(customItem);
+        auto user_info = chat_wid->getUserInfo();
+        // 跳转到聊天界面
+        ui->page_chat->setUserInfo(user_info);
+        _cur_chat_uid = user_info->_uid;
+        return;
+    }
 }
 
 bool ChatDialog::eventFilter(QObject* watched, QEvent* event) {

@@ -17,15 +17,6 @@ void LogicSystem::registerGet(std::string url, httpHandler handler) {
 }
 
 LogicSystem::LogicSystem() {
-//    registerGet("/get_test", [](std::shared_ptr<HttpConnection> connection) {
-//        beast::ostream(connection->_response.body()) << "receive get_test req\r\n";
-//        int i = 0;
-//        for (const auto &item: connection->_get_params) {
-//            i++;
-//            beast::ostream(connection->_response.body()) << "param " << i << " key is " << item.first;
-//            beast::ostream(connection->_response.body()) << ", " << i << " value is " << item.second << std::endl;
-//        }
-//    });
     // 处理验证码
     registerPost("/get_verifycode", [](std::shared_ptr<HttpConnection> connection) {
         // 请求转换为 string
@@ -231,11 +222,11 @@ LogicSystem::LogicSystem() {
             return;
         }
 
-        auto user_name = src_root["user"].asString();
+        auto email = src_root["email"].asString();
         auto password = src_root["password"].asString();
         UserInfo userInfo;
         // 在 mysql 中验证输入是否正确
-        bool b_valid = MysqlMgr::getInstance()->checkPassword(user_name, password, userInfo);
+        bool b_valid = MysqlMgr::getInstance()->checkPassword(email, password, userInfo);
         if (!b_valid) {
             spdlog::warn("Error password or user doesn't exist");
             root["error"] = ErrorCodes::UserPasswordError;
@@ -256,7 +247,7 @@ LogicSystem::LogicSystem() {
 
         spdlog::info("Login verify succeed, user uid is {}", userInfo.uid);
         root["error"] = ErrorCodes::Success;
-        root["user"] = user_name;
+        root["user"] = userInfo.name;
         root["uid"] = userInfo.uid;
         root["token"] = reply.token();
         root["host"] = reply.host();

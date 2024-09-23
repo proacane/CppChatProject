@@ -31,6 +31,27 @@ ChatPage::~ChatPage() {
     delete ui;
 }
 
+void ChatPage::setUserInfo(std::shared_ptr<UserInfo> user_info)
+{
+    _user_info = user_info;
+    //设置ui界面
+    ui->lab_title->setText(_user_info->_name);
+    // ui->chat_data_list->removeAllItem();
+    for(auto & msg : user_info->_chat_msgs){
+        appendChatMsg(msg);
+    }
+}
+
+void ChatPage::appendChatMsg(std::shared_ptr<TextChatData> msg)
+{
+
+}
+
+void ChatPage::clearItems()
+{
+    ui->widget_chat_data_list->removeAllItem();
+}
+
 void ChatPage::paintEvent(QPaintEvent* event) {
     QStyleOption opt;
     opt.initFrom(this);

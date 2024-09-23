@@ -19,7 +19,7 @@ ApplyFriend::ApplyFriend(QWidget* parent) : QDialog(parent), ui(new Ui::ApplyFri
     this->setModal(true);
     ui->name_ed->setPlaceholderText(tr("我是 "));
     ui->lb_ed->setPlaceholderText("搜索、添加标签");
-    ui->back_ed->setPlaceholderText("燃烧的胸毛");
+    ui->back_ed->setPlaceholderText("备注");
 
     ui->lb_ed->setMaxLength(21);
     ui->lb_ed->move(2, 2);

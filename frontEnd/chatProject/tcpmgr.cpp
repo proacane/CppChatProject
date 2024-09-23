@@ -309,10 +309,10 @@ void TcpMgr::slot_tcp_connect(ServerInfo si) {
     _socket.connectToHost(si.Host, _port);
 }
 
-void TcpMgr::slot_send_data(ReqId reqId, QString data) {
+void TcpMgr::slot_send_data(ReqId reqId, QByteArray data) {
     // 向服务器发送数据
     uint16_t id = reqId;
-    QByteArray dataBytes = data.toUtf8();
+    // QByteArray dataBytes = data.toUtf8();
     // 计算数据长度
     quint16 len = static_cast<quint16>(data.size());
     // 创建发送数组
@@ -323,8 +323,8 @@ void TcpMgr::slot_send_data(ReqId reqId, QString data) {
     out.setVersion(QDataStream::Version::Qt_6_5);
     // 写入 id 和长度
     out << id << len;
-    send_data.append(dataBytes);
+    send_data.append(data);
     qDebug() << "slot send data to tcp server is: ";
-    qDebug().noquote() << dataBytes;
+    qDebug().noquote() << data;
     _socket.write(send_data);
 }

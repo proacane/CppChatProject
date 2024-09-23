@@ -18,8 +18,8 @@ int MysqlMgr::updatePassword(const std::string &user_name, const std::string &pa
     return _dao.updatePassword(user_name,password);
 }
 
-bool MysqlMgr::checkPassword(const std::string &user_name, const std::string &password, UserInfo &userInfo) {
-    return _dao.checkPassword(user_name,password,userInfo);
+bool MysqlMgr::checkPassword(const std::string &email, const std::string &password, UserInfo &userInfo) {
+    return _dao.checkPassword(email,password,userInfo);
 }
 
 std::shared_ptr<UserInfo> MysqlMgr::getUser(int uid) {
